@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+    head
+        block head
+            meta(charset="UTF-8")
+            meta(http-equiv="X-UA-Compatible", content="ie=edge,chrome=1")
+            meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+            
+            //- Page meta information
+            include /shared/block-meta
+            
+            //- Page title
+            title #{ title || metadata.title }
+
+            //- Favicon Links
+            link(rel="icon", href="/favicon.ico", sizes="any")
+            link(rel="icon", href="/icon.svg", type="image/svg+xml")
+            link(rel="apple-touch-icon", href="/apple-touch-icon.png")
+            link(rel="manifest", href="/manifest.webmanifest")
+
+            //- RSS Feed
+            //- link(rel="alternate" type="application/rss+xml" href=(metadata.url + metadata.feed.path))
+
+            //- Styles
+            link(rel="stylesheet", href="/css/main.css", media="screen")
+            link(rel="stylesheet", href="/css/main.css", media="print")
+
+            //- Javascript
+            script(defer, src="/javascript/bootstrap.bundle.min.js")
+            
+            
+    body
+        block header
+    
+        main
+            block content
+        
+        block footer
+
+        

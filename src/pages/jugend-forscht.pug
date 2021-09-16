@@ -1,0 +1,29 @@
+---
+layout: project
+title: "Jugend Forscht"
+image: /images/jugend-forscht/jugend-forscht.svg
+description: "Work submitted to the German youth research competition Jugend forscht in 1999"
+permalink: "| /jugend-forscht/"
+---
+block append content 
+
+  section.container
+    .row.mt-5
+      .col-md-9
+        article#jugend-forscht
+          | !{ filters.markdown("text-blocks/jugend-forscht.md") }
+      .col-md-3.d-none.d-md-block
+
+        h6 Translate
+        a(href=`http://translate.google.com/translate?js=n&sl=auto&tl=&u=${metadata.url+page.url}` rel="nofollow" target="_blank") English (Google)
+
+        .sticky-md-top(style="z-index:1!important;padding-top: 4rem!important;")
+          //-  Table of Content Container
+          h6 On This Page
+          | !{filters.toc(filters.markdown("text-blocks/jugend-forscht.md"), {tags:['h2'], wrapperClass:"toc", ul: true })}
+
+style.
+  .img-grid {
+    width: 45%;
+    margin: 0.2rem;
+  }

@@ -1,0 +1,71 @@
+mixin columns-1(section)
+    section.block-one-column&attributes(attributes)
+        .container
+            .row.my-5
+                .col.p-3
+                    h3.text-center !{section.header}
+                    p !{section.content}
+
+mixin columns-2(section)
+    section.block-two-columns&attributes(attributes)
+        .container
+            .row.my-5
+                .col.p-3
+                    h3.text-center !{section.header1}
+                    p !{section.content1}
+                .col.p-3
+                    h3.text-center !{section.header2}
+                    p !{section.content2}
+
+
+mixin columns-3(section)
+    section.block-three-columns&attributes(attributes)
+        .container
+            .row.my-5
+                .col.p-3
+                    h3.text-center !{section.header1}
+                    p !{section.content1}
+                .col.p-3
+                    h3.text-center !{section.header2}
+                    p !{section.content2}
+                .col.p-3
+                    h3.text-center !{section.header3}
+                    p !{section.content3}
+
+mixin columns-footer(section)
+    section.block-footer-2&attributes(attributes)
+        .container
+            .row.my-5
+                .col.p-3
+                    img(src=metadata.icon width="24" height="auto" alt="Logo")
+                .col.p-3
+                    if typeof section.col1 == 'string'
+                        | !{section.col1}
+                    else if typeof section.col1 == 'object'
+                        ul.list-unstyled
+                            each el,idx in section.col1
+                                if el.link
+                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`) !{el.text}
+                                else
+                                    li !{el.text}
+                .col.p-3
+                    if typeof section.col2 == 'string'
+                        | !{section.col2}
+                    else if typeof section.col2 == 'object'
+                        ul.list-unstyled
+                            each el,idx in section.col2
+                                if el.link
+                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`) !{el.text}
+                                else
+                                    li !{el.text}
+                .col.p-3
+                    if typeof section.col3 == 'string'
+                        | !{section.col3}
+                    else if typeof section.col3 == 'object'
+                        ul.list-unstyled
+                            each el,idx in section.col3
+                                if el.link
+                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`) !{el.text}
+                                else
+                                    li !{el.text}
+

@@ -1,0 +1,52 @@
+mixin hero-1(section)
+  section.block-hero-1&attributes(attributes)
+    .container.text-center.p-5
+       h1.text-white.m-0 !{section.header || ""}
+
+mixin hero-2(section)
+  section.block-hero-2&attributes(attributes)
+    .container.py-5
+      .row.d-flex.align-items-center
+        .col-sm-12.col-md-6.p-3
+          h1.text-white !{section.header || ""}
+          .text-white !{section.content || ""}
+        .col-sm-12.col-md-6.p-3.text-center
+          if section.image
+            | !{filters.image(filters.url(section.image), section.imageAlt )}
+          if section.video
+            video.ratio.ratio-16x9.p-0.mt-4(autoplay, loop, muted, poster=section.video.poster, style="font-size:0px!important")
+              each el in section.video.src
+                - filetype = el.split(".").slice(-1)[0];
+                source(src=el, type="video/"+filetype)
+              | Your browser does not support the video tag.
+          if section.imageSubtitle
+            .small.text-white.fw-lighter.text-end !{section.imageSubtitle}
+
+
+mixin hero-3(section)
+  section.block-hero-2&attributes(attributes)
+    .container.py-5
+      .row.d-flex.align-items-center
+        .col-sm-12.col-md-6.p-3.text-center
+          if section.image
+            | !{filters.image(filters.url(section.image), section.imageAlt)}
+          if section.video
+            video.ratio.ratio-16x9.p-0.mt-4(autoplay, loop, muted, poster=section.video.poster, style="font-size:0px!important")
+              each el in section.video.src
+                - filetype = el.split(".").slice(-1)[0];
+                source(src=el, type="video/"+filetype)
+              | Your browser does not support the video tag.            
+          if section.imageSubtitle
+            .small.text-white.fw-lighter !{section.imageSubtitle}
+        .col-sm-12.col-md-6.p-3
+          h1.text-white !{section.header || ""}
+          .text-white !{section.content || ""}
+
+
+mixin hero-4(section)
+  section.block-hero-3&attributes(attributes)
+    .container 
+      .row.p-5
+        .col.text-center
+          h1.fw-lighter !{section.header || ""}
+          p.fw-lighter !{section.subheader || ""}

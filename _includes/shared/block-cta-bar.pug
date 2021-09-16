@@ -1,0 +1,12 @@
+mixin cta-bar(section)
+  section.bg-primary&attributes(attributes)
+    .container
+      .row
+        .col-6.p-5.d-flex.align-items-center
+          p.text-white !{section.text}
+        .col-6.p-5.cta.d-flex.align-items-center
+          form.row.w-100.px-3(action="https://formspree.io/{{ section.email_recipient }}", method="POST")
+            .col
+              input.form-control(type="email", placeholder="your@email.com", name="_replyto")
+            .col-auto
+              button.btn.btn-light.mb-3(type="submit") Sign up

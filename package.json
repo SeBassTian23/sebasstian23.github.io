@@ -1,0 +1,43 @@
+{
+  "name": "eleventy-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "watch": "eleventy --watch",
+    "serve": "eleventy --serve",
+    "start": "eleventy --serve",
+    "debug": "DEBUG=* eleventy",
+    "favicon": "sh favicon.sh"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SeBassTian23/sebasstian23.github.io.git"
+  },
+  "author": "Sebastian Kuhlgert <sebastian.kuhlgert@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sebasstian23/sebasstian23.github.io/issues"
+  },
+  "homepage": "https://sebasstian23.github.io",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy-img": "^0.9.0",
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "@11ty/eleventy-plugin-rss": "^1.1.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.2",
+    "@jamshop/eleventy-plugin-scss": "^1.0.0",
+    "bootstrap": "^5.0.2",
+    "bootstrap-icons": "^1.5.0",
+    "dayjs": "^1.10.6",
+    "eleventy-plugin-nesting-toc": "^1.3.0",
+    "eleventy-plugin-purgecss": "^0.1.1",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^8.1.2",
+    "markdown-it-link-attributes": "^3.0.0",
+    "natsort": "^2.0.2",
+    "striptags": "^3.2.0"
+  }
+}

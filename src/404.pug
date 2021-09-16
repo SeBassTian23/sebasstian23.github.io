@@ -1,0 +1,16 @@
+---
+layout: minimal
+eleventyExcludeFromCollections: true
+title: "Page not found"
+permalink: 404.html
+dynamicPermalink: false
+---
+
+section.bg-primary.block-hero-1
+  .container.py-5
+    .row.d-flex.align-items-center
+      .col.p-3
+        h3.text-white.mb-4 #[i.bi-bug-fill] #{title}
+        a.btn.btn-light(href=filters.url("/")) Back to Homepage
+      .col-md-8.col-sm-12.p-3
+        img.img-fluid(src="/404.svg", alt="404 error")

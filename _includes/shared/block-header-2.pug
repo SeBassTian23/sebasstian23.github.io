@@ -1,0 +1,33 @@
+header.block-header-2.sticky-top.bg-white
+  nav.navbar.navbar-expand-lg.navbar-light
+    .container
+      a.navbar-brand(href=metadata.url)
+        img.d-inline-block.align-text-top.me-1(src=metadata.icon, alt="", width="auto", height="24")
+        | #{metadata.title}
+      button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNav
+        ul.navbar-nav.ms-auto
+          each nav in navigation 
+            if typeof nav.link === 'object'
+              li.nav-item.dropdown
+                a.nav-link.dropdown-toggle(href="#" id=filters.slugify(nav.title) role="button" data-bs-toggle="dropdown" aria-expanded="false") #{nav.title}
+                ul.dropdown-menu.dropdown-menu-end(aria-labelledby=filters.slugify(nav.title))
+                  each n in nav.link 
+                    if n.header
+                      li: h6.dropdown-header #{n.header}
+                    else if n.divider
+                      li: hr.dropdown-divider
+                    else if n.disabled
+                      li: a.dropdown-item.disabled(href="#",tabindex="-1", aria-disabled="true") #{n.title}
+                    else if helpers.getLinkActiveState( n.link, page.url ) !== ""
+                      li: a.dropdown-item.active(href=filters.url(n.link), helpers.getLinkActiveState( n.link, page.url )) #{n.title}
+                    else
+                      li: a.dropdown-item(href=filters.url(n.link)) #{n.title}
+            else
+              if nav.disabled
+                a.nav-link.disabled(href="#",tabindex="-1", aria-disabled="true") #{nav.title}
+              else if helpers.getLinkActiveState( nav.link, page.url ) !== ""
+                a.nav-link.active(href=filters.url(nav.link), helpers.getLinkActiveState( nav.link, page.url )) #{nav.title}
+              else
+                a.nav-link(href=filters.url(nav.link)) #{nav.title}

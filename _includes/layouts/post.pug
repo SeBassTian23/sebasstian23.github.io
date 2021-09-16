@@ -1,0 +1,125 @@
+extends default.pug
+
+include /shared/block-hero
+include /shared/block-post
+include /shared/block-social
+
+block append head 
+  script(defer, src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js")
+  if album
+    script(defer, src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
+    script(defer, src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js",integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D", crossorigin="anonymous")
+  script(defer, src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js")
+  script(defer, src="/javascript/search.js")
+
+block append header 
+  include /shared/block-header-2
+
+block append content
+  +post-header(description, image, imageAlt)
+  .container
+    .row
+      .col-md-9.block-post-1
+        article
+          //- Article Header
+          section.row.mb-4
+            .col
+              .mb-1.text-muted(style="text-transform: uppercase;")
+                each tag, index in tags
+                  - tagURL = "/tags/" + filters.slug(tag) + "/"
+                  if( index > 0)
+                    span.mx-2 |
+                  a.text-muted(href=filters.url(tagURL) style="text-decoration:none") #{tag}
+
+              h1.text-primary #{title}
+              .small.mb-1 #{author || "unknown"}
+              .small.text-muted #[time(datetime=filters.htmlDatetimeString(page.date)) #{filters.formatedDate(page.date)}]
+
+          section.row.post-content   
+            .col.clearfix
+              | !{content}
+
+          if album 
+            +album(album)
+
+      .col-md-3
+        aside.pt-5(style="z-index:1!important;", class=(toc? "sticky-md-top": ""))
+          //- Search Container
+          .row
+            .col.p-3
+              h6 Search
+              input.form-control#searchField(type="search", placeholder="Search Articles")
+              .d-flex.flex-row.justify-content-end
+                ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
+          hr
+          //-  Table of Content Container
+          if toc
+            .row
+              .col.p-3
+                h6 On This Page
+                | !{filters.toc(content, {tags:['h2', 'h3'], wrapperClass:"toc", ul: true })}
+            hr
+          //- Tags
+          if collections.tagList.length > 0
+            .row
+              .col.p-3
+                h6 Tags
+                each tag, index in collections.tagList
+                  - tagURL = "/tags/" + filters.slug(tag) + "/"
+                  a.tag.bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}
+
+            hr
+          //- More Posts
+          .row.d-flex.justify-content-around.p-3
+            h6 More Posts
+            //- collection, item, limit = 3, random = true
+            - var suggestions = helpers.getSiblingContent(collections.posts, page)
+            each el in suggestions
+              +post-card-sm(el)(class="col-12 mb-3")
+
+            hr
+          //- More Posts
+          .row.d-flex.justify-content-around.p-3
+            h6 Share
+            +social-share({...page,...{title: title}})(class="col-12 mb-3")
+
+    if album 
+      script.
+        document.addEventListener('DOMContentLoaded', function () {
+          imagesLoaded( document.querySelector('.post-album .row'), function( instance ) {
+
+            var msnry = new Masonry( '.post-album .row', {
+              "percentPosition": true
+            });
+            msnry.layout();
+
+            var images = document.querySelectorAll('.post-album picture img');
+            images.forEach(function(el){
+              // Find large image from source
+              var type = el.currentSrc !== undefined? el.currentSrc.split(".").splice(-1)[0]: null;
+              if(type == "jpg")
+                type = "jpeg";
+              var zoom_src = null;
+              var parent = el.parentNode;
+              var src = parent.childNodes
+              if(type){
+                src.forEach(function(el){
+                  if(el.nodeName == "SOURCE" && el.getAttribute('type') == `image/${type}`){
+                    zoom_src = el.getAttribute('srcset');
+                    zoom_src = zoom_src.split(',').splice(-1)[0].trim().split(" ")[0] || null;
+                  }
+                });
+              }
+              //- if( el.currentSrc !== undefined)
+              //-   el.setAttribute('data-zoom-src', el.currentSrc);
+            });
+          });
+        });
+
+    script.
+        document.addEventListener('DOMContentLoaded', function () {
+            mediumZoom('.post-album picture img');
+        });
+
+block append footer
+    include /shared/block-footer

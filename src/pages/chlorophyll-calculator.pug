@@ -1,0 +1,145 @@
+---
+layout: project
+title: "Calculate Chloropyll Content"
+image: /images/science/chlorophyll.svg
+description: "Calculate the chlorophyll content based on Porra et al."
+permalink: "| /chlorophyll-content/"
+---
+include /shared/block-hero.pug
+block append content 
+  +hero-1({header: title})(class="bg-secondary mb-4",id="personal-projects")
+
+  section.container 
+    .row
+      .col-md-6
+        form#start-form(role='form')
+          .col-12.mb-3
+            label.form-label(for='samples') Number of Samples
+            .input-group
+              span.input-group-text Samples
+              input#sampleNo.form-control(type='number' placeholder='1' max='99' min='0' name='samples')
+            .form-text The limit is 99 samples
+          .col-12.mb-3
+            label.form-label(for='repeats') Repeats per Sample
+            .input-group
+              span.input-group-text Repeats
+              input#repeatNo.form-control(type='number' placeholder='3' max='99' min='1' name='repeats')
+            .form-text Number can be adjusted for individual samples later  
+          .col-12.mb-3
+            button.btn.btn-primary(type='submit' value='Start' name='calculate') Start
+            button.btn.btn-outline-primary.ms-4#demo(type='button' value='Demo' name='calculate') Demo
+      .col-md-6
+        h5 Experimental Procedure
+        p
+          | According to Porra et al. use a final concentration of 80 % aceton to extract the chlorophyll from your sample.
+          |  Centrifuge, to remove any cell debris and measure the absorbance of the supernatant at 646 nm, 663 nm and 750 nm.
+        .small
+          em.text-muted Based on:
+          p
+            | Porra, R.J., Thompson, W.A., and Kriedemann, P.E. (1989)
+            strong
+              |  Determination of accurate extinction coefficients and simultaneous equations for assaying chlorophylls a and b extracted with four different solvents; verification of the concentration of chlorophyll standards by atomic absorption spectroscopy.
+            |  Biochimica et Biophysica Acta, 975, 384-394
+
+  section.container 
+    .row#calculate-content 
+
+  section.container 
+    .row#result-content 
+
+
+script(defer, src="/javascript/chlorophyll-calculator.js")
+script(defer type="text/javascript"). 
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var form = document.querySelector('#start-form');
+    form.addEventListener("submit", function(event){
+      event.preventDefault();
+      let samples = form.elements.samples.value || 1;
+      let repeats = form.elements.repeats.value || 3;
+      document.querySelector("#calculate-content").innerHTML = "<h2 class=\"mb-4\">Measurement Data</h2>";
+      for(var i=0; i<samples; i++){
+        document.querySelector("#calculate-content").innerHTML += SampleInput(i,repeats);
+      }
+    });
+    
+    var formMeasurements = document.querySelector('#calculate-content');
+    formMeasurements.addEventListener("keyup", function(event){
+      var output = CalculateContent('#calculate-content');
+      ShowResults('#result-content', output);
+    });
+
+    var addCustomEventListener = function (selector, event, handler) {
+        let rootElement = document.querySelector('body');
+        //since the root element is set to be body for our current dealings
+        rootElement.addEventListener(event, function (evt) {
+                var targetElement = evt.target;
+                while (targetElement != null) {
+                    if (targetElement.matches(selector)) {
+                        handler(evt);
+                        return;
+                    }
+                    targetElement = targetElement.parentElement;
+                }
+            },
+            true
+        );
+    }
+
+    addCustomEventListener('#calculate-content .remove-row','click', function(event){
+      var tableIdx = event.target.getAttribute('data-table');
+      var tbody = document.querySelector(`table[data-table="${tableIdx}"]`).tBodies[0];
+      if(tbody.rows.length>0){
+        tbody.deleteRow(tbody.rows.length-1);
+      }
+      if(tbody.rows.length == 0){
+        document.querySelector(`div[data-sample="${tableIdx}"]`).remove();
+      }
+    });
+
+    addCustomEventListener('#calculate-content .add-row','click', function(event){
+      var tableIdx = event.target.getAttribute('data-table');
+      var tbody = document.querySelector(`table[data-table="${tableIdx}"]`).tBodies[0];
+      var row = tbody.rows[0];
+      var clone = row.cloneNode(true);
+      clone.querySelector('td').innerHTML = `<b>${tbody.rows.length+1}</b>`
+      tbody.appendChild(clone); // add new row to end of table
+    });
+
+    addCustomEventListener('#calculate-content #add-sample','click', function(event){
+      alert("Add");
+      //- var tableIdx = event.target.getAttribute('data-table');
+      //- var tbody = document.querySelector(`table[data-table="${tableIdx}"]`).tBodies[0];
+      //- var row = tbody.rows[0];
+      //- var clone = row.cloneNode(true);
+      //- clone.querySelector('td').innerHTML = `<b>${tbody.rows.length+1}</b>`
+      //- tbody.appendChild(clone); // add new row to end of table
+    });
+
+    // Demo
+    var demo = document.querySelector('#demo');
+    demo.addEventListener("click", function(event){
+
+      //- Thylakoids
+      //- 0.321 0.678 0.012 200
+
+      // Setup Form
+      document.querySelector('#sampleNo').value = 1;
+      document.querySelector('#repeatNo').value = 1;
+
+      // Submit Form
+      document.querySelector('#start-form button[type=submit]').click();
+
+      // Add Values to Form
+      document.querySelector('#calculate-content input[name="sample[]"]').value = "Thylakoids";
+      document.querySelector('#calculate-content input[name="NM646[0][]"]').value = 0.321;
+      document.querySelector('#calculate-content input[name="NM663[0][]"]').value = 0.678;
+      document.querySelector('#calculate-content input[name="NM750[0][]"]').value = 0.012;
+      document.querySelector('#calculate-content input[name="dilution[0][]"]').value = 200;
+
+      // Calculate Content
+      var output = CalculateContent('#calculate-content');
+      ShowResults('#result-content', output);
+    });
+
+  });

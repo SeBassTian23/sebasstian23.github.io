@@ -1,0 +1,123 @@
+---
+layout: project
+title: "Format FASTA Sequences"
+image: /images/science/fasta.svg
+description: "Format Fasta sequence, including with, gaps, numbers, etc."
+permalink: "| /format-fasta/"
+---
+include /shared/block-hero.pug
+
+block append content
+  +hero-1({header: title})(class="bg-secondary mb-4",id="format-fasta")
+  section.container.mb-4.mt-4
+    .row
+      .col-md-8.mb-4
+        h3 Sequence
+        textarea.form-control(placeholder="Paste your sequence (plain or FASTA) here" id="sequence" style="min-height:250px; height:80%; resize: vertical; font-family: monospace;")
+        .form-text Source: #[span#source not available] #[span.float-end#sequence-type]
+
+      .col-md-4 
+        h3 Format
+        form.row#fasta-settings
+          .col-6.mb-3
+            label.form-label(for="width") Width
+            input.form-control(id="width" type="number" placeholder="60", name="width", min=1)
+            .form-text Number of characters per line
+          .col-6.mb-3
+            label.form-label(for="gap") Gaps
+            select.form-control(id="gap" name="gap")
+              option(value="false" selected) No
+              option(value="true") Yes 
+            .form-text Separate blocks of #[em n] characters
+          .col-6.mb-3
+            label.form-label(for="block") Block Size
+            input.form-control(id="block" type="number" placeholder="10", name="block", min=1)
+            .form-text Number of characters per block
+          .col-6.mb-3
+            label.form-label(for="header") Header
+            select.form-control(id="header" name="header")
+              option(value="true" selected) Show 
+              option(value="false") Hide
+            .form-text Show the FASTA header
+          .col-6.mb-3
+            label.form-label(for="lineNum") Line Numbers
+            select.form-control(id="lineNum" name="lineNum")
+              option(value="true" selected) Yes 
+              option(value="false") No
+            .form-text Show character counts for each line
+          .col-6.mb-3
+            label.form-label(for="lineNumPos") Number Position
+            select.form-control(id="lineNumPos" name="lineNumPos")
+              option(value="start" selected) Start 
+              option(value="end") End
+              option(value="between") Between
+            .form-text Position of line numbers
+
+        .col-12 
+          button.btn.btn-outline-primary.btn-sm.me-4(id="link-example1") Example 1
+          button.btn.btn-outline-primary.btn-sm.me-4(id="link-example2") Example 2
+          button.btn.btn-outline-primary.btn-sm.me-4(id="link-example3") Example 3
+
+script(defer, src="/javascript/fasta.js")
+script. 
+  document.addEventListener('DOMContentLoaded', function () {
+    var fasta = new FASTA();
+    var sequence = document.querySelector("#sequence");
+    var sequencetype = document.querySelector("#sequence-type");
+    var example1 = document.querySelector("#link-example1");
+    var example2 = document.querySelector("#link-example2");
+    var example3 = document.querySelector("#link-example3");
+    var output = document.querySelector("#fasta-output");
+    var source = document.querySelector("#source");
+    var settings = document.querySelector("#fasta-settings");
+
+    example1.addEventListener("click", function(){
+      let seq=">NP_042570.1 NADH dehydrogenase subunit 1 (mitochondrion) [Chlamydomonas reinhardtii]\nMIVASILILIVPVLLSVAMFTLAERTVMASMQRRFGPQVSGISGLLQPFWDGLKLGVKEPVLPDSSSAGAFAASPMISFVLSQVAWVGICISDASFQGLVIMAISSLAVYGVMLAGWASNSKYAFLGCLRSVALMVSYELSLGAALLSIGLFVTDGTGMKCLNFAEMPTTPQYAMLPLCLIFLVCILAETKRDPFDLPEAELVAGYNVEYSSLGFALFFIAEYANMAVMSAIASIYFLGGFSALKITALFFAFVWTRGTLPRYRYDQFMRLGWKAFLPLTLAFFALHASVAI";
+      sequence.value = seq;
+      let event = new Event('keyup');
+      sequence.dispatchEvent(event);
+    });
+
+    example2.addEventListener("click", function(){
+      let seq="DATVKLGADSGALEFVPKTLTIKSGETVNFVNNAGFPHNIVFDE";  
+      sequence.value = seq;
+      let event = new Event('keyup');
+      sequence.dispatchEvent(event);
+    });
+
+    example3.addEventListener("click", function(){
+      let seq=">tr|A8JH68|A8JH68_CHLRE Plastocyanin OS=Chlamydomonas reinhardtii OX=3055 GN=PCY1 PE=3 SV=1\nMKATLRAPASRASAVRPVASLKAAAQRVASVAGVSVASLALTLAAHADATVKLGADSGAL\nEFVPKTLTIKSGETVNFVNNAGFPHNIVFDEDAIPSGVNADAISRDDYLNAPGETYSVKL\nTAAGEYGYYCEPHQGAGMVGKIIVQ";  
+      sequence.value = seq;
+      let event = new Event('keyup');
+      sequence.dispatchEvent(event);
+    });
+
+    settings.addEventListener("input", function(){
+      let elements = Array.from(settings.elements);
+      elements.forEach(function(el){
+        if(el.value !== "")
+          fasta.settings = { [el.name]: ( ["true","false"].indexOf(el.value) > -1? JSON.parse(el.value): el.value ) }
+      });
+      sequence.value = fasta.format;
+    });
+
+    sequence.addEventListener("keyup", function(){
+      let elements = Array.from(settings.elements);
+      elements.forEach(function(el){
+        if(el.value !== "")
+          fasta.settings = { [el.name]: ( ["true","false"].indexOf(el.value) > -1? JSON.parse(el.value): el.value ) }
+      })
+      fasta.entry = sequence.value;
+      if(fasta.link)
+        source.innerHTML = "<a href=\""+fasta.link+"\" target=\"_blank\">View</a>"
+      else
+        source.innerHTML = "not available"
+
+      sequencetype.innerHTML = "";
+      if(fasta.identify == 'aa')
+        sequencetype.innerHTML = 'Amino Acid';
+      else if (fasta.identify == 'nt') 
+        sequencetype.innerHTML = 'Nucleotide';
+      console.log(fasta.identify)
+    });
+  });

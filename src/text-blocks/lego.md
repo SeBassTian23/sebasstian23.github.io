@@ -1,0 +1,3 @@
+Buying the Chicago skyline model from the Architecture line a couple of years ago got me back into building with LEGO. Due to the lack of physical bricks, I started using the fantastic editor [Studio 2.0](https://www.bricklink.com/v3/studio/download.page) to design my own creations after so many years of LEGO abstinence.
+
+Cityscapes in the style of the LEGO Architecture line at a micro-scale have been a fun challenge to create. A lot of places I have visited are unavailable in the official LEGO catalog and a good place to start for your own collection.

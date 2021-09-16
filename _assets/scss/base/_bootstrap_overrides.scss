@@ -1,0 +1,35 @@
+// Override Bootstraps Variables Here
+// Reference node_modules/bootstrap/scss/_variables.scss for a full list of variables
+// https://getbootstrap.com/docs/4.3/getting-started/theming/#variable-defaults
+
+// Text color: #333 muted color #666
+
+// Light yellow: #ffedbc
+
+// First override some or all individual color variables
+$primary: #1d3557;   // #ffcb3c;
+$secondary: #457b9d; // #fd3647;
+$success: #a9e5bb;
+$info: #a8dadc;
+$warning: #f7b32b;
+$danger: #e63946;
+$light: #f8f9fa;
+$dark: #212529;
+$black: #000;
+
+// Then add them to your custom theme-colors map, together with any additional colors you might need
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark
+  // add any additional color below
+);
+
+$navbar-light-active-color:         $primary !default;
+$navbar-light-brand-color:          rgba($black, .9) !default;
+$navbar-light-brand-hover-color:    rgba($black, .9) !default;

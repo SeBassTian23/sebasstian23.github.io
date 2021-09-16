@@ -1,0 +1,24 @@
+---
+layout: project
+title: "Periodic Table of Elements"
+image: /images/science/icon-elements-periodic-table.svg
+description: "Interactive Periodic Table of Elements based on data from PubChem"
+permalink: "| /periodic-table-of-elements/"
+---
+block append content 
+  section.container
+    .row 
+      .col#periodic-table-elements
+
+  section.container
+    .row.mt-3
+      .col
+        p.text-muted.small
+          | Reference: #[a(href="https://pubchem.ncbi.nlm.nih.gov/ptable/", target="_blank" rel="noreferrer") PubChem] | Element-Information: 08-2021
+
+script(defer, src="/javascript/periodic-table-elements.js")
+script.
+  var elements = !{JSON.stringify(PubChemElements_all)}
+  document.addEventListener('DOMContentLoaded', function () {
+      new PeriodicTableElements("#periodic-table-elements", elements).init();
+  });

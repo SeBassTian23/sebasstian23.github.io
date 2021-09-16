@@ -1,0 +1,23 @@
+---
+layout: project
+title: "Periodic Chart of Amino Acids"
+image: /images/science/icon-aa-periodic-table.svg
+description: "Interactive Periodic Chart of Amino Acids based on a chart by Bachem"
+permalink: "| /periodic-chart-of-amino-acids/"
+---
+block append content 
+  section.container
+    .row 
+      .col#periodic-table-aa
+
+  section.container
+    .row 
+      .col.text-muted.small.text-end
+        | Reference: #[a(href="https://www.bachem.com/knowledge-center/posters/amino-acid-chart-and-its-20-proteinogenic-amino-acids/", target="_blank" rel="noreferrer") Bachem AG]
+
+script(defer, src="/javascript/periodic-table-aa.js")
+script.
+  var aminoacids = !{JSON.stringify(BachemAminoAcids)}
+  document.addEventListener('DOMContentLoaded', function () {
+      new PeriodicTableAA("#periodic-table-aa", aminoacids).init();
+  });

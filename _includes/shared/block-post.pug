@@ -1,0 +1,141 @@
+mixin post-header(description, image, imageAlt)
+  - nextPost = filters.getNextCollectionItem(collections.posts,page)
+  - previousPost = filters.getPreviousCollectionItem(collections.posts,page)
+  if image
+    - var images = filters.imageResizedURL(filters.url(image), "webp", 1500)
+    .carousel.post-header-img.shadow-sm.mb-4(style=`background-image:url(${filters.url(images.url)});`, title=imageAlt)
+      if nextPost || previousPost 
+        if nextPost
+          a.carousel-control-prev(href=filters.url(nextPost.url))
+            .bg-primary.d-flex.justify-content-center.align-items-center(style="width:100%; height:20%")
+              span.carousel-control-prev-icon
+            span.visually-hidden #{nextPost.data.title}
+        if previousPost
+          a.carousel-control-next(href=filters.url(previousPost.url))
+            .bg-primary.d-flex.justify-content-center.align-items-center(style="width:100%; height:20%")
+              span.carousel-control-next-icon
+            span.visually-hidden #{previousPost.data.title}
+  else
+    .carousel.bg-primary.mb-4.p-5
+      h1.text-center.text-white.m-0 !{title || ""}
+      if nextPost || previousPost 
+        if nextPost
+          a.carousel-control-prev(href=filters.url(nextPost.url))
+            span.carousel-control-prev-icon
+            span.visually-hidden #{nextPost.data.title}
+        if previousPost
+          a.carousel-control-next(href=filters.url(previousPost.url))
+            span.carousel-control-next-icon
+            span.visually-hidden #{previousPost.data.title}
+
+mixin album(album)
+  section.post-album
+    .row.row-cols-sm-2.row-cols-lg-3.row.cols-xl-4
+        each el in album
+          .col.mb-4
+            .album-img-wrapper
+              if typeof el === 'string'
+                | !{filters.image(el,"")}
+              else if typeof el === 'object'
+                | !{filters.image(el.image,el.imageAlt)}
+
+mixin post-card(post)
+  .col&attributes(attributes)
+    .card.border-0.rounded-0.post-card.h-100
+      a.link-darken(href=filters.url(post.url))
+        if post.data && post.data.image
+          - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 600)
+          .card-img-top.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`, title=post.data.imageAlt)
+        else
+          svg.bd-placeholder-img.card-img-top.rounded-0(width='100%' height='225' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail' preserveaspectratio='xMidYMid slice' focusable='false')
+            title #{post.data.title}
+            rect(width='100%' height='100%' fill='#114b5f')
+            text(x='50%' y='50%'  dominant-baseline="middle" text-anchor="middle" fill='#ffffff' dy='.3em') #{post.data.title}
+      .card-body
+        h5.text-primary.card-title.text-truncate #{post.data.title}
+        p.card-text
+          if filters.excerpt(post)
+            | #{filters.excerpt(post, 120)}
+          else
+            | #{post.data.description}
+      .card-body
+        if post.data.tags.length > 0
+          small.text-muted.text-uppercase #{post.data.tags[0]}
+          small.text-muted  | 
+        small.text-muted #{ filters.formatedDate(post.date)}
+
+mixin post-card-sm(post)
+  .col&attributes(attributes)
+    .card.border-0.rounded-0
+      a.link-darken(href=filters.url(post.url))
+        if post.data && post.data.image
+          - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 300)
+          .card-img-top-sm.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`, title=post.data.imageAlt)
+        else
+          svg.bd-placeholder-img.card-img-top-sm.rounded-0(width='100%' height='125' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail' preserveaspectratio='xMidYMid slice' focusable='false')
+            title #{post.data.title}
+            rect(width='100%' height='100%' fill='#114b5f')
+            text(x='50%' y='50%'  dominant-baseline="middle" text-anchor="middle" fill='#ffffff' dy='.3em') #{post.data.title}
+      .card-body.p-1.text-truncate
+        small.fw-light.text-primary #{post.data.title}
+
+        .text-muted.d-block(style="text-transform: uppercase; font-size:70%;")
+          if post.data.tags.length > 0
+            | #{post.data.tags[0]}#[span.mx-1 |]
+          time(datetime=filters.htmlDatetimeString(page.date)) #{filters.formatedDate(page.date)}
+
+mixin post-card-lg(post)
+  .col&attributes(attributes)
+    .card.border-0.rounded-0
+      .card-body
+        span.text-muted(style="text-transform: uppercase; font-size:80%;")
+          each tag, index in post.data.tags
+            if( index > 0)
+              span.mx-2 |
+            | #{tag}
+          if( post.data.tags.length > 0)
+            span.mx-2 |
+          | #{filters.formatedDate(post.date)}
+        h3.text-primary #{post.data.title}
+      a.link-darken(href=filters.url(post.url))
+        if post.data && post.data.image
+          - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 1500)
+          .card-img-top-lg.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`, title=post.data.imageAlt)
+        else
+          svg.bd-placeholder-img.card-img-top-sm.rounded-0(width='100%' height='125' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail' preserveaspectratio='xMidYMid slice' focusable='false')
+            title #{post.data.title}
+            rect(width='100%' height='100%' fill='#114b5f')
+            text(x='50%' y='50%'  dominant-baseline="middle" text-anchor="middle" fill='#ffffff' dy='.3em') #{post.data.title}
+      .card-body
+        | #{filters.excerpt(post,1000)}
+
+mixin post-carussel(posts)
+  if posts.length > 0
+    #postCarousel.carousel.slide(data-bs-ride='carousel')&attributes(attributes)
+      .carousel-indicators
+        for post,idx in posts
+          if idx == 0
+            button.active(type='button' data-bs-target='#postCarousel' data-bs-slide-to=idx aria-label=`Slide ${idx+1}` aria-current='true')
+          else
+            button(type='button' data-bs-target='#postCarousel' data-bs-slide-to=idx aria-label=`Slide ${idx+1}` )
+
+      .carousel-inner
+        for post,idx in posts
+          .carousel-item(class=(idx==0? "active": ""))
+            if post.data.image
+              - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 1500)
+              .post-header-img(style=`background-image:url(${filters.url(images.url)}); filter:brightness(0.5);`, title=imageAlt)
+            else
+              svg.bd-placeholder-img(width='100%' height='400px' xmlns='http://www.w3.org/2000/svg' aria-hidden='true' preserveaspectratio='xMidYMid slice' focusable='false')
+                  rect(width='100%' height='100%' fill='#777')
+            .carousel-caption.d-none.d-md-block
+              h5 #{post.data.title}
+              p #{filters.excerpt(post,1000) || post.data.description}
+              p: a.btn.btn-sm.btn-light(href=filters.url(post.url)) Read #[i.bi-arrow-right]
+
+      button.carousel-control-prev(type='button' data-bs-target='#postCarousel' data-bs-slide='prev')
+          span.carousel-control-prev-icon(aria-hidden='true')
+          span.visually-hidden Previous
+      button.carousel-control-next(type='button' data-bs-target='#postCarousel' data-bs-slide='next')
+          span.carousel-control-next-icon(aria-hidden='true')
+          span.visually-hidden Next

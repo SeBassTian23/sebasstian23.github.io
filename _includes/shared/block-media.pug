@@ -1,0 +1,29 @@
+mixin media-1(section)
+    section.block-media-1&attributes(attributes)
+        .container
+            figure.text-center
+                | !{filters.image(filters.url(section.image), section.imageAlt)}
+                //- img.img-fluid(src=filters.url(section.image), alt=section.imageAlt, loading="lazy")
+                if section.caption
+                    figcaption #{section.caption}
+
+mixin media-2(section)
+    section.block-media-2&attributes(attributes)
+        .container
+            .row 
+                .col.p-3
+                    figure.text-center
+                        //- <!-- <img src="{{ section.image | relative_url }}" alt="{{ section.caption }}" loading="lazy"> -->
+                        //- img.img-fluid(src="img/21/product-shot-1.png", alt="{{ section.image.alt_text }}", loading="lazy")
+                        | !{filters.image(filters.url(section.image), section.imageAlt)}
+                        //- <!-- {% if section.caption %} -->
+                        figcaption {{ section.caption }}
+                        //- {% endif %}
+                .col.p-3
+                    figure.text-center
+                        //- <!-- <img src="{{ section.image | relative_url }}" alt="{{ section.caption }}" loading="lazy"> -->
+                        //- img.img-fluid(src="img/21/product-shot-1.png", alt="{{ section.image.alt_text }}", loading="lazy")
+                        | !{filters.image(filters.url(section.image), section.imageAlt)}
+                        //- <!-- {% if section.caption %} -->
+                        figcaption {{ section.caption }}
+                        //- {% endif %}

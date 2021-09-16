@@ -1,0 +1,122 @@
+---
+layout: home
+title: Sebastian
+image: /images/michigan/IMG_8099.jpeg
+---
+
+include /shared/block-hero.pug
+include /shared/block-columns.pug
+include /shared/block-feature.pug
+
+block append content
+  //- Welcome Header
+  +hero-4({header: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})
+
+  //- Photosynthesis Introduction
+  +hero-2({header: "<span class=\"fw-lighter\">Plant</span><br>Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light\" href=\"https://www.pexels.com/@super-lunar-3180156\">Pexel</a>" })(id="photosynthesis", class="bg-primary")
+
+  //- Feature with image aligned left
+  +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span><br>Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.webp", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc" })(id="photosynq")
+
+  +feature-1({ headline: `<span class="fw-lighter">Global Data</span><br>Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2021-08.svg", imageAlt: "PhotosynQ Project Locations around the World", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ"})(id="hero-photosynq")
+
+  //- Feature with image aligned right
+  +feature-2({headline: `<span class="fw-lighter">Photosystem I</span><br>Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/photosystem-i.jpg", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Image: Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
+  
+  section 
+    .container.my-5
+      .row 
+        .col-sm-12.col-md-6
+          h3 Experience
+
+          dl.mt-4.ps-1.me-3
+            dt.text-secondary Since 2013
+            dd Postdoctoral Associate at the Plant Research Lab, Michigan State University, USA
+            dt.text-secondary 2015
+            dd Co-founder of PhotosynQ, Inc.
+            dt.text-secondary 2007 - 2012
+            dd Graduate Student, Institute of Plant Biology and Biotechnology, University of Münster, Germany
+            dt.text-secondary 2002 - 2007
+            dd Under Graduate Student, University of Münster, Germany        
+
+        .col-sm-12.col-md-6
+          h3 Skills
+
+          p My work in plant science so far included Biochemistry, Spectroscopy, Proteomics, Molecular Biology and large scale Data Analysis mainly involving #[em Chlamydomonas] and #[em Arabidopsis].
+
+          p Programming languages used in different projects include JavaScript, Python, R, PHP, SQL (SQLite, MySQL, PostgreSQL) and Arduino/C++. 
+
+          p Personally, I'm interested in photography, traveling, IoT, music (guitar, bass), cooking and tinkering with software and technology.
+
+          h4 Languages
+          ul.list-inline
+            li.list-inline-item.me-4 #[strong.text-secondary German] - Native 
+            li.list-inline-item.me-4 #[strong.text-secondary English] - Fluent 
+
+  section 
+    .container.my-5
+      .row 
+        .col-12 
+          h4 Publications
+        .col-12.small#publications
+          //- 1. Kanazawa A, Chattopadhyay A, Kuhlgert S, Tuitupou H, Maiti T, Kramer DM. 2021 **Light Potentials of Photosynthetic Energy Storage in the Field: What limits the ability to use or dissipate rapidly increased light energy?** *Biorxiv*, 2021.08.26.457798. (doi:[10.1101/2021.08.26.457798](https://doi.org/10.1101/2021.08.26.457798))
+          :markdown-it()
+            1. Caspy I et al. 2021 **Structure of plant Photosystem I-plastocyanin complex reveals strong hydrophobic interactions.** *Biochem J* (doi:[10.1042/bcj20210267](https://doi.org/10.1042/bcj20210267))
+            1. Lucker B, Schwarz E, Kuhlgert S, Ostendorf E, Kramer DM. 2017 **Spectroanalysis in native gels (SING): rapid spectral analysis of pigmented thylakoid membrane complexes separated by CN–PAGE.** *Plant J* 92, 744–756. (doi:[10.1111/tpj.13703](https://doi.org/10.1111/tpj.13703))
+            1. Kuhlgert S et al. 2016 **MultispeQ Beta: a tool for large-scale plant phenotyping connected to the open PhotosynQ network.** *Roy Soc Open Sci* 3, 160592. (doi:[10.1098/rsos.160592](https://doi.org/10.1098/rsos.160592))
+            1. Kuhlgert S, Drepper F, Fufezan C, Sommer F, Hippler M. 2012 **Residues PsaB Asp612 and PsaB Glu613 of Photosystem I Confer pH-Dependent Binding of Plastocyanin and Cytochrome c 6.** *Biochemistry-us* 51, 7297–7303. (doi:[10.1021/bi300898j](https://doi.org/10.1021/bi300898j))
+            1. Specht M, Kuhlgert S, Fufezan C, Hippler M. 2011 **Proteomics to go: Proteomatic enables the user-friendly creation of versatile MS/MS data evaluation workflows.** *Bioinformatics* 27, 1183–1184. (doi:[10.1093/bioinformatics/btr081](https://doi.org/10.1093/bioinformatics/btr081))
+            1. Winkler M, Kuhlgert S, Hippler M, Happe T. 2009 **Characterization of the Key Step for Light-driven Hydrogen Evolution in Green Algae.** *J Biol Chem* 284, 36620–36627. (doi:[10.1074/jbc.m109.053496](https://doi.org/10.1074/jbc.m109.053496))
+            1. Allmer J, Kuhlgert S, Hippler M. 2008 **2DB: a Proteomics database for storage, analysis, presentation, and retrieval of information from mass spectrometric experiments.** *Bmc Bioinformatics* 9, 302. (doi:[10.1186/1471-2105-9-302](https://doi.org/10.1186/1471-2105-9-302))
+            1. Weinl S, Held K, Schlücking K, Steinhorst L, Kuhlgert S, Hippler M, Kudla J. 2008 **A plastid protein crucial for Ca2+‐regulated stomatal responses.** *New Phytol* 179, 675–686. (doi:[10.1111/j.1469-8137.2008.02492.x](https://doi.org/10.1111/j.1469-8137.2008.02492.x))
+            1. Irmtraud Beyer, Hans-Peter Krull, Sebastian Kuhlgert 2001, Natura aktuell. ISBN:[978-3-12-043492-4](https://buecher-nach-isbn.info/9783120434924)
+
+  section 
+    .container.my-5
+      .row#paper-pile
+        .col.mb-4.text-center
+          h3 #[span.fw-lighter Bits and Pieces]<br>From Underneath the Paper Pile
+          p Some small projects and code bits from a long time ago; polished and brought back to life. 
+            | Most of them were either part of a work project or were just from tinkering around in my free time.
+      
+      .row.row-cols-md-6.row-cols-2.text-center.small#paper-pile-links
+        .col
+          a.link-bw(href="/periodic-table-of-elements/") !{filters.image( filters.url("/images/science/icon-elements-periodic-table.svg"), "Periodic Table of Elements" )}
+          p Interactive Periodic Chart of #[em Elements]
+        .col
+          a.link-bw(href="/periodic-chart-of-amino-acids/") !{filters.image( filters.url("/images/science/icon-aa-periodic-table.svg"), "Periodic Chart of Amino Acids" )}
+          p Interactive Periodic Chart of #[em Amino Acids]
+        .col
+          a.link-bw(href="/formatted-citation/") !{filters.image( filters.url("/images/science/doi.svg"), "Get formated Citiation by DOI" )}
+          p Get formated Citation from #[em DOI Number]
+        .col
+          a.link-bw(href="/chlorophyll-content/") !{filters.image( filters.url("/images/science/chlorophyll.svg"), "Get formated Citiation by DOI" )}
+          p Calculate Absolute Chloropyll Content
+        .col
+          a.link-bw(href="/protein-parameters/") !{filters.image( filters.url("/images/science/protein-parameters.svg"), "Predict Protein Parameters" )}
+          p Predict Protein Parameters
+        .col
+          a.link-bw(href="/format-fasta/") !{filters.image( filters.url("/images/science/fasta.svg"), "Format FASTA file output" )}
+          p FASTA Sequence Formatter
+  
+  +hero-2({header: `<span class="fw-lighter">Past & Current</span><br>Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics.svg", imageAlt: "Electronics, PCB lines"})(id="projects", class="bg-primary")
+
+  //- Feature with image aligned right
+  +feature-1({headline: `<span class="fw-lighter">Electronics</span><br>Tinkering with IoT`, content: filters.markdown("text-blocks/electronics.md"), image: "/images/electronics/electronics.jpg", imageAlt: "Weather and Calendar Display and Weather Station", tag: collections[ "second tag" ], tagCount: 6 })(id="electronics", class="mb-5")
+  
+  //- Feature with image aligned right
+  +feature-2({headline: `<span class="fw-lighter">Programming</span><br>Calendar Heatmap`, content: "A jQuery plugin to generate a heatmap calendar", image: "/images/programming/calendar-heatmap.png", imageAlt: "Calendar Heatmap" })(id="jquery-plugin", class="mb-5")
+
+  //- Feature with image aligned right
+  - var img = filters.image( filters.url("/images/lego-moc/brand-lego-icon-black.svg"), "Lego Logo", "80px" );
+  +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span><br>My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.jpeg", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
+
+  //- Hero for Michigan
+  +hero-3({header: "<span class=\"fw-lighter\">USA</span><br>Michigan", content: filters.markdown("text-blocks/michigan.md"), image: "/images/michigan/michigan.svg?s=400", imageAlt: "Outline of the state of Michigan" })(id="michigan" class="mb-4 bg-primary")
+
+  //- eature with image aligned left
+  +feature-2({headline: `<span class="fw-lighter">Photography</span><br>Landscapes`, content: filters.markdown("text-blocks/photography.md"), image: "/images/michigan/IMG_8099.jpeg", imageAlt: "Fall on the Upper Peninsula, MI", tag: "Photography", tag: collections[ "second tag" ], tagCount: 3 })(id="photography", class="mb-5")
+
+  //- Footer with links
+  +columns-footer(footer)(class="footer-links-center")
+  

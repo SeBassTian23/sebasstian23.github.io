@@ -1,0 +1,150 @@
+---
+layout: project
+title: "Protein Properties"
+image: /images/science/protein-parameters.svg
+description: "Predictions for Protein Parameters based on an Amino Acid Sequence"
+permalink: "| /protein-parameters/"
+---
+include /shared/block-hero.pug
+block append head 
+  script(defer, src="https://cdn.jsdelivr.net/npm/chart.js")
+
+block append content
+  +hero-1({header: title})(class="bg-secondary mb-4",id="protein-parameters")
+
+  section.container
+    .row
+      .col
+        h1 Amino Acid Sequence
+        textarea.form-control(placeholder="Sequence" id="aa-sequence" style="height: 160px; resize: none; font-family: monospace;")
+        .form-text Paste your amino acid sequence (plain or FASTA) into the input box above. | <a href="#" id="link-example1">Example</a> | <a href="#" id="link-example2">Example 2</a></small>
+    .row.mt-4#protein-parameters-output
+
+style. 
+  #protein-parameters-output .list-group-item p {
+    margin: 0px!important;
+  }
+script(defer, src="/javascript/fasta.js")
+script(defer, src="/javascript/protein-parameters.js")
+script. 
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var pp = new ProteinParameters();
+    var fasta = new FASTA();
+
+    var aaSequence = document.querySelector("#aa-sequence");
+    var example1 = document.querySelector("#link-example1");
+    var example2 = document.querySelector("#link-example2");
+    var ppOutput = document.querySelector("#protein-parameters-output");
+    example1.addEventListener("click", function(){
+      let seq=">NP_042570.1 NADH dehydrogenase subunit 1 (mitochondrion) [Chlamydomonas reinhardtii]\nMIVASILILIVPVLLSVAMFTLAERTVMASMQRRFGPQVSGISGLLQPFWDGLKLGVKEPVLPDSSSAGAFAASPMISFVLSQVAWVGICISDASFQGLVIMAISSLAVYGVMLAGWASNSKYAFLGCLRSVALMVSYELSLGAALLSIGLFVTDGTGMKCLNFAEMPTTPQYAMLPLCLIFLVCILAETKRDPFDLPEAELVAGYNVEYSSLGFALFFIAEYANMAVMSAIASIYFLGGFSALKITALFFAFVWTRGTLPRYRYDQFMRLGWKAFLPLTLAFFALHASVAI";
+      aaSequence.value = seq;
+      let event = new Event('keyup');
+      aaSequence.dispatchEvent(event);
+    });
+    example2.addEventListener("click", function(){
+      let seq="DATVKLGADSGALEFVPKTLTIKSGETVNFVNNAGFPHNIVFDE";  
+      aaSequence.value = seq;
+      let event = new Event('keyup');
+      aaSequence.dispatchEvent(event);
+    });
+
+    aaSequence.addEventListener("keyup", function(){
+      fasta.entry = aaSequence.value;
+      pp.sequence = fasta.sanitize;
+      fasta.settings = {gap:true, header:false, lineNum: true}
+      ppOutput.innerHTML = `
+          <div class="col-md-12 mb-4 fs-4">Sequence</div>
+          <div class="col-md-12 mb-4">
+            <pre>${fasta.header? "<span class=\"text-muted\">"+fasta.header+"</span>\n" : ""}${fasta.format}</pre>
+            <span class="form-text">Source: ${fasta.link? "<a href=\""+fasta.link+"\" target=\"_blank\">View</a>" : "not available"}</span>
+          </div>
+          <div class="col-md-12 mb-4 fs-4">Amino Acid Composition</div>
+          <div class="col-md-12 mb-4">${pp.AminoAcidComposition.html}</div>
+          <div class="col-md-12 mb-4 fs-4">Sequence Properties</div>
+          <div class="col-md-7">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">${pp.AminoAcidCount.html}</li>
+              <li class="list-group-item">${pp.mass.html}</li>
+              <li class="list-group-item">${pp.atomicComposition.html}</li>
+              <li class="list-group-item">${pp.isoElectricPoint.html}</li>
+              <li class="list-group-item">${pp.gravyIndex.html}</li>
+              <li class="list-group-item">${pp.extinctionCoefficient.html}</li>
+              <li class="list-group-item">${pp.instabilityIndex.html}</li>
+              <li class="list-group-item">${pp.halflife.html}</li>
+              <li class="list-group-item">${pp.aliphaticIndex.html}</li>
+            </ul>
+          </div>
+          <div class="col-md-5">
+              <canvas id="pH-titration" width="200" height="200" style="width:200px;height:200px"></canvas>
+          </div>`;
+
+      var ctx = document.getElementById('pH-titration').getContext('2d');
+      var t = pp.titration;
+      var ptc = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+          datasets: [{
+            label: "Titration Curve",
+            data: t.graph,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            fill: true,
+            backgroundColor: 'rgba(216, 43, 18, 0.3)',
+            borderColor: 'rgba(216, 43, 18, 1)',
+            showLine: true
+          },
+          {
+            label: "Isoelectric Point",
+            data: [{
+              x: 0,
+              y: 0
+            },{
+              x: pp.isoElectricPoint.number,
+              y: 0
+            },{
+              x: pp.isoElectricPoint.number,
+              y: Math.floor(t.graph[t.graph.length-1].y/10)*10
+            }],
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            borderDash: [5,2],
+            lineTension: 0,
+            fill: false,
+            borderColor: 'rgba(41, 162, 179, 1)',
+            showLine: true
+          }]
+        },
+        options: {
+          scales:{
+            x: {
+              title: {
+                display: true,
+                text: "pH"
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: "Charge, z"
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              text: "Titration Curve",
+              display: true
+            },
+            tooltip: {
+              enabled: false
+            }
+          }
+        }
+      });
+    });
+  });

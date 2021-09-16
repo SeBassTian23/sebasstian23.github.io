@@ -1,0 +1,42 @@
+mixin feature-1(section)
+    section.block-feature-1&attributes(attributes)
+        .container
+            .row.my-5.d-flex.align-items-center
+                .col-sm-12.col-md-6.p-3
+                    h2.light !{ section.headline }
+                    p !{ section.content }
+                .col-sm-12.col-md-6.p-3
+                    if section.image
+                        | !{filters.image(filters.url(section.image), section.imageAlt)}
+                    if section.imageSubtitle
+                        small.text-muted.fw-lighter !{section.imageSubtitle}
+                    if section.tag
+                        .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3.mt-3
+                            - c = 0
+                            each tag in section.tag
+                                if c < (section.tagCount || 6)
+                                    +post-card-sm(tag)
+                                - c++
+
+
+mixin feature-2(section)
+    section.block-feature-2&attributes(attributes)
+        .container
+            .row.my-5.d-flex.align-items-center
+                .col-sm-12.col-md-6.p-3
+                    if section.image
+                        | !{filters.image(filters.url(section.image), section.imageAlt)}
+                    if section.imageSubtitle
+                        small.text-muted.fw-lighter !{section.imageSubtitle}
+                    if section.tag
+                        .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3.mt-3
+                            - c = 0
+                            each tag in section.tag
+                                if c < (section.tagCount || 6)
+                                    +post-card-sm(tag)
+                                - c++
+                .col-sm-12.col-md-6.p-3
+                    h2.light !{ section.headline }
+                    if section.content
+                        p !{ section.content }
+
