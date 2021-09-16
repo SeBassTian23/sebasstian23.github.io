@@ -1,0 +1,21 @@
+{
+    "name": "Eleventy",
+    "short_name": "Eleventy",
+    "start_url": "/",
+    "background_color": "#114b5f",
+    "theme_color": "#222222",
+    "display": "standalone",
+    "icon": "assets/favicon.svg",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

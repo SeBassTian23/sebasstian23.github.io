@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="canonical" href="http://localhost:8080/chlorophyll-content/"><meta name="author" content="Sebastian"><meta name="description" content="Calculate the chlorophyll content based on Porra et al."><meta property="og:site_name" content="Sebastian"><meta property="og:title" content="Calculate Chloropyll Content"><meta property="og:type" content="website"><meta property="og:url" content="http://localhost:8080/chlorophyll-content/"><meta property="og:description" content="Calculate the chlorophyll content based on Porra et al."><meta property="og:image" content="http://localhost:8080/images/bc0827ce-300.png"><meta property="og:image:secure_url" content="http://localhost:8080/images/bc0827ce-300.png"><meta property="og:image:alt" content="Calculate Chloropyll Content"><meta property="og:image:width" content="300"><meta property="og:image:height" content="200"><meta property="og:locale" content="en_US"><meta property="twitter:title" content="Calculate Chloropyll Content"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="http://localhost:8080/images/bc0827ce-300.png"><meta property="twitter:image:alt" content="Calculate Chloropyll Content"><meta property="twitter:description" content="Calculate the chlorophyll content based on Porra et al."><meta property="article:author" content="Sebastian"><meta property="article:publisher" content="http://localhost:8080"><title>Calculate Chloropyll Content</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="/css/main.css" media="screen"><link rel="stylesheet" href="/css/main.css" media="print"><script defer src="/javascript/bootstrap.bundle.min.js"></script></head><body><header class="block-header-1 sticky-top bg-white"><nav class="navbar navbar-expand-lg navbar-light" id="navbar"><div class="container"><a class="navbar-brand" href="http://localhost:8080"><img class="d-inline-block align-text-top me-1" src="/icon.svg" alt="" width="auto" height="24">Sebastian</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="/">About</a></li><li class="nav-item"><a class="nav-link" href="/bits-pieces/">Bits &amp; Pieces</a></li></ul></div></div></nav></header><main><section class="block-hero-1 bg-secondary mb-4" id="personal-projects"><div class="container text-center p-5"><h1 class="text-white m-0">Calculate Chloropyll Content</h1></div></section><section class="container"> <div class="row"><div class="col-md-6"><form id="start-form" role="form"><div class="col-12 mb-3"><label class="form-label" for="samples">Number of Samples</label><div class="input-group"><span class="input-group-text">Samples</span><input class="form-control" id="sampleNo" type="number" placeholder="1" max="99" min="0" name="samples"/></div><div class="form-text">The limit is 99 samples</div></div><div class="col-12 mb-3"><label class="form-label" for="repeats">Repeats per Sample</label><div class="input-group"><span class="input-group-text">Repeats</span><input class="form-control" id="repeatNo" type="number" placeholder="3" max="99" min="1" name="repeats"/></div><div class="form-text">Number can be adjusted for individual samples later  </div></div><div class="col-12 mb-3"><button class="btn btn-primary" type="submit" value="Start" name="calculate">Start</button><button class="btn btn-outline-primary ms-4" id="demo" type="button" value="Demo" name="calculate">Demo</button></div></form></div><div class="col-md-6"><h5>Experimental Procedure</h5><p>According to Porra et al. use a final concentration of 80 % aceton to extract the chlorophyll from your sample.
+ Centrifuge, to remove any cell debris and measure the absorbance of the supernatant at 646 nm, 663 nm and 750 nm.</p><div class="small"><em class="text-muted">Based on:</em><p>Porra, R.J., Thompson, W.A., and Kriedemann, P.E. (1989)<strong> Determination of accurate extinction coefficients and simultaneous equations for assaying chlorophylls a and b extracted with four different solvents; verification of the concentration of chlorophyll standards by atomic absorption spectroscopy.</strong> Biochimica et Biophysica Acta, 975, 384-394</p></div></div></div></section><section class="container"> <div class="row" id="calculate-content"> </div></section><section class="container"> <div class="row" id="result-content"> </div></section><script defer="defer" src="/javascript/chlorophyll-calculator.js"></script><script defer="defer" type="text/javascript">document.addEventListener('DOMContentLoaded', function () {
+
+  var form = document.querySelector('#start-form');
+  form.addEventListener("submit", function(event){
+    event.preventDefault();
+    let samples = form.elements.samples.value || 1;
+    let repeats = form.elements.repeats.value || 3;
+    document.querySelector("#calculate-content").innerHTML = "<h2 class=\"mb-4\">Measurement Data</h2>";
+    for(var i=0; i<samples; i++){
+      document.querySelector("#calculate-content").innerHTML += SampleInput(i,repeats);
+    }
+  });
+  
+  var formMeasurements = document.querySelector('#calculate-content');
+  formMeasurements.addEventListener("keyup", function(event){
+    var output = CalculateContent('#calculate-content');
+    ShowResults('#result-content', output);
+  });
+
+  var addCustomEventListener = function (selector, event, handler) {
+      let rootElement = document.querySelector('body');
+      //since the root element is set to be body for our current dealings
+      rootElement.addEventListener(event, function (evt) {
+              var targetElement = evt.target;
+              while (targetElement != null) {
+                  if (targetElement.matches(selector)) {
+                      handler(evt);
+                      return;
+                  }
+                  targetElement = targetElement.parentElement;
+              }
+          },
+          true
+      );
+  }
+
+  addCustomEventListener('#calculate-content .remove-row','click', function(event){
+    var tableIdx = event.target.getAttribute('data-table');
+    var tbody = document.querySelector(`table[data-table="${tableIdx}"]`).tBodies[0];
+    if(tbody.rows.length>0){
+      tbody.deleteRow(tbody.rows.length-1);
+    }
+    if(tbody.rows.length == 0){
+      document.querySelector(`div[data-sample="${tableIdx}"]`).remove();
+    }
+  });
+
+  addCustomEventListener('#calculate-content .add-row','click', function(event){
+    var tableIdx = event.target.getAttribute('data-table');
+    var tbody = document.querySelector(`table[data-table="${tableIdx}"]`).tBodies[0];
+    var row = tbody.rows[0];
+    var clone = row.cloneNode(true);
+    clone.querySelector('td').innerHTML = `<b>${tbody.rows.length+1}</b>`
+    tbody.appendChild(clone); // add new row to end of table
+  });
+
+  addCustomEventListener('#calculate-content #add-sample','click', function(event){
+    alert("Add");
+    //- var tableIdx = event.target.getAttribute('data-table');
+    //- var tbody = document.querySelector(`table[data-table="${tableIdx}"]`).tBodies[0];
+    //- var row = tbody.rows[0];
+    //- var clone = row.cloneNode(true);
+    //- clone.querySelector('td').innerHTML = `<b>${tbody.rows.length+1}</b>`
+    //- tbody.appendChild(clone); // add new row to end of table
+  });
+
+  // Demo
+  var demo = document.querySelector('#demo');
+  demo.addEventListener("click", function(event){
+
+    //- Thylakoids
+    //- 0.321 0.678 0.012 200
+
+    // Setup Form
+    document.querySelector('#sampleNo').value = 1;
+    document.querySelector('#repeatNo').value = 1;
+
+    // Submit Form
+    document.querySelector('#start-form button[type=submit]').click();
+
+    // Add Values to Form
+    document.querySelector('#calculate-content input[name="sample[]"]').value = "Thylakoids";
+    document.querySelector('#calculate-content input[name="NM646[0][]"]').value = 0.321;
+    document.querySelector('#calculate-content input[name="NM663[0][]"]').value = 0.678;
+    document.querySelector('#calculate-content input[name="NM750[0][]"]').value = 0.012;
+    document.querySelector('#calculate-content input[name="dilution[0][]"]').value = 200;
+
+    // Calculate Content
+    var output = CalculateContent('#calculate-content');
+    ShowResults('#result-content', output);
+  });
+
+});</script></main><footer class="block-footer-1"><div class="container"><div class="row my-4"><div class="col fw-lighter small text-muted text-center text-md-start">© 2021 Sebastian | sebastian.kuhlgert@gmail.com</div></div></div></footer></body></html>

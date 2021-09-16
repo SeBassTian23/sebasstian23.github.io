@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="canonical" href="http://localhost:8080/protein-parameters/"><meta name="author" content="Sebastian"><meta name="description" content="Predictions for Protein Parameters based on an Amino Acid Sequence"><meta property="og:site_name" content="Sebastian"><meta property="og:title" content="Protein Properties"><meta property="og:type" content="website"><meta property="og:url" content="http://localhost:8080/protein-parameters/"><meta property="og:description" content="Predictions for Protein Parameters based on an Amino Acid Sequence"><meta property="og:image" content="http://localhost:8080/images/859284f6-300.png"><meta property="og:image:secure_url" content="http://localhost:8080/images/859284f6-300.png"><meta property="og:image:alt" content="Protein Properties"><meta property="og:image:width" content="300"><meta property="og:image:height" content="200"><meta property="og:locale" content="en_US"><meta property="twitter:title" content="Protein Properties"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="http://localhost:8080/images/859284f6-300.png"><meta property="twitter:image:alt" content="Protein Properties"><meta property="twitter:description" content="Predictions for Protein Parameters based on an Amino Acid Sequence"><meta property="article:author" content="Sebastian"><meta property="article:publisher" content="http://localhost:8080"><title>Protein Properties</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="/css/main.css" media="screen"><link rel="stylesheet" href="/css/main.css" media="print"><script defer src="/javascript/bootstrap.bundle.min.js"></script></head><body><header class="block-header-1 sticky-top bg-white"><nav class="navbar navbar-expand-lg navbar-light" id="navbar"><div class="container"><a class="navbar-brand" href="http://localhost:8080"><img class="d-inline-block align-text-top me-1" src="/icon.svg" alt="" width="auto" height="24">Sebastian</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="/">About</a></li><li class="nav-item"><a class="nav-link" href="/bits-pieces/">Bits &amp; Pieces</a></li></ul></div></div></nav></header><main><script defer="defer" src="https://cdn.jsdelivr.net/npm/chart.js"></script><section class="block-hero-1 bg-secondary mb-4" id="protein-parameters"><div class="container text-center p-5"><h1 class="text-white m-0">Protein Properties</h1></div></section><section class="container"><div class="row"><div class="col"><h1>Amino Acid Sequence</h1><textarea class="form-control" placeholder="Sequence" id="aa-sequence" style="height: 160px; resize: none; font-family: monospace;"></textarea><div class="form-text">Paste your amino acid sequence (plain or FASTA) into the input box above. | <a href="#" id="link-example1">Example</a> | <a href="#" id="link-example2">Example 2</a></small></div></div></div><div class="row mt-4" id="protein-parameters-output"></div></section><style>#protein-parameters-output .list-group-item p {
+  margin: 0px!important;
+}</style><script defer="defer" src="/javascript/fasta.js"></script><script defer="defer" src="/javascript/protein-parameters.js"></script><script>document.addEventListener('DOMContentLoaded', function () {
+
+  var pp = new ProteinParameters();
+  var fasta = new FASTA();
+
+  var aaSequence = document.querySelector("#aa-sequence");
+  var example1 = document.querySelector("#link-example1");
+  var example2 = document.querySelector("#link-example2");
+  var ppOutput = document.querySelector("#protein-parameters-output");
+  example1.addEventListener("click", function(){
+    let seq=">NP_042570.1 NADH dehydrogenase subunit 1 (mitochondrion) [Chlamydomonas reinhardtii]\nMIVASILILIVPVLLSVAMFTLAERTVMASMQRRFGPQVSGISGLLQPFWDGLKLGVKEPVLPDSSSAGAFAASPMISFVLSQVAWVGICISDASFQGLVIMAISSLAVYGVMLAGWASNSKYAFLGCLRSVALMVSYELSLGAALLSIGLFVTDGTGMKCLNFAEMPTTPQYAMLPLCLIFLVCILAETKRDPFDLPEAELVAGYNVEYSSLGFALFFIAEYANMAVMSAIASIYFLGGFSALKITALFFAFVWTRGTLPRYRYDQFMRLGWKAFLPLTLAFFALHASVAI";
+    aaSequence.value = seq;
+    let event = new Event('keyup');
+    aaSequence.dispatchEvent(event);
+  });
+  example2.addEventListener("click", function(){
+    let seq="DATVKLGADSGALEFVPKTLTIKSGETVNFVNNAGFPHNIVFDE";  
+    aaSequence.value = seq;
+    let event = new Event('keyup');
+    aaSequence.dispatchEvent(event);
+  });
+
+  aaSequence.addEventListener("keyup", function(){
+    fasta.entry = aaSequence.value;
+    pp.sequence = fasta.sanitize;
+    fasta.settings = {gap:true, header:false, lineNum: true}
+    ppOutput.innerHTML = `
+        <div class="col-md-12 mb-4 fs-4">Sequence</div>
+        <div class="col-md-12 mb-4">
+          <pre>${fasta.header? "<span class=\"text-muted\">"+fasta.header+"</span>\n" : ""}${fasta.format}</pre>
+          <span class="form-text">Source: ${fasta.link? "<a href=\""+fasta.link+"\" target=\"_blank\">View</a>" : "not available"}</span>
+        </div>
+        <div class="col-md-12 mb-4 fs-4">Amino Acid Composition</div>
+        <div class="col-md-12 mb-4">${pp.AminoAcidComposition.html}</div>
+        <div class="col-md-12 mb-4 fs-4">Sequence Properties</div>
+        <div class="col-md-7">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">${pp.AminoAcidCount.html}</li>
+            <li class="list-group-item">${pp.mass.html}</li>
+            <li class="list-group-item">${pp.atomicComposition.html}</li>
+            <li class="list-group-item">${pp.isoElectricPoint.html}</li>
+            <li class="list-group-item">${pp.gravyIndex.html}</li>
+            <li class="list-group-item">${pp.extinctionCoefficient.html}</li>
+            <li class="list-group-item">${pp.instabilityIndex.html}</li>
+            <li class="list-group-item">${pp.halflife.html}</li>
+            <li class="list-group-item">${pp.aliphaticIndex.html}</li>
+          </ul>
+        </div>
+        <div class="col-md-5">
+            <canvas id="pH-titration" width="200" height="200" style="width:200px;height:200px"></canvas>
+        </div>`;
+
+    var ctx = document.getElementById('pH-titration').getContext('2d');
+    var t = pp.titration;
+    var ptc = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: "Titration Curve",
+          data: t.graph,
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          fill: true,
+          backgroundColor: 'rgba(216, 43, 18, 0.3)',
+          borderColor: 'rgba(216, 43, 18, 1)',
+          showLine: true
+        },
+        {
+          label: "Isoelectric Point",
+          data: [{
+            x: 0,
+            y: 0
+          },{
+            x: pp.isoElectricPoint.number,
+            y: 0
+          },{
+            x: pp.isoElectricPoint.number,
+            y: Math.floor(t.graph[t.graph.length-1].y/10)*10
+          }],
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          borderDash: [5,2],
+          lineTension: 0,
+          fill: false,
+          borderColor: 'rgba(41, 162, 179, 1)',
+          showLine: true
+        }]
+      },
+      options: {
+        scales:{
+          x: {
+            title: {
+              display: true,
+              text: "pH"
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Charge, z"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            text: "Titration Curve",
+            display: true
+          },
+          tooltip: {
+            enabled: false
+          }
+        }
+      }
+    });
+  });
+});</script></main><footer class="block-footer-1"><div class="container"><div class="row my-4"><div class="col fw-lighter small text-muted text-center text-md-start">© 2021 Sebastian | sebastian.kuhlgert@gmail.com</div></div></div></footer></body></html>
