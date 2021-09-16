@@ -1,7 +1,4 @@
 //- Setup Variables
-
-- metadata.url = "http://localhost:8080"
-
 - var currentUrl =  filters.url(metadata.url+page.url)
 - var socialImage = image? filters.url(metadata.url+ filters.imageResizedURL(image, "png", 1200).url) : null
 - var socialImageMeta = socialImage? filters.imageResizedURL(image, "png", 1200) : null
