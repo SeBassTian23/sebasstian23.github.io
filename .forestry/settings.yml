@@ -5,9 +5,8 @@ admin_path:
 webhook_url: 
 sections:
 - type: document
-  path: src/index.[ug
+  path: src/index.pug
   label: Index
-  match: "**/*"
 upload_dir: _assets
 public_path: "/images"
 front_matter_path: ''
