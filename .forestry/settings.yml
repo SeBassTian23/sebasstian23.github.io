@@ -3,7 +3,11 @@ new_page_extension: md
 auto_deploy: false
 admin_path: 
 webhook_url: 
-sections: 
+sections:
+- type: document
+  path: src/index.[ug
+  label: Index
+  match: "**/*"
 upload_dir: _assets
 public_path: "/images"
 front_matter_path: ''
