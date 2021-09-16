@@ -7,11 +7,17 @@ sections:
 - type: heading
   label: Pages
 - type: directory
+  path: src/text-blocks
+  label: Text Blocks
+  create: documents
+  match: "**/*"
+  new_doc_ext: ".md"
+- type: directory
   path: src/pages
   label: Pages
   create: documents
   match: "**/*"
-  new_doc_ext: pug
+  new_doc_ext: ".pug"
 - type: document
   path: src/index.pug
   label: Index
