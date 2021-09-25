@@ -1,0 +1,29 @@
+---
+layout: home
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+title: "Hello Tags"
+permalink: "| /tags/#{filters.url(filters.slugify(tag))}/"
+---
+include /shared/block-hero
+include /shared/block-post
+block append content
+
+  +hero-1({header: tag})(class="bg-secondary mb-4")
+
+  section.container
+    .row.mb-1.px-2
+      .col
+        nav(style=`--bs-breadcrumb-divider: '▸';` aria-label="breadcrumb")
+          ol.breadcrumb
+            li.breadcrumb-item: a(href="/posts/") Posts
+            li.breadcrumb-item: a(href="/tags/") Tags
+            li.breadcrumb-item.active(aria-current="page") #{tag}
+    .row 
+      .col
+        .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3
+          for post in collections[ tag ]
+            +post-card(post)

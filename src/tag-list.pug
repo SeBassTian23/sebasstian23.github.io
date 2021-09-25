@@ -1,0 +1,36 @@
+---
+layout: home
+title: Tags
+permalink: tags/
+dynamicPermalink: false
+---
+include /shared/block-hero
+include /shared/block-post
+block append content
+
+  +hero-1({header: "Tags"})(class="mb-4 bg-secondary")
+
+  section.container
+    .row.mb-1.px-2
+      .col
+        nav(style=`--bs-breadcrumb-divider: '▸';` aria-label="breadcrumb")
+          ol.breadcrumb
+            li.breadcrumb-item: a(href="/posts/") Posts
+            li.breadcrumb-item.active(aria-current="page") Tags  
+    .row 
+      .col
+        for tag, i in collections.tagList
+          - tagUrl = "/tags/"+ filters.slugify(tag)
+          h2.mt-4 #{tag} #[a.btn.btn-sm.btn-outline-secondary.ms-3(href=filters.url(tagUrl)) →]
+          .row.row-cols-2.row-cols-sm-3.row-cols-md-5.my-4
+            for post, idx in collections[ tag ]
+              if idx < 5
+                +post-card-sm(post)
+          if collections[ tag ].length > 5
+            .row.my-4
+              .col 
+                a.btn.btn-outline-secondary(href=filters.url(tagUrl)) Show all #[span.ms-3.badge.bg-secondary #{collections[ tag ].length}]
+
+          if collections.tagList.length-1 > i
+            .row.px-5.py-2
+              hr

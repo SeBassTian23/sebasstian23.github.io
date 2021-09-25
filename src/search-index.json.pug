@@ -1,0 +1,13 @@
+---
+eleventyExcludeFromCollections: true
+dynamicPermalink: false
+permalink: "/search-index.json"
+---
+
+- var idx = search.searchindexLunr(collections.posts);
+- idx.meta = {}
+
+each post in collections.posts
+  - idx.meta[ post.url ] = {title: post.data.title, excerpt: filters.excerpt(post, 50) }
+
+| !{JSON.stringify(idx, null, 0)}

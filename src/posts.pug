@@ -1,0 +1,52 @@
+---
+layout: home
+title: Posts
+pagination:
+  data: collections.posts
+  size: 6
+  reverse: true
+  alias: posts
+---
+
+include /shared/block-post
+
+block append content
+
+  if page.url == pagination.hrefs[ 0 ]
+    +post-carussel(collections.featured.reverse())(class="mb-5")
+
+  .container
+    .row
+      .col.col-md-9
+        .row.row-cols-1.g-3
+          each post in posts
+            +post-card-lg(post)
+        
+        .row.mt-5
+          nav(aria-label="...")
+            ul.pagination.justify-content-center
+              each pageEntry, idx in pagination.pages
+                if page.url == pagination.hrefs[ idx ]
+                  li.page-item.active: a.page-link(href=pagination.hrefs[ idx ], aria-current="page" ) #{idx+1}
+                else
+                  li.page-item: a.page-link(href=pagination.hrefs[ idx ] ) #{idx+1}
+
+      aside.col.col-md-3
+        .row
+          .col.p-3
+            h6 Search
+            input.form-control#searchField(type="search", placeholder="Search Articles")
+            .d-flex.flex-row.justify-content-end
+              ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
+        hr
+
+        if collections.tagList.length > 0
+          .row
+            .col.p-3
+              h6 Tags
+              each tag, index in collections.tagList
+                - tagURL = "/tags/" + filters.slug(tag) + "/"
+                a.tag.bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}
+
+script(defer, src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js")
+script(defer, src="/javascript/search.js")

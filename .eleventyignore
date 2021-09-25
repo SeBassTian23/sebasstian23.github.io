@@ -1,2 +1,8 @@
 README.md
 src/text-blocks
+src/posts
+src/posts.pug
+src/rss.pug
+src/search-index.json.pug
+src/tag-list.pug
+src/tags.pug
