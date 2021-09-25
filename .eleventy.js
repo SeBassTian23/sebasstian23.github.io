@@ -240,7 +240,11 @@ module.exports = function (eleventyConfig) {
   }
 
   markdownLibrary.renderer.rules.table_open = function(tokens, idx) {
-    return '<table class="table">';
+    return '<div class="table-responsive"><table class="table">';
+  };
+
+  markdownLibrary.renderer.rules.table_close = function(tokens, idx) {
+    return '</table></div>';
   };
 
   markdownLibrary.renderer.rules.blockquote_open = function(tokens, idx) {
