@@ -1,6 +1,6 @@
 {
     "title": "Sebastian",
-    "url": "https://sebasstian23.github.io",
+    "url": "https://kuhlgert.com",
     "language": "en",
     "locale": "en_US",
     "description": "I am a postdoc currently living and working in Michigan; exploring the regulation of photosynthesis.",
@@ -9,16 +9,16 @@
       "subtitle": "I am a postdoc currently living and working in Michigan; exploring the regulation of photosynthesis.",
       "filename": "feed.xml",
       "path": "/feed.xml",
-      "id": "https://sebasstian23.github.io/"
+      "id": "https://kuhlgert.com/"
     },
     "jsonfeed": {
       "path": "/feed/feed.json",
-      "url": "https://sebasstian23.github.io/feed/feed.json"
+      "url": "https://kuhlgert.com/feed/feed.json"
     },
     "author": {
       "name": "Sebastian",
       "email": "sebastian.kuhlgert@gmail.com",
-      "url": "https://sebasstian23.github.io",
+      "url": "https://kuhlgert.com",
       "twitter": null
     }
 }
