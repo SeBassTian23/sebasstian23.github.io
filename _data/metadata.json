@@ -5,6 +5,7 @@
     "locale": "en_US",
     "description": "I am a postdoc currently living and working in Michigan; exploring the regulation of photosynthesis.",
     "icon": "/icon.svg",
+    "themecolor": "#1d3557",
     "feed": {
       "subtitle": "I am a postdoc currently living and working in Michigan; exploring the regulation of photosynthesis.",
       "filename": "feed.xml",
