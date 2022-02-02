@@ -200,6 +200,9 @@ module.exports = function (eleventyConfig) {
   // eleventyConfig.addPassthroughCopy( {"_assets/images/**/*.svg": "/images"});
   eleventyConfig.addPassthroughCopy({ "_assets/public": "/public" });
 
+  // Copy CNAME
+  eleventyConfig.addPassthroughCopy({ "_assets/CNAME": "CNAME" });
+
   /**
    * Markdown Setup
    */
