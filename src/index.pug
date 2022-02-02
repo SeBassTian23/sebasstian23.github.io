@@ -10,18 +10,18 @@ include /shared/block-feature.pug
 
 block append content
   //- Welcome Header
-  +hero-4({header: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})
+  +hero-4({h2: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})
 
   //- Photosynthesis Introduction
-  +hero-2({header: "<span class=\"fw-lighter\">Plant</span><br>Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light\" href=\"https://www.pexels.com/@super-lunar-3180156\">Pexel</a>" })(id="photosynthesis", class="bg-primary")
+  +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light\" href=\"https://www.pexels.com/@super-lunar-3180156\">Pexel</a>" })(id="photosynthesis", class="bg-primary")
 
   //- Feature with image aligned left
-  +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span><br>Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.webp", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc" })(id="photosynq")
+  +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.webp", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc" })(id="photosynq")
 
-  +feature-1({ headline: `<span class="fw-lighter">Global Data</span><br>Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2021-08.svg", imageAlt: "PhotosynQ Project Locations around the World", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ"})(id="hero-photosynq")
+  +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2021-08.svg", imageAlt: "PhotosynQ Project Locations around the World", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ"})(id="hero-photosynq")
 
   //- Feature with image aligned right
-  +feature-2({headline: `<span class="fw-lighter">Photosystem I</span><br>Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/photosystem-i.jpg", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Image: Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
+  +feature-2({headline: `<span class="fw-lighter">Photosystem I</span> Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/photosystem-i.jpg", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Image: Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
   
   section 
     .container.my-5
@@ -100,23 +100,23 @@ block append content
           a.link-bw(href="/format-fasta/") !{filters.image( filters.url("/images/science/fasta.svg"), "Format FASTA file output" )}
           p FASTA Sequence Formatter
   
-  +hero-2({header: `<span class="fw-lighter">Past & Current</span><br>Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics.svg", imageAlt: "Electronics, PCB lines"})(id="projects", class="bg-primary")
+  +hero-2({h2: `<span class="fw-lighter">Past & Current</span> Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics.svg", imageAlt: "Electronics, PCB lines"})(id="projects", class="bg-primary")
 
   //- Feature with image aligned right
-  +feature-1({headline: `<span class="fw-lighter">Electronics</span><br>Tinkering with IoT`, content: filters.markdown("text-blocks/electronics.md"), image: "/images/electronics/electronics.jpg", imageAlt: "Weather and Calendar Display and Weather Station", tag: collections[ "second tag" ], tagCount: 6 })(id="electronics", class="mb-5")
+  +feature-1({headline: `<span class="fw-lighter">Electronics</span> Tinkering with the IoT`, content: filters.markdown("text-blocks/electronics.md"), image: "/images/electronics/electronics.jpg", imageAlt: "Weather and Calendar Display and Weather Station", tag: collections[ "second tag" ], tagCount: 6 })(id="electronics", class="mb-5")
   
   //- Feature with image aligned right
-  +feature-2({headline: `<span class="fw-lighter">Programming</span><br>Calendar Heatmap`, content: "A jQuery plugin to generate a heatmap calendar", image: "/images/programming/calendar-heatmap.png", imageAlt: "Calendar Heatmap" })(id="jquery-plugin", class="mb-5")
+  +feature-2({headline: `<span class="fw-lighter">Programming</span> Calendar Heatmap`, content: "A jQuery plugin to generate a heatmap calendar", image: "/images/programming/calendar-heatmap.png", imageAlt: "Calendar Heatmap" })(id="jquery-plugin", class="mb-5")
 
   //- Feature with image aligned right
   - var img = filters.image( filters.url("/images/lego-moc/brand-lego-icon-black.svg"), "Lego Logo", "80px" );
-  +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span><br>My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.jpeg", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
+  +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span> My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.png", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
 
   //- Hero for Michigan
-  +hero-3({header: "<span class=\"fw-lighter\">USA</span><br>Michigan", content: filters.markdown("text-blocks/michigan.md"), image: "/images/michigan/michigan.svg?s=400", imageAlt: "Outline of the state of Michigan" })(id="michigan" class="mb-4 bg-primary")
+  +hero-3({h2: "<span class=\"fw-lighter\">USA</span> Michigan", content: filters.markdown("text-blocks/michigan.md"), image: "/images/michigan/michigan.svg?s=400", imageAlt: "Outline of the state of Michigan" })(id="michigan" class="mb-4 bg-primary")
 
   //- eature with image aligned left
-  +feature-2({headline: `<span class="fw-lighter">Photography</span><br>Landscapes`, content: filters.markdown("text-blocks/photography.md"), image: "/images/michigan/IMG_8099.jpeg", imageAlt: "Fall on the Upper Peninsula, MI", tag: "Photography", tag: collections[ "second tag" ], tagCount: 3 })(id="photography", class="mb-5")
+  +feature-2({headline: `<span class="fw-lighter">Photography</span> Landscapes`, content: filters.markdown("text-blocks/photography.md"), image: "/images/michigan/IMG_8099.jpeg", imageAlt: "Fall on the Upper Peninsula, MI", tag: "Photography", tag: collections[ "second tag" ], tagCount: 3 })(id="photography", class="mb-5")
 
   //- Footer with links
   +columns-footer(footer)(class="footer-links-center")

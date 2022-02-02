@@ -10,12 +10,12 @@ block append head
   script(defer, src="https://cdn.jsdelivr.net/npm/chart.js")
 
 block append content
-  +hero-1({header: title})(class="bg-secondary mb-4",id="protein-parameters")
+  +hero-1({h1: title})(class="bg-secondary mb-4",id="protein-parameters")
 
   section.container
     .row
       .col
-        h1 Amino Acid Sequence
+        h2 Amino Acid Sequence
         textarea.form-control(placeholder="Sequence" id="aa-sequence" style="height: 160px; resize: none; font-family: monospace;")
         .form-text Paste your amino acid sequence (plain or FASTA) into the input box above. | <a href="#" id="link-example1">Example</a> | <a href="#" id="link-example2">Example 2</a></small>
     .row.mt-4#protein-parameters-output

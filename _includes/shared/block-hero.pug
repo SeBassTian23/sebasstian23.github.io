@@ -1,14 +1,20 @@
 mixin hero-1(section)
   section.block-hero-1&attributes(attributes)
     .container.text-center.p-5
-       h1.text-white.m-0 !{section.header || ""}
+      if section.h1
+        h1.text-white.m-0 !{section.h1 || ""}
+      if section.h2
+        h2.fs-1.text-white.m-0 !{section.h2 || ""}
 
 mixin hero-2(section)
   section.block-hero-2&attributes(attributes)
     .container.py-5
       .row.d-flex.align-items-center
         .col-sm-12.col-md-6.p-3
-          h1.text-white !{section.header || ""}
+          if section.h1
+            h1.text-white !{section.h1 || ""}
+          if section.h2
+            h2.fs-1.text-white !{section.h2 || ""}
           .text-white !{section.content || ""}
         .col-sm-12.col-md-6.p-3.text-center
           if section.image
@@ -22,9 +28,8 @@ mixin hero-2(section)
           if section.imageSubtitle
             .small.text-white.fw-lighter.text-end !{section.imageSubtitle}
 
-
 mixin hero-3(section)
-  section.block-hero-2&attributes(attributes)
+  section.block-hero-3&attributes(attributes)
     .container.py-5
       .row.d-flex.align-items-center
         .col-sm-12.col-md-6.p-3.text-center
@@ -39,14 +44,19 @@ mixin hero-3(section)
           if section.imageSubtitle
             .small.text-white.fw-lighter !{section.imageSubtitle}
         .col-sm-12.col-md-6.p-3
-          h1.text-white !{section.header || ""}
+          if section.h1
+            h1.text-white !{section.h1 || ""}
+          if section.h2
+            h2.fs-1.text-white !{section.h2 || ""}
           .text-white !{section.content || ""}
 
-
 mixin hero-4(section)
-  section.block-hero-3&attributes(attributes)
+  section.block-hero-4&attributes(attributes)
     .container 
       .row.p-5
         .col.text-center
-          h1.fw-lighter !{section.header || ""}
+          if section.h1
+            h1.fw-lighter !{section.h1 || ""}
+          if section.h2
+            h2.fs-1.fw-lighter !{section.h2 || ""}
           p.fw-lighter !{section.subheader || ""}
