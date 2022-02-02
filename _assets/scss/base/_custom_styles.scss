@@ -95,6 +95,26 @@ p {
   background-color: rgba(255, 255, 255, 0.98) !important;
 }
 
+.block-hero-1,
+.block-hero-2,
+.block-hero-3,
+.block-hero-4 {
+  & h2 > span::after {
+    content: '\A';
+    white-space: pre;
+  }
+}
+
+.block-feature-1,
+.block-feature-2,
+.block-feature-3,
+.block-feature-4 {
+  & h2 > span::after {
+    content: '\A';
+    white-space: pre;
+  }
+}
+
 .post-content {
   & p:first-child {
     font-weight: 500;
