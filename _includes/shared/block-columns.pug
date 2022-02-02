@@ -45,7 +45,7 @@ mixin columns-footer(section)
                         ul.list-unstyled
                             each el,idx in section.col1
                                 if el.link
-                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`) !{el.text}
+                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
                                 else
                                     li !{el.text}
                 .col.p-3
@@ -55,7 +55,7 @@ mixin columns-footer(section)
                         ul.list-unstyled
                             each el,idx in section.col2
                                 if el.link
-                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`) !{el.text}
+                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
                                 else
                                     li !{el.text}
                 .col.p-3
@@ -65,7 +65,7 @@ mixin columns-footer(section)
                         ul.list-unstyled
                             each el,idx in section.col3
                                 if el.link
-                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`) !{el.text}
+                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
                                 else
                                     li !{el.text}
 
