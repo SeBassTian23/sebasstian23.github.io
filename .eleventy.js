@@ -9,6 +9,8 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginSCSS = require("@jamshop/eleventy-plugin-scss");
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 
+
+const pluginPhotosynQMap = require('./_plugins/photosynq-map');
 // DayJS
 const dayjs = require("dayjs");
 const utc = require('dayjs/plugin/utc');
@@ -44,6 +46,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSCSS, {
     entryPoints: {
       main: "_assets/scss/main.scss"
+  
+  eleventyConfig.addPlugin(pluginPhotosynQMap, {
+    input: './_data/photosynq-projects.json',
+    output: './_assets/images/photosynq/photosynq-projects-2022-02.svg'
+  });
     },
     output: "_site/css/"
   });
