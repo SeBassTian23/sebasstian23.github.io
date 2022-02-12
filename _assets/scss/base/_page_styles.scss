@@ -1,0 +1,140 @@
+
+// Page Periodic Table
+
+.pt-aa-table {
+  user-select: none;
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 2px;
+  border-collapse: separate;
+}
+
+.pt-aa-table-legend-img {
+  height:9rem;
+}
+
+.pt-aa-table-dialog-img {
+  width: auto;
+  height: 110px;
+}
+
+.pt-aa-table-card {
+  --bs-aspect-ratio: 115%;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.pt-aa-table-card-values {
+  font-size:0.65rem;
+}
+
+.pt-aa-table-card-img {
+  width:100%;
+  height:35%;
+  margin-top: -1rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.pt-aa-table-card-name {
+  position:absolute;
+  bottom:0;
+  hyphens: auto;
+  text-align: right;
+}
+
+// Periodic Table of Elements
+
+.pt-elements-table {
+  user-select: none;
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 2px;
+  border-collapse: separate;
+}
+
+.pt-elements-f-08vw {
+  font-size: 0.8vw !important;
+}
+
+.pt-elements-f-1vw {
+  font-size: 1vw !important;
+}
+
+.pt-elements-f-2vw {
+  font-size: 2vw !important;
+}
+
+.pt-elements-modal-link {
+  position: absolute;
+  right: 1.5rem;
+}
+
+.pt-elements-card {
+  --bs-aspect-ratio: 100%;
+  max-width: 8.5rem;
+  width: 4rem;
+}
+
+.pt-elements-card-sm {
+  --bs-aspect-ratio: 120%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+@media (max-width:575.98px) {
+  .pt-elements-card span:first-child{ font-size: 75% }
+}
+@media (min-width:576px) {
+  .pt-elements-card { width: 4.5rem!important; }
+}
+@media (min-width:768px) { 
+  .pt-elements-card { width: 6.25rem!important; }
+}
+@media (min-width:992px) { 
+  .pt-elements-card { width: 8.5rem!important; }
+}
+
+@media (max-width:575.98px) {
+  #pt-elements-label-selector select {min-height: auto; font-size: 9px; padding: 2px;}
+}
+@media (max-width:767.98px) {
+  #pt-elements-label-selector select {min-height: auto; font-size: 9px; padding: 2px;}
+}
+
+// Protein Parameters
+
+textarea.form-control#aa-sequence {
+  height: 160px;
+  resize: none;
+  font-family: monospace;
+}
+
+
+// Fasta Format Form
+
+textarea.form-control#sequence {
+  min-height:250px;
+  height:80%;
+  resize: vertical;
+  font-family: monospace;
+}
+
+// DOI Citation
+#citationText .placeholder {
+  cursor: auto;
+  color: #e1e1e1;
+}
+
+// Jugend Forscht
+
+.sticky-md-top{
+  z-index: 1!important;
+  padding-top: 4rem!important;
+}
+
+#jugend-forscht .img-grid {
+  width: 45%;
+  margin: 0.2rem;
+}

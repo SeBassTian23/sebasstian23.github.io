@@ -17,13 +17,8 @@ block append content
         h6 Translate
         a(href=`https://translate.google.com/translate?js=n&sl=auto&tl=&u=${metadata.url+page.url}` rel="nofollow" target="_blank") English (Google)
 
-        .sticky-md-top(style="z-index:1!important;padding-top: 4rem!important;")
+        .sticky-md-top
           //-  Table of Content Container
           h6 On This Page
           | !{filters.toc(filters.markdown("text-blocks/jugend-forscht.md"), {tags:['h2'], wrapperClass:"toc", ul: true })}
 
-style.
-  .img-grid {
-    width: 45%;
-    margin: 0.2rem;
-  }

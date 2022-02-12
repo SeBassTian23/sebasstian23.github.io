@@ -35,28 +35,37 @@ block append content
         h5 Citation
         //- .form-text Test
         #citationText.p-2
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="75%" viewBox="0, 0, 60, 16">
-            <g id="Layer_1">
-              <path d="M54.08,13.4 L54.08,16 L-0,16 L-0,13.4 L54.08,13.4 z M60,8.933 L-0,8.933 L-0,11.533 L60,11.533 L60,8.933 z M60,4.467 L-0,4.467 L-0,7.067 L60,7.067 L60,4.467 z M60,0 L-0,0 L-0,2.6 L60,2.6 L60,0 z" fill="#000000" fill-opacity="0.03"/>
-            </g>
-          </svg>
+
+          //- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="75%" viewBox="0, 0, 60, 16">
+          //-   <g id="Layer_1">
+          //-     <path d="M54.08,13.4 L54.08,16 L-0,16 L-0,13.4 L54.08,13.4 z M60,8.933 L-0,8.933 L-0,11.533 L60,11.533 L60,8.933 z M60,4.467 L-0,4.467 L-0,7.067 L60,7.067 L60,4.467 z M60,0 L-0,0 L-0,2.6 L60,2.6 L60,0 z" fill="#000000" fill-opacity="0.03"/>
+          //-   </g>
+          //- </svg>
 
 script(defer, src="/javascript/get-citation.js")
 script. 
   document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('form');
+    var placeholder = '<span class="placeholder col-7 me-1"></span><span class="placeholder col-4 me-1"></span><span class="placeholder col-4 me-1"></span><span class="placeholder col-7 me-1"></span><span class="placeholder col-6 me-1"></span><span class="placeholder col-4 me-1"></span><span class="placeholder col-8 me-1"></span>';
+    document.querySelector('#citationText').innerHTML = placeholder;
     form.addEventListener("submit", function(event){
       event.preventDefault();
       let doi = form.elements.doiNumber.value || null;
       let style = form.elements.citationStyle.value || null;
+      document.querySelector('#citationText').innerHTML = placeholder;
+      document.querySelector('#citationText').classList.add("placeholder-glow")
       if(doi && style && doi != "")
-        getCitationFromDOI(doi, style).then(function(response){
+        getCitationFromDOI(doi, style)
+        .then(function(response){
           if( typeof response == "string"){
             document.querySelector('#citationText').innerHTML = response;
             event.target.reset();
           }
           else 
             document.querySelector('#citationText').innerHTML = `<p class="text-danger">Issue: ${response.msg}</p>`;
+        })
+        .then(function(){
+          document.querySelector('#citationText').classList.remove("placeholder-glow")
         })
       else 
         document.querySelector('#citationText').innerHTML = `<p class="text-danger">No DOI Number provided</p>¯\\_(ツ)_/¯`;

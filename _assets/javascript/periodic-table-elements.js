@@ -117,20 +117,20 @@ class PeriodicTableElements {
     };
   }
   elementLabel(el) {
-    return `<div class="mx-auto card-element ratio mt-md-n5" style="--bs-aspect-ratio: 100%;max-width: 8.5rem;width: 4rem;">
+    return `<div class="mx-auto card-element ratio mt-md-n5 pt-elements-card">
         <div class="border d-flex flex-column justify-content-center p-sm-1 text-center">
         <span>${el.AtomicNumber}</span>
         <span class="fs-1">${el.Symbol}</span>
         <small class="d-none d-md-block">${el.Name}</small>
-        <small class="d-none d-md-block" style="font-size:0.8vw;">${this.propertyLabel(el)}</small>
+        <small class="d-none d-lg-block pt-elements-f-08vw">${this.propertyLabel(el)}</small>
       </div>
      </div>`;
   }
   elementLabelSM(el){
-    return `<div class="ratio" style="--bs-aspect-ratio: 120%; overflow:hidden; cursor:pointer;">
+    return `<div class="ratio pt-elements-card-sm">
       <div class="d-flex flex-column justify-content-center">
-        <span class="d-none d-sm-block" style="font-size:1vw;">${el.AtomicNumber}</span>
-        <span class="d-block text-center" style="font-size:2vw;">${el.Symbol}</span>
+        <span class="d-none d-sm-block pt-elements-f-1vw">${el.AtomicNumber}</span>
+        <span class="d-block text-center pt-elements-f-2vw">${el.Symbol}</span>
       </div>
     </div>`;
   }
@@ -151,7 +151,7 @@ class PeriodicTableElements {
     </ul>`;
   }
   elementLink(el){
-    return `<a href="https://pubchem.ncbi.nlm.nih.gov/element/${el.AtomicNumber}" target="_blank" style="position: absolute; right: 1.5rem;" title="More about ${el.Name} on PubChem">
+    return `<a href="https://pubchem.ncbi.nlm.nih.gov/element/${el.AtomicNumber}" target="_blank" class="pt-elements-modal-link" title="Details about ${el.Name} on PubChem">
         <i class="bi-info-circle"></i>
       </a>`;
   }
@@ -167,12 +167,12 @@ class PeriodicTableElements {
       var elLabelSmall = this.elementLabel( el );
       var elInfoSmall = this.elementInfoSmall( el );
       return `<div class="d-flex flex-row justify-content-evenly align-items-center mx-auto">
-          <div class="p-md-4 p-sm-2">${elLabelSmall}</div>
-          <div class="d-none d-md-block flex-fill pe-md-4 pe-sm-2 small">${elInfoSmall}</div>
+          <div class="p-lg-4 p-md-3 p-sm-2">${elLabelSmall}</div>
+          <div class="d-none d-lg-block flex-fill pe-md-4 pe-sm-2 small">${elInfoSmall}</div>
         </div>`;
   }
   table(){
-    var html = `<table id="plugin-periodic-table" style="user-select: none; width: 100%; table-layout: fixed; border-spacing: 2px; border-collapse: separate;">`;
+    var html = `<table class="pt-elements-table">`;
     var lant = []; 
     var act = [];
     for(var i in this.elements.Table.Row){
@@ -182,7 +182,7 @@ class PeriodicTableElements {
             html += `<tr>`;
 
         var color = this.propertyColor(el);
-        var td = `<td class="border" style="background:${color};" data-bs-toggle="modal" data-bs-target="#modal" data-atomicnumber="${el.AtomicNumber}" data-groupblock="${this.propertyLabel(el)}">${ this.elementLabelSM( el )}</td>`;
+        var td = `<td class="border" style="background:${color};" data-bs-toggle="modal" data-bs-target="#pt-aa-elements" data-atomicnumber="${el.AtomicNumber}" data-groupblock="${this.propertyLabel(el)}">${ this.elementLabelSM( el )}</td>`;
         if( (i < 56 || i > 70) && (i < 88 || i > 102) )
             html += td;
         
@@ -193,39 +193,39 @@ class PeriodicTableElements {
             act.push(td);
     
         if( i == "56")
-            html += `<td class="text-center" style="font-size:1vw;">*</td>`;
+            html += `<td class="text-center pt-elements-f-1vw">*</td>`;
     
         if( i == "88" )
-            html += `<td class="text-center" style="font-size:1vw;">**</td>`;
+            html += `<td class="text-center pt-elements-f-1vw">**</td>`;
     
         if(i == "0"){
             html += `<td></td>`;
-            html += `<td colspan="10" rowspan="3" id="plugin-element-card"></td>`;
-            html += `<td colspan="5" id="plugin-label-selector"></td>`;
+            html += `<td colspan="10" rowspan="3" id="pt-elements-card"></td>`;
+            html += `<td colspan="5" id="pt-elements-label-selector"></td>`;
         }
     
         if(["1","9","17","35","53","85","117"].indexOf(i) > -1)
             html += `</tr>`;
     }
     html += `<tr>`;
-    html += `<td colspan="18" style="height:20px;"></td>`;
+    html += `<td colspan="18" class="pt-2 pb-3"></td>`;
     html += `<tr>`;
     html += `<td colspan="2"></td>`;
-    html += `<td class="text-center" style="font-size:1vw;">*</td>`;
+    html += `<td class="text-center pt-elements-f-1vw">*</td>`;
     html += lant.join("");
     html += `</tr>`;
     html += `<tr>`;
     html += `<td colspan="2"></td>`;
-    html += `<td class="text-center" style="font-size:1vw;">**</td>`;
+    html += `<td class="text-center pt-elements-f-1vw">**</td>`;
     html += act.join("");
     html += `</tr>`;
     html += `</table>`;
 
-    html += `<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    html += `<div class="modal fade" id="pt-aa-elements" tabindex="-1" aria-labelledby="pt-aa-elements-label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">Modal title</h5>
+            <h5 class="modal-title" id="pt-aa-elements-label">Modal title</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body"></div>
@@ -236,46 +236,36 @@ class PeriodicTableElements {
     return html;
   }
   init() {
-    if ( !document.querySelector('style') ){
-      let style = document.createElement('style');
-      document.head.appendChild(style);
-    }
-    document.querySelector('style').textContent += "@media (min-width:576px) { .card-element { width: 4.5rem!important; }}";
-    document.querySelector('style').textContent += "@media (min-width:768px) { .card-element { width: 8.5rem!important; }}";
-
-    document.querySelector('style').textContent += "@media (max-width:575.98px) {#plugin-label-selector select {min-height: auto; font-size: 9px; padding: 2px;}}";
-    document.querySelector('style').textContent += "@media (max-width:767.98px) {#plugin-label-selector select {min-height: auto; padding: 2px;}}";
-
     document.querySelector(this.selector).innerHTML = this.table();
-    var modal = document.getElementById('modal');
+    var modal = document.getElementById('pt-aa-elements');
     var _this = this;
 
     var elno = Math.ceil(this.elements.Table.Row.length * Math.random());
     var el = this.element(this.elements.Table.Row[elno].Cell);
 
-    document.querySelector("#plugin-element-card").innerHTML = this.elementCard(el);
-    document.querySelector("#plugin-element-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
+    document.querySelector("#pt-elements-card").innerHTML = this.elementCard(el);
+    document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
 
-    var cells = document.querySelectorAll('#plugin-periodic-table td[data-atomicnumber]');
+    var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
     cells.forEach(function(cell){
       cell.addEventListener('mouseover', function(){
         var el = this.getAttribute('data-atomicnumber');
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
-        document.querySelector("#plugin-element-card").innerHTML = _this.elementCard(el);
-        document.querySelector("#plugin-element-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
+        document.querySelector("#pt-elements-card").innerHTML = _this.elementCard(el);
+        document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
         
       });
     });
 
     var options = _this.propertyOptions.map(function(p){ return `<option value="${p}" ${p=="GroupBlock"? "selected" : ""}>${p.replace(/([a-z])([A-Z])/g, '$1 $2')}</option>` });
-    document.querySelector("#plugin-label-selector").innerHTML =`<select class="form-control form-control-sm d-print-none">${options}</select>`;
+    document.querySelector("#pt-elements-label-selector").innerHTML =`<select class="form-select form-select-sm d-print-none" title="Select Property or Trend to display">${options}</select>`;
 
-    document.querySelector("#plugin-label-selector").innerHTML += `<input type="range" class="form-range form-range-sm d-none d-md-block d-print-none" min="0" max="360" step="1" value="${_this.selectedColor}"></input>`;
+    document.querySelector("#pt-elements-label-selector").innerHTML += `<input type="range" title="Change Trend Color" class="form-range form-range-sm d-none d-md-block d-print-none" min="0" max="360" step="1" value="${_this.selectedColor}"></input>`;
 
-    document.querySelector("#plugin-label-selector select").addEventListener('change', function(){
+    document.querySelector("#pt-elements-label-selector select").addEventListener('change', function(){
       _this.property = this.value;
       
-      var cells = document.querySelectorAll('#plugin-periodic-table td[data-atomicnumber]');
+      var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
       cells.forEach(function(cell){
         var el = cell.getAttribute('data-atomicnumber');
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
@@ -285,10 +275,10 @@ class PeriodicTableElements {
       
     });
 
-    document.querySelector("#plugin-label-selector input").addEventListener('change', function(){
+    document.querySelector("#pt-elements-label-selector input").addEventListener('change', function(){
       _this.selectedColor = this.value;
       
-      var cells = document.querySelectorAll('#plugin-periodic-table td[data-atomicnumber]');
+      var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
       cells.forEach(function(cell){
         var el = cell.getAttribute('data-atomicnumber');
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
@@ -309,13 +299,13 @@ class PeriodicTableElements {
 
       el = _this.element(_this.elements.Table.Row[idx].Cell);
 
-      var header = document.querySelector('#modal .modal-header');
+      var header = document.querySelector('#pt-aa-elements .modal-header');
       header.style.background = _this.propertyColor(el) || "none";
 
-      var title = document.querySelector('#modal .modal-title');
+      var title = document.querySelector('#pt-aa-elements .modal-title');
       title.innerHTML = `${el.Name} <small class="text-muted">${_this.propertyLabel(el)}</small>`;
 
-      var body = document.querySelector('#modal .modal-body');
+      var body = document.querySelector('#pt-aa-elements .modal-body');
       body.innerHTML = `${_this.elementLink( el )}${_this.elementLabel( el )}${_this.elementInfo( el )} `;
     });
   }
