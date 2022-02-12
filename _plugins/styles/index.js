@@ -106,6 +106,10 @@ const compileScssEntryPoints = (
     css = minifyCSS(css, cssOptions);
     if (output) {
       let outfile = path.join(output, `${key}.css`);
+      if(!fs.existsSync(eleventyConfig.dir.output))
+        fs.mkdirSync(eleventyConfig.dir.output);
+      if(!fs.existsSync(output))
+        fs.mkdirSync(output);
       fs.writeFileSync(outfile, css);
     }
 
