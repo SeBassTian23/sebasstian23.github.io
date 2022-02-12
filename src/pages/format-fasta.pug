@@ -25,7 +25,7 @@ block append content
             .form-text Number of characters per line
           .col-6.mb-3
             label.form-label(for="gap") Gaps
-            select.form-control(id="gap" name="gap")
+            select.form-select(id="gap" name="gap")
               option(value="false" selected) No
               option(value="true") Yes 
             .form-text Separate blocks of #[em n] characters
@@ -35,19 +35,19 @@ block append content
             .form-text Number of characters per block
           .col-6.mb-3
             label.form-label(for="header") Header
-            select.form-control(id="header" name="header")
+            select.form-select(id="header" name="header")
               option(value="true" selected) Show 
               option(value="false") Hide
             .form-text Show the FASTA header
           .col-6.mb-3
             label.form-label(for="lineNum") Line Numbers
-            select.form-control(id="lineNum" name="lineNum")
+            select.form-select(id="lineNum" name="lineNum")
               option(value="true" selected) Yes 
               option(value="false") No
             .form-text Show character counts for each line
           .col-6.mb-3
             label.form-label(for="lineNumPos") Number Position
-            select.form-control(id="lineNumPos" name="lineNumPos")
+            select.form-select(id="lineNumPos" name="lineNumPos")
               option(value="start" selected) Start 
               option(value="end") End
               option(value="between") Between
