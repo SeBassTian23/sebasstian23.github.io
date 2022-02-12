@@ -21,5 +21,21 @@
       "email": "sebastian.kuhlgert@gmail.com",
       "url": "https://kuhlgert.com",
       "twitter": null
-    }
+    },
+    "CSP": [
+      "block-all-mixed-content",
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/chart.js",
+      "style-src 'self' 'unsafe-inline'",
+      "object-src 'none'",
+      "frame-src 'self'",
+      "child-src 'self'",
+      "img-src 'self' data:",
+      "font-src 'self'",
+      "connect-src 'self' https://doi.org https://api.crossref.org",
+      "manifest-src 'self'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "media-src 'self'"
+    ]
 }

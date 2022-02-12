@@ -6,6 +6,9 @@
 - var isPost = collections.posts.find(function(x){ return x.url === page.url });
 - var metaDesc = description || (isPost? excerpt: null) || metadata.description || null
 
+//- Content-Security-Policy
+meta(http-equiv="Content-Security-Policy" content=metadata.CSP.join(";") || "")
+
 //- Add meta data
 link(rel="canonical" href=currentUrl)
 //- meta( name="robots" content="noindex, nofollow")
