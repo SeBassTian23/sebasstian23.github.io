@@ -6,11 +6,13 @@ const path = require('path');
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const pluginSCSS = require("@jamshop/eleventy-plugin-scss");
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 
+// Own Plugin based on @jamshop/eleventy-plugin-scss
+const pluginStyles = require('./_plugins/styles');
 
 const pluginPhotosynQMap = require('./_plugins/photosynq-map');
+
 // DayJS
 const dayjs = require("dayjs");
 const utc = require('dayjs/plugin/utc');
@@ -43,17 +45,26 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginTOC);
-  eleventyConfig.addPlugin(pluginSCSS, {
-    entryPoints: {
-      main: "_assets/scss/main.scss"
   
   eleventyConfig.addPlugin(pluginPhotosynQMap, {
     input: './_data/photosynq-projects.json',
     output: './_assets/images/photosynq/photosynq-projects-2022-02.svg'
   });
+
+  eleventyConfig.addPlugin(pluginStyles, {
+    scss: {
+      entryPoints: {
+        main: "_assets/scss/main.scss"
+      },
+      output: "_site/css/"
     },
-    output: "_site/css/"
+    minifyCss: {
+      aggressiveMerging: false
+    }
   });
+
+  // Add watch targets
+  eleventyConfig.addWatchTarget('./_assets/');
 
   eleventyConfig.addPlugin(purgeCssPlugin, {
     // Optional: Specify the location of your PurgeCSS config
