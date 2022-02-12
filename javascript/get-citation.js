@@ -18,7 +18,7 @@ var getCitationFromDOI = async function(doi, style = "harvard1"){
   doi = encodeURIComponent(doi);
 
   // Get the post data
-  var getResp = await fetch(`https://data.crossref.org/${doi}`, {
+  var getResp = await fetch(`https://doi.org/${doi}`, {
     method: "GET",
     headers: {
       "Accept": `text/bibliography; style=${style}`
