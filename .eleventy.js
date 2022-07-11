@@ -187,6 +187,14 @@ module.exports = function (eleventyConfig) {
   // === Liquid needed if `markdownTemplateEngine` **isn't** changed from Eleventy default
   eleventyConfig.addJavaScriptFunction("imageResizedURL", imageResizedURL);
 
+  eleventyConfig.addShortcode("fileTime", function(filepath, dateformat='YYYY-MM-DD') {
+    if ( fs.existsSync( path.join(process.cwd(), filepath) ) ){
+      let stats = fs.statSync( path.join(process.cwd(), filepath) )
+      return dayjs.utc(stats.mtime).format(dateformat);
+    }
+    return "Unknown date"
+  });
+
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: true,
     // Optional, default is "---"
