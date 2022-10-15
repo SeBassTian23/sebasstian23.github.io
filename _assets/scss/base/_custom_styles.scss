@@ -190,6 +190,10 @@ pre[class*="language-"] {
 #publications {
   & li {
     margin-bottom: 0.25rem;
+    & strong::before, strong::after {
+      content: '\A';
+      white-space: pre;
+    }
   }
 }
 
