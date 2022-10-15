@@ -2,7 +2,7 @@ const sass = require("sass");
 const CleanCSS = require("clean-css");
 require("css.escape");
 const path = require("path");
-const fs = require("node:fs");
+const fs = require("fs");
 const postcss = require('postcss');
 const autoprefixer = require("autoprefixer");
 
