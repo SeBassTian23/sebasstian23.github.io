@@ -188,11 +188,27 @@ pre[class*="language-"] {
 }
 
 #publications {
+  & ol {
+    list-style: none;
+    padding-left: 0;
+  }
   & li {
-    margin-bottom: 0.25rem;
-    & strong::before, strong::after {
-      content: '\A';
-      white-space: pre;
+    margin-bottom: 0.5rem;
+    & strong::before,
+    strong::after {
+      content: "\A";
+      white-space: pre-wrap;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  #publications {
+    & ol {
+      columns: 2;
+      column-gap: 1.5rem;
+      -webkit-columns: 2;
+      -moz-columns: 2;
     }
   }
 }
