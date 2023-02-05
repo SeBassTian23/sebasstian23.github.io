@@ -20,7 +20,7 @@ mixin hero-2(section)
           if section.image
             | !{filters.image(filters.url(section.image), section.imageAlt )}
           if section.video
-            video.ratio.ratio-16x9.p-0.mt-4(autoplay, loop, muted, poster=section.video.poster, style="font-size:0px!important")
+            video.ratio.ratio-16x9.p-0.mt-4(autoplay, playsinline, loop, muted, poster=section.video.poster, style="font-size:0px!important")
               each el in section.video.src
                 - filetype = el.split(".").slice(-1)[0];
                 source(src=el, type="video/"+filetype)
@@ -36,7 +36,7 @@ mixin hero-3(section)
           if section.image
             | !{filters.image(filters.url(section.image), section.imageAlt)}
           if section.video
-            video.ratio.ratio-16x9.p-0.mt-4(autoplay, loop, muted, poster=section.video.poster, style="font-size:0px!important")
+            video.ratio.ratio-16x9.p-0.mt-4(autoplay, playsinline, loop, muted, poster=section.video.poster, style="font-size:0px!important")
               each el in section.video.src
                 - filetype = el.split(".").slice(-1)[0];
                 source(src=el, type="video/"+filetype)
