@@ -46,7 +46,7 @@ block append content
         aside.pt-5(style="z-index:1!important;", class=(toc? "sticky-md-top": ""))
           //- Search Container
           .row
-            .col.p-3
+            .col.px-3
               h6 Search
               input.form-control#searchField(type="search", placeholder="Search Articles")
               .d-flex.flex-row.justify-content-end
@@ -55,33 +55,38 @@ block append content
           //-  Table of Content Container
           if toc
             .row
-              .col.p-3
+              .col.px-3
                 h6 On This Page
                 | !{filters.toc(content, {tags:['h2', 'h3'], wrapperClass:"toc", ul: true })}
             hr
           //- Tags
           if collections.tagList.length > 0
             .row
-              .col.p-3
+              .col.px-3
                 h6 Tags
                 each tag, index in collections.tagList
                   - tagURL = "/tags/" + filters.slug(tag) + "/"
                   a.tag.bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}
-
             hr
-          //- More Posts
-          .row.d-flex.justify-content-around.p-3
-            h6 More Posts
-            //- collection, item, limit = 3, random = true
-            - var suggestions = helpers.getSiblingContent(collections.posts, page)
-            each el in suggestions
-              +post-card-sm(el)(class="col-12 mb-3")
 
-            hr
           //- More Posts
-          .row.d-flex.justify-content-around.p-3
-            h6 Share
-            +social-share({...page,...{title: title}})(class="col-12 mb-3")
+          if collections.posts.length > 1
+            .row
+              .col.px-3
+                h6 More Posts
+                //- collection, item, limit = 3, random = true
+                .row.d-flex.justify-content-around.p-3
+                  - var suggestions = helpers.getSiblingContent(collections.posts, page)
+                  each el in suggestions
+                    +post-card-sm(el)(class="col-12 mb-2 p-0")
+            hr
+          
+          //- More Posts
+          .row
+            .col.px-3
+              h6 Share
+              .d-flex.justify-content-around
+                +social-share({...page,...{title: title}})(class="col-12 mb-3")
 
     if album 
       script.
