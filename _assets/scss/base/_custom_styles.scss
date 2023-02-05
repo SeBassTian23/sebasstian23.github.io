@@ -233,19 +233,41 @@ pre[class*="language-"] {
   display: block;
 }
 
-
-// Fade In effect for Page load
-body {
-  animation: fadeInAnimation ease 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+@property --percentage {
+  syntax: "<percentage>";
+  initial-value: 50%;
+  inherits: false;
 }
 
-@keyframes fadeInAnimation {
+.bg-primary {
+  animation: backgroundHeroAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  background-color: var(--bs-primary);
+  background-image: linear-gradient(
+    135deg,
+    var(--bs-primary) 50%,
+    var(--bs-secondary) 100%
+  );
+}
+
+.bg-secondary {
+  animation: backgroundHeroAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  background-color: var(--bs-secondary);
+  background-image: linear-gradient(
+    135deg,
+    var(--bs-secondary) 50%,
+    var(--bs-primary) 100%
+  );
+}
+
+@keyframes backgroundHeroAnimation {
   0% {
-      opacity: 0;
+    --percentage: 25%;
   }
   100% {
-      opacity: 1;
-   }
+    --percentage: 50%;
+  }
 }
