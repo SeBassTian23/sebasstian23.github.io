@@ -107,7 +107,9 @@ const map = (data = []) => {
     return a.count - b.count;
   });
 
-  let markers = data.map( e => { 
+  data = data.filter( e => (e.latitude && e.longitude && e.latitude !== 0 && e.longitude !== 0 && e.latitude !== e.longitude) )
+
+  let markers = data.map( e => {
     let { x, y } = mapTranslateLatLng( e.latitude, e.longitude );
     let idx = uniqueDataPoints.findIndex( (v) => v == Math.pow(e.count, 0.2)  )
 
