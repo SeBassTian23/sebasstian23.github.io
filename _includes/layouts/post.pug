@@ -88,39 +88,6 @@ block append content
               .d-flex.justify-content-around
                 +social-share({...page,...{title: title}})(class="col-12 mb-3")
 
-    if album 
-      script.
-        document.addEventListener('DOMContentLoaded', function () {
-          imagesLoaded( document.querySelector('.post-album .row'), function( instance ) {
-
-            var msnry = new Masonry( '.post-album .row', {
-              "percentPosition": true
-            });
-            msnry.layout();
-
-            var images = document.querySelectorAll('.post-album picture img');
-            images.forEach(function(el){
-              // Find large image from source
-              var type = el.currentSrc !== undefined? el.currentSrc.split(".").splice(-1)[0]: null;
-              if(type == "jpg")
-                type = "jpeg";
-              var zoom_src = null;
-              var parent = el.parentNode;
-              var src = parent.childNodes
-              if(type){
-                src.forEach(function(el){
-                  if(el.nodeName == "SOURCE" && el.getAttribute('type') == `image/${type}`){
-                    zoom_src = el.getAttribute('srcset');
-                    zoom_src = zoom_src.split(',').splice(-1)[0].trim().split(" ")[0] || null;
-                  }
-                });
-              }
-              //- if( el.currentSrc !== undefined)
-              //-   el.setAttribute('data-zoom-src', el.currentSrc);
-            });
-          });
-        });
-
     script.
         document.addEventListener('DOMContentLoaded', function () {
             mediumZoom('.post-album picture img');
