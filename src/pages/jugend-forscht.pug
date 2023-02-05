@@ -14,11 +14,15 @@ block append content
           | !{ filters.markdown("text-blocks/jugend-forscht.md") }
       .col-md-3.d-none.d-md-block
 
-        h6 Translate
-        a(href=`https://translate.google.com/translate?js=n&sl=auto&tl=&u=${metadata.url+page.url}` rel="nofollow" target="_blank") English (Google)
+        .span.fs-5
+          i.bi-translate
+          |  Translate
+        a.ms-1(href=`https://translate.google.com/translate?js=n&sl=auto&tl=&u=${metadata.url+page.url}` rel="nofollow" target="_blank") English (Google)
 
         .sticky-md-top
           //-  Table of Content Container
-          h6 On This Page
-          | !{filters.toc(filters.markdown("text-blocks/jugend-forscht.md"), {tags:['h2'], wrapperClass:"toc", ul: true })}
+          .span.fs-5
+            i.bi-justify-left
+            |  Content
+          | !{filters.toc(filters.markdown("text-blocks/jugend-forscht.md"), {tags:['h2'], wrapperClass:"toc ps-1", ul: true })}
 
