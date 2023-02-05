@@ -1,7 +1,7 @@
 # Die Wilden Farben des Wilden Weins
 (Parthenocissus tricuspidata)
 
-verfaßt von: Sebastian Kuhlgert, Jan Mehlich, Jonas Möllmann; Gymnasium Laurentianum WAF
+Verfaßt von: Sebastian Kuhlgert, Jan Mehlich, Jonas Möllmann; Gymnasium Laurentianum WAF
 
 ## Einleitung
 
