@@ -100,8 +100,8 @@ p {
 .block-hero-3,
 .block-hero-4 {
   & h2 > span::after {
-    content: '\A';
-    white-space: pre;
+    content: "\A";
+    white-space: pre-wrap;
   }
 }
 
@@ -110,8 +110,8 @@ p {
 .block-feature-3,
 .block-feature-4 {
   & h2 > span::after {
-    content: '\A';
-    white-space: pre;
+    content: "\A";
+    white-space: pre-wrap;
   }
 }
 
@@ -144,8 +144,8 @@ p {
 }
 
 // Link Style for external links
-.external-link:after{
-  content:' \2197'
+.external-link:after {
+  content: " \2197";
 }
 
 // Tags style
@@ -203,7 +203,7 @@ pre[class*="language-"] {
   }
 }
 
-.bg-img-multiply{
+.bg-img-multiply {
   background-size: cover;
   background-blend-mode: multiply;
 }
