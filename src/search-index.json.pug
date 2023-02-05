@@ -5,9 +5,9 @@ permalink: "/search-index.json"
 ---
 
 - var idx = search.searchindexLunr(collections.posts);
-- idx.meta = {}
+- idx = {...idx, meta:{}}
 
 each post in collections.posts
-  - idx.meta[ post.url ] = {title: post.data.title, excerpt: filters.excerpt(post, 50) }
+  - idx.meta[ post.url ] = {title: post.data.title, excerpt: filters.excerpt(post, 50), description: post.data.description }
 
 | !{JSON.stringify(idx, null, 0)}
