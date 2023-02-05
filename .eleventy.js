@@ -48,7 +48,7 @@ module.exports = function (eleventyConfig) {
   
   eleventyConfig.addPlugin(pluginPhotosynQMap, {
     input: './_data/photosynq-projects.json',
-    output: './_assets/images/photosynq/photosynq-projects-2022-02.svg'
+    output: './_assets/images/photosynq/photosynq-projects-2023-01.svg'
   });
 
   eleventyConfig.addPlugin(pluginStyles, {
