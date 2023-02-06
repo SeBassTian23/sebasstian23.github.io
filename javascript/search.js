@@ -26,34 +26,8 @@
           const el = document.createElement("li");
           resEl.appendChild(el);
 
-          // let match = Object.keys(r.matchData.metadata);
-          console.log(window.metaIndex[r.ref])
-          let title = window.metaIndex[r.ref].title;
-          let excerpt = window.metaIndex[r.ref].excerpt;
-
-          // for(let m in match){
-          //   if(r.matchData.metadata[match[m]].title !== undefined){
-          //     console.log(r.matchData.metadata[match[m]])
-          //     let positions = r.matchData.metadata[match[m]].title.position;
-
-          //     // title = title.replace( new RegExp( `(${match[m]})`,"i"), "<strong>$1</strong>");
-
-          //     for(let p in positions){
-          //       console.log( title, title.slice(positions[p][0],positions[p][1]) )
-          //     }
-          //   }
-          // }
-
-          // Object.keys(r.matchData.metadata).forEach(function (term) {
-          //   Object.keys(r.matchData.metadata[term]).forEach(function (fieldName) {
-          //     // var field = li.querySelector('[data-field=' + fieldName + ']'),
-          //     var positions = r.matchData.metadata[term][fieldName].position;
-          //     for(let p in positions){
-
-          //     }
-          //   });
-          // });
-
+          let title = window.metaIndex[r.ref].title || r.ref;
+          let excerpt = (window.metaIndex[r.ref].description != undefined)? window.metaIndex[r.ref].description : window.metaIndex[r.ref].excerpt;
 
           el.innerHTML += `<a class="dropdown-item" href="${r.ref}">${title}<div class="text-muted" style="font-size:smaller">${excerpt}</div></a>`;
         });
