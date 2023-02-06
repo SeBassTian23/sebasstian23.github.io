@@ -234,10 +234,15 @@ module.exports = function (eleventyConfig) {
    */
 
   // Customize Markdown library and settings:
+  // Fix: https://github.com/11ty/eleventy-plugin-syntaxhighlight/issues/15
+  const { pairedShortcode } = require("@11ty/eleventy-plugin-syntaxhighlight");
   let markdownLibrary = markdownIt({
     html: true,
     breaks: true,
-    linkify: true
+    linkify: true,
+    highlight: function(content, language){
+      return pairedShortcode(content, language);
+    }
   })
   .use(markdownItAnchor, {
     level: 1,
