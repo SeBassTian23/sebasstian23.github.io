@@ -54,7 +54,7 @@ class PeriodicTableElements {
   }
   propertyColor(el){
     if(this.selectedProperty == "CPKHexColor")
-      return el.CPKHexColor;
+      return el.CPKHexColor != ""? el.CPKHexColor : 'none';
     else if(this.selectedProperty == "GroupBlock")
       return this.GroupBlock[el.GroupBlock];
     else if(this.selectedProperty == "StandardState")
@@ -95,13 +95,42 @@ class PeriodicTableElements {
   propertyLabel(el){
     return el[this.selectedProperty];
   }
+  hsl2rgb(h, s, l){
+    // https://www.30secondsofcode.org/js/s/hsl-to-rgb
+    s /= 100;
+    l /= 100;
+    const k = n => (n + h / 30) % 12;
+    const a = s * Math.min(l, 1 - l);
+    const f = n =>
+      l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    return [255 * f(0), 255 * f(8), 255 * f(4)];
+  }
+  getContrastColor(bgColor) {
+    if (!bgColor || bgColor == 'none' || bgColor == '') { return '#212529'; }
+    if (bgColor[0] == '#'){
+      return (parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2) ? '#212529' : '#FFFFFF';
+    }
+    if (bgColor.match(/rgb/i)){
+      const rgba = bgColor.match(/^(?:rgba?)?[\s]?[\(]?[\s+]?(\d+)[(\s)|(,)]+[\s+]?(\d+)[(\s)|(,)]+[\s+]?(\d+)[(\s)|(,)]+[\s+]?([0-1]?(?:\.\d+)?)\)$/i)
+      // https://stackoverflow.com/questions/596216/formula-to-determine-perceived-brightness-of-rgb-color
+      const luminance = rgba[1] * 0.299 + rgba[2] * 0.587 + rgba[3] * 0.114 + (1 - rgba[4]) * 255; // luminance perceived
+      return luminance > 130 ? "#212529" : "#FFFFFF";
+    }
+    if (bgColor.match(/hsl/i)){
+      const hsl = bgColor.match(/hsl\(\s?(\d+)[,\s]+(\d+)[%,\s]+(\d+)[%,\s]+\)/i)
+      const rgb = this.hsl2rgb(Number(hsl[1]),Number(hsl[2]),Number(hsl[3]))
+      const luminance = rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114;
+      return luminance > 130 ? "#212529" : "#FFFFFF";
+    }
+    return '#212529';
+  }
   element(el){
     return {
         "AtomicNumber": (el[0] || ""),
         "Symbol": (el[1] || ""),
         "Name": (el[2] || ""),
         "AtomicMass": (el[3] || ""),
-        "CPKHexColor": (`#${el[4]}` || ""),
+        "CPKHexColor": ( el[4] != ""? `#${el[4]}` : ""),
         "ElectronConfiguration": (el[5] || ""),
         "Electronegativity": (el[6] || ""),
         "AtomicRadius": (el[7] || ""),
@@ -122,7 +151,7 @@ class PeriodicTableElements {
         <span>${el.AtomicNumber}</span>
         <span class="fs-1">${el.Symbol}</span>
         <small class="d-none d-md-block">${el.Name}</small>
-        <small class="d-none d-lg-block pt-elements-f-08vw">${this.propertyLabel(el)}</small>
+        <small class="d-none d-lg-block pt-elements-f-08vw">${ this.propertyLabel(el) != ''? this.propertyLabel(el) : '&nbsp;' }</small>
       </div>
      </div>`;
   }
@@ -152,7 +181,7 @@ class PeriodicTableElements {
   }
   elementLink(el){
     return `<a href="https://pubchem.ncbi.nlm.nih.gov/element/${el.AtomicNumber}" target="_blank" class="pt-elements-modal-link" title="Details about ${el.Name} on PubChem">
-        <i class="bi-info-circle"></i>
+        <i class="bi-box-arrow-up-right"></i>
       </a>`;
   }
   elementInfoSmall(el){
@@ -245,6 +274,8 @@ class PeriodicTableElements {
 
     document.querySelector("#pt-elements-card").innerHTML = this.elementCard(el);
     document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
+    if (_this.selectedProperty != 'AtomicRadius')
+      document.querySelector("#pt-elements-card .card-element").style.color = _this.getContrastColor(_this.propertyColor(el))
 
     var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
     cells.forEach(function(cell){
@@ -253,7 +284,8 @@ class PeriodicTableElements {
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
         document.querySelector("#pt-elements-card").innerHTML = _this.elementCard(el);
         document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
-        
+        if (_this.selectedProperty != 'AtomicRadius')
+          document.querySelector("#pt-elements-card .card-element").style.color = _this.getContrastColor(_this.propertyColor(el))
       });
     });
 
@@ -271,6 +303,8 @@ class PeriodicTableElements {
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
         cell.setAttribute('data-groupblock', _this.propertyLabel(el))
         cell.style.background = _this.propertyColor(el) || "none";
+        if (_this.selectedProperty != 'AtomicRadius')
+          cell.style.color = _this.getContrastColor(_this.propertyColor(el))
       });
       
     });
@@ -284,6 +318,8 @@ class PeriodicTableElements {
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
         cell.setAttribute('data-groupblock', _this.propertyLabel(el))
         cell.style.background = _this.propertyColor(el) || "none";
+        if (_this.selectedProperty != 'AtomicRadius')
+          cell.style.color = _this.getContrastColor(_this.propertyColor(el))
       });
       
     });
@@ -301,9 +337,11 @@ class PeriodicTableElements {
 
       var header = document.querySelector('#pt-aa-elements .modal-header');
       header.style.background = _this.propertyColor(el) || "none";
+      if (_this.selectedProperty != 'AtomicRadius')
+        header.style.color = _this.getContrastColor(_this.propertyColor(el))
 
       var title = document.querySelector('#pt-aa-elements .modal-title');
-      title.innerHTML = `${el.Name} <small class="text-muted">${_this.propertyLabel(el)}</small>`;
+      title.innerHTML = _this.selectedProperty == 'GroupBlock'? `${el.Name} <small class="text-muted">${_this.propertyLabel(el)}</small>`: el.Name;
 
       var body = document.querySelector('#pt-aa-elements .modal-body');
       body.innerHTML = `${_this.elementLink( el )}${_this.elementLabel( el )}${_this.elementInfo( el )} `;
