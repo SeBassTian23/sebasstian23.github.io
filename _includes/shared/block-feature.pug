@@ -23,7 +23,11 @@ mixin feature-2(section)
     section.block-feature-2&attributes(attributes)
         .container
             .row.my-5.d-flex.align-items-center
-                .col-sm-12.col-md-6.p-3
+                .col-sm-12.col-md-6.p-3.order-md-last
+                    h2.light !{ section.headline }
+                    if section.content
+                        p !{ section.content }
+                .col-sm-12.col-md-6.p-3.order-md-first
                     if section.image
                         | !{filters.image(filters.url(section.image), section.imageAlt)}
                     if section.imageSubtitle
@@ -35,8 +39,4 @@ mixin feature-2(section)
                                 if c < (section.tagCount || 6)
                                     +post-card-sm(tag)
                                 - c++
-                .col-sm-12.col-md-6.p-3
-                    h2.light !{ section.headline }
-                    if section.content
-                        p !{ section.content }
 
