@@ -10,14 +10,16 @@ module.exports = {
    * @returns {String} The attributes or empty
    */
   getLinkActiveState(itemUrl, pageUrl) {
-    let response = '';
+    let response = {};
 
     if (itemUrl === pageUrl) {
-      response = { "aria-current": "page" };
+      response["aria-current"] = "page";
+      response["class"] = "active";
     }
 
     if (itemUrl.length > 1 && pageUrl.indexOf(itemUrl) === 0) {
-      response += { "data-state": "active" };
+      response["aria-current"] = "page";
+      response["data-state"] = "active";
     }
 
     return response;

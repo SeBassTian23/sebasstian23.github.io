@@ -28,6 +28,6 @@ header.block-header-1.sticky-top.bg-white
               if nav.disabled
                 li.nav-item: a.nav-link.disabled(href="#",tabindex="-1", aria-disabled="true") #{nav.title}
               else if helpers.getLinkActiveState( nav.link, page.url ) !== ""
-                li.nav-item: a.nav-link.active(href=filters.url(nav.link))&attributes(helpers.getLinkActiveState( nav.link, page.url )) #{nav.title}
+                li.nav-item: a.nav-link(href=filters.url(nav.link))&attributes(helpers.getLinkActiveState( nav.link, page.url )) #{nav.title}
               else
                 li.nav-item: a.nav-link(href=filters.url(nav.link)) #{nav.title}

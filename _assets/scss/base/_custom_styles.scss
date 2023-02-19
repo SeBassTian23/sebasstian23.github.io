@@ -231,6 +231,18 @@ pre[class*="language-"] {
   border: 1px solid var(--bs-primary);
   position: relative;
   display: block;
+  margin: -1px 0px;
+}
+
+.navbar .nav-link {
+  &:hover::after {
+    content: "";
+    width: 100%;
+    border: 1px solid var(--bs-primary);
+    position: relative;
+    display: block;
+    margin: -1px 0px;
+  }
 }
 
 @property --percentage {
