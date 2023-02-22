@@ -42,6 +42,9 @@ block append content
           if album 
             +album(album)
 
+          if imagesource
+            small.text-muted !{filters.markdown(imagesource)}
+
       .col-md-3
         aside.pt-5(style="z-index:1!important;", class=(toc? "sticky-md-top": ""))
           //- Search Container

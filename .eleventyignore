@@ -1,5 +1,6 @@
 README.md
 src/text-blocks
+src/posts/template.md
 src/posts
 src/posts.pug
 src/rss.pug

@@ -1,6 +1,7 @@
 ---
 title: "Template Post"
 image: /images/...
+imagesource: 'Photo by ![John Doe](https://)'
 author: Author Name
 description: Post description line.
 tags: ["tag name"]
