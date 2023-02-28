@@ -10,10 +10,10 @@ include /shared/block-feature.pug
 
 block append content
   //- Welcome Header
-  +hero-4({h2: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})
+  +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})
 
   //- Photosynthesis Introduction
-  +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light\" href=\"https://www.pexels.com/@super-lunar-3180156\">Pexel</a>" })(id="photosynthesis", class="bg-primary")
+  +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light\" href=\"https://www.pexels.com/@super-lunar-3180156\" target=\"_blank\">Pexel</a>" })(id="photosynthesis", class="bg-primary")
 
   //- Feature with image aligned left
   +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.webp", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc." })(id="photosynq")
@@ -57,7 +57,7 @@ block append content
     .container.my-5
       .row 
         .col-12 
-          h4 Publications
+          h3 Publications
         .col-12.small#publications
           //- Biochemisty Journal as style
           :markdown-it()
