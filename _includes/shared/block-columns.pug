@@ -38,34 +38,16 @@ mixin columns-footer(section)
             .row.my-5
                 .col.p-3
                     img(src=metadata.icon width="24" height="auto" alt="Logo")
-                .col.p-3
-                    if typeof section.col1 == 'string'
-                        | !{section.col1}
-                    else if typeof section.col1 == 'object'
-                        ul.list-unstyled
-                            each el,idx in section.col1
-                                if el.link
-                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
-                                else
-                                    li !{el.text}
-                .col.p-3
-                    if typeof section.col2 == 'string'
-                        | !{section.col2}
-                    else if typeof section.col2 == 'object'
-                        ul.list-unstyled
-                            each el,idx in section.col2
-                                if el.link
-                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
-                                else
-                                    li !{el.text}
-                .col.p-3
-                    if typeof section.col3 == 'string'
-                        | !{section.col3}
-                    else if typeof section.col3 == 'object'
-                        ul.list-unstyled
-                            each el,idx in section.col3
-                                if el.link
-                                    li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
-                                else
-                                    li !{el.text}
 
+                each col in section
+                    .col.p-3
+                        if typeof col == 'string'
+                            | !{col}
+                        else if typeof col == 'object'
+                            ul.list-unstyled
+                                each el,idx in col
+                                    if el.link
+                                        li: a(href=el.link, rel=`${el.link.match(/^https?:\/\//i)? "noreferrer": "" }`, class=el.class) !{el.text}
+                                    else
+                                        li !{el.text}
+                
