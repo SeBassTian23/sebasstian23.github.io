@@ -1,0 +1,72 @@
+---
+layout: project
+title: "Photosynthesis Scheme | Sebastian"
+image: /images/science/photosynthesis-schema.svg
+description: "Generate a scheme of the photosynthetic machinery for presentations or slides."
+permalink: "| /photosynthesis-scheme/"
+---
+block append head
+  //- link(rel="stylesheet", href="/css/photosynthesis-scheme.css", media="screen")
+  script(src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.1.2/dist/svg.min.js", crossorigin="anonymous", referrerpolicy="no-referrer")
+  script(src="/javascript/photosynthesis.min.js")
+  script(defer, src="/javascript/photosynthesis-scheme.js")
+
+block append content 
+
+  section.container#photosynthesis-scheme
+    .row
+      aside#settings-container.col-3.pt-3.d-print-none
+
+        // Downloads and Backups
+        .side
+          .row
+            .col-12.col-xl-6.mb-3
+              .small.fw-bold.mb-1 Download
+              .btn-group.w-100(role='group' aria-label='Downloads')
+                button#download-svg.btn.btn-outline-secondary.btn-sm SVG
+                button#download-png.btn.btn-outline-secondary.btn-sm PNG
+            .col-12.col-xl-6.mb-3
+              .small.fw-bold.mb-1 Settings
+              .btn-group.w-100(role='group' aria-label='Settings')
+                button#download-json.btn.btn-outline-secondary.btn-sm Save
+                button#backup-click.btn.btn-outline-secondary.btn-sm Import
+              input#import-json.form-control.form-control-sm.d-none(type='file')
+        
+        // Presets
+        .mb-3.side
+          .small.fw-bold.mb-1 Presets
+          #presets
+        
+        // Settings
+        #settings.side
+        hr.side
+        .d-flex.justify-content-between
+          button.btn.btn-outline-danger.btn-sm.side(data-bs-toggle='modal' data-bs-target='#resetModal')
+            | #[i.bi-arrow-counterclockwise] Reset
+          button#toggle.btn.btn-outline-secondary.btn-sm &larr;
+      
+      // SVG container
+      main.col.pt-3
+        fs-1.d-none.d-print-block.text-center.mb-3 Photosynthesis Scheme
+        figure.figure
+          #svg.figure-img.img-thumbnail
+            svg.bd-placeholder-img.img-fluid(width='1400' height='600' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder' preserveaspectratio='xMidYMid slice' focusable='false')
+              rect(width='100%' height='100%' fill='#e9ecef')
+              text(x='46%' y='49%' font-family='ArialMT' font-size='14' fill='#000000') Loading...
+          figcaption#figure-legend.figure-caption
+            strong Figure:
+        .small.mb-2 References:
+        #references
+        .text-muted.fw-light.text-end.mb-3(style='font-size:smaller')
+          | #[i.bi-cc-circle] Schema figures are free to use and modify. An attribution is not required but appreciated.
+  
+  #resetModal.modal.modal-sm.modal-alert(tabindex='-1' role='dialog')
+    .modal-dialog
+      .modal-content.rounded-3.shadow
+        .modal-body.p-4.text-center
+          h5.mb-2 Reset Settings?
+          p.mb-0.small You can save your settings to import them later, before you continue.
+        .modal-footer.flex-nowrap.p-0
+          button#reset-form.btn.btn-lg.btn-link.fs-6.text-decoration-none.col-6.m-0.rounded-0.border-end(type='button' data-bs-dismiss='modal')
+            strong.text-danger Yes
+          button.btn.btn-lg.btn-link.fs-6.text-decoration-none.col-6.m-0.rounded-0.text-dark(type='button' data-bs-dismiss='modal') No thanks

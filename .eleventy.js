@@ -214,6 +214,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "./javascript/bootstrap.bundle.min.js" });
   eleventyConfig.addPassthroughCopy({ "_assets/javascript/*.js": "./javascript/" });
 
+  // Photosynthesis Scheme
+  eleventyConfig.addPassthroughCopy({ "./node_modules/photosynthesis-scheme/dist/photosynthesis.min.js": "./javascript/photosynthesis.min.js" })
+
   // Copy font files
   eleventyConfig.addPassthroughCopy({ "./node_modules/bootstrap-icons/font/fonts": "/css/fonts" });
 
