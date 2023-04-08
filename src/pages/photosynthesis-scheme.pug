@@ -15,10 +15,9 @@ block append content
 
   section.container#photosynthesis-scheme
     .row
-      aside#settings-container.col-3.pt-3.d-print-none
-
+      aside#settings-container.col-5.col-md-3.d-print-none
         // Downloads and Backups
-        .side
+        .mt-3
           .row
             .col-12.col-xl-6.mb-3
               .small.fw-bold.mb-1 Download
@@ -31,20 +30,20 @@ block append content
                 button#download-json.btn.btn-outline-secondary.btn-sm Save
                 button#backup-click.btn.btn-outline-secondary.btn-sm Import
               input#import-json.form-control.form-control-sm.d-none(type='file')
-        
         // Presets
-        .mb-3.side
+        div
           .small.fw-bold.mb-1 Presets
           #presets
-        
         // Settings
-        #settings.side
-        hr.side
+        #settings
+        hr
         .d-flex.justify-content-between
-          button.btn.btn-outline-danger.btn-sm.side(data-bs-toggle='modal' data-bs-target='#resetModal')
-            | #[i.bi-arrow-counterclockwise] Reset
-          button#toggle.btn.btn-outline-secondary.btn-sm &larr;
-      
+          button#resetBtn.btn.btn-outline-danger.btn-sm(data-bs-toggle='modal' data-bs-target='#resetModal')
+            svg.bi.bi-arrow-counterclockwise(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+              path(fill-rule='evenodd' d='M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z')
+              path(d='M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z')
+            |             Reset
+          button#toggleBtn.btn.btn-outline-secondary.btn-sm &larr;
       // SVG container
       main.col.pt-3
         fs-1.d-none.d-print-block.text-center.mb-3 Photosynthesis Scheme
