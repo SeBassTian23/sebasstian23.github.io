@@ -1,8 +1,8 @@
 let applyUpdate = (settings) => {
   for (let name in settings) {
     let el = document.querySelector(`input[name="${name}"]`)
-    if(!el)
-    continue;
+    if (!el)
+      continue;
     if (el.checked !== null)
       el.checked = settings[name] == 'true' ? true : false;
     else
@@ -14,7 +14,7 @@ let applyUpdate = (settings) => {
   document.querySelector('#figure-legend').innerHTML = '<strong>Figure:</strong> ' + photosynthesis.legend();
 }
 
-// Setup
+// Initiate
 const photosynthesis = new Photosynthesis();
 
 // Figure container
@@ -98,7 +98,7 @@ document.querySelector('#download-json').addEventListener('click', (event) => {
       formData.append(el.name, false)
   });
 
-  let settings = JSON.stringify( Object.fromEntries(formData), null, 2);
+  let settings = JSON.stringify(Object.fromEntries(formData), null, 2);
 
   let blob = new Blob([settings], { type: 'text/json;charset=utf-8' });
   let URL = window.URL || window.webkitURL || window;
@@ -146,18 +146,30 @@ document.querySelector('#reset-form').addEventListener('click', (event) => {
   applyUpdate(Object.fromEntries([]));
 });
 
-document.querySelector('#toggle').addEventListener('click', (event) => {
+document.querySelector('#toggleBtn').addEventListener('click', (event) => {
   let el = document.querySelector('#settings-container');
-  if (el.classList.contains('col-3')) {
-    el.classList.remove('col-3');
-    document.querySelectorAll('#settings-container .side').forEach(el => el.classList.add('menu-collapsed'));
-    event.target.classList.add('menu-btn-collapsed');
+
+  if (!el.classList.contains('collapsed')) {
+    el.classList.remove('col-5', 'col-md-3')
+    for (const child of el.children) {
+      if (child.tagName == 'DIV' || child.tagName == 'HR') {
+        if (!child.classList.contains('d-flex'))
+          child.classList.add('d-none');
+      }
+    }
+    document.querySelector('#resetBtn').classList.add('d-none')
     event.target.innerHTML = '☰'; //'→'
+    el.classList.add('collapsed');
+    event.target.classList.add('menu-btn-collapsed')
   }
   else {
-    el.classList.add('col-3');
-    document.querySelectorAll('#settings-container .side').forEach(el => el.classList.remove('menu-collapsed'));
-    event.target.classList.remove('menu-btn-collapsed');
+    el.classList.remove('collapsed');
+    el.classList.add('col-5', 'col-md-3')
+    for (const child of el.children) {
+      child.classList.remove('d-none');
+    }
+    document.querySelector('#resetBtn').classList.remove('d-none');
     event.target.innerHTML = '←';
+    event.target.classList.remove('menu-btn-collapsed')
   }
 })
