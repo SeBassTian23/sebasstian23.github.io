@@ -92,7 +92,6 @@ p {
 .block-header-3,
 .block-header-4 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  background-color: rgba(255, 255, 255, 0.98) !important;
 }
 
 .block-hero-1,
@@ -225,7 +224,7 @@ pre[class*="language-"] {
 }
 
 // Underline active link
-.navbar .nav-link.active::after {
+.navbar .nav-item:not(.dropdown) .nav-link.active::after {
   content: "";
   width: 100%;
   border: 1px solid var(--bs-primary);
@@ -234,7 +233,7 @@ pre[class*="language-"] {
   margin: -1px 0px;
 }
 
-.navbar .nav-link {
+.navbar .nav-item:not(.dropdown) .nav-link {
   &:hover::after {
     content: "";
     width: 100%;
@@ -244,6 +243,145 @@ pre[class*="language-"] {
     margin: -1px 0px;
   }
 }
+
+.navbar .dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+.navbar .dropdown-menu {
+  min-width: 8rem !important;
+}
+
+.navbar .dropdown-toggle:after{
+  display:none;
+ }
+
+#experience {
+  padding-top: 10px;
+  margin-top: -10px;
+}
+
+
+html[data-bs-theme="dark"] {
+
+  & section.bg-primary, section.bg-secondary {
+    filter: brightness(.75);
+  }
+
+  & .navbar {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important;
+  }
+
+  & .navbar-brand {
+    color: var(--bs-heading-color);
+  }
+
+  & .block-header-1,
+  .block-header-2,
+  .block-header-3,
+  .block-header-4 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05)!important;
+  }
+
+  & .navbar .nav-item:not(.dropdown) .nav-link.active::after {
+    border: 1px solid var(--bs-secondary);
+  }
+
+  & .navbar .nav-item .dropdown-toggle.show {
+    color: inherit !important;
+    filter: brightness(.75)
+  }
+
+  & .btn.btn-sm.btn-outline-primary {
+    color: var(--bs-secondary) !important;
+  }
+
+  #photosynq > div > div > div.col-sm-12.col-md-6.p-3.order-md-first > picture > img,
+  #hero-photosynq > div > div > div:nth-child(2) > img {
+    filter: brightness(.75)
+  }
+
+  & .navbar .nav-item:not(.dropdown) .nav-link {
+    &:hover::after {
+      border: 1px solid var(--bs-secondary);
+    }
+  }
+
+  // & .navbar-brand img, section[class^="block-footer-"] .col:first-child img {
+  //   filter: invert(1) grayscale(1);
+  // }
+
+  // Periodic Table of Amino Acids
+  & #periodic-table-aa {
+    & .pt-aa-table-legend-img {
+      filter: invert(1) brightness(0.9);
+    }
+    & .modal-body img {
+      filter: invert(1) brightness(0.9); 
+    }
+    & .pt-aa-table, #pt-aa-modal-label {
+      color: var(--bs-dark);
+    }
+  }
+
+  & #photosynthesis-scheme {
+    & .figure-img.img-thumbnail {
+      background: lightgrey;
+    }
+    & .accordion-button {
+      color: var(--bs-secondary-color);
+    }
+    & .accordion-button:not(.collapsed) {
+      color: var(--bs-dark) !important;
+      font-weight: 700;
+      background-color: var(--bs-gray-200);
+    }
+    & .form-check-input:checked {
+      border-color: var(--bs-secondary) !important;
+      background-color: var(--bs-secondary);
+    }
+  }
+
+
+  & article {
+    & .text-primary, h1, h2, h3, h4, h5, h6 {
+      color: var(--bs-secondary) !important;
+    }
+  }
+
+  & .tag {
+    opacity: .75;
+  }
+
+  & .carousel {
+    & .text-white {
+      filter: brightness(.75);
+    }
+    & .carousel-caption {
+      & h5, p {
+        color: var(--bs-light-text-emphasis) !important;
+      }
+    }
+    & .carousel-control-next-icon, .carousel-control-prev-icon {
+      filter: invert(0);
+    }
+    & .carousel-indicators [data-bs-target] {
+      background-color: var(--bs-light-text-emphasis) !important;
+    }
+  }
+
+  & .card-title, #posts .text-primary {
+    color: var(--bs-secondary) !important;
+  }
+
+}
+
+// body[data-bs-theme="dark"] section[class^="block-hero-"].bg-primary {
+//   filter: invert(1) brightness(0.75);
+// }
+
 
 @property --percentage {
   syntax: "<percentage>";

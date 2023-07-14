@@ -9,24 +9,24 @@ class PeriodicTableElements {
     this.selectedProperty = "GroupBlock";
     this.selectedColor = 50;
     this.GroupBlock = {
-        "Nonmetal": "rgba(255, 255, 0, 0.3)",
-        "Noble gas": "rgba(255, 152, 0, 0.3)",
-        "Alkali metal": "rgba(255, 0, 0, 0.25)",
-        "Alkaline earth metal": "rgba(64, 64, 255, 0.25)",
-        "Metalloid": "rgba(140, 190, 0, 0.3)",
-        "Halogen": "rgba(255, 255, 0, 0.3)",
-        "Post-transition metal": "rgba(0, 255, 0, 0.3)",
-        "Transition metal": "rgba(0, 128, 255, 0.3)",
-        "Lanthanide": "rgba(0, 255, 255, 0.35)",
-        "Actinide": "rgba(64, 255, 192, 0.35)"
+        "Nonmetal": "rgba(255, 255, 197, 1)",
+        "Noble gas": "rgba(255, 224, 191, 1)",
+        "Alkali metal": "rgba(255, 202, 199, 1)",
+        "Alkaline earth metal": "rgba(207, 207, 255, 1)",
+        "Metalloid": "rgba(220, 235, 191, 1)",
+        "Halogen": "rgba(255, 255, 197, 1)",
+        "Post-transition metal": "rgba(202, 255, 196, 1)",
+        "Transition metal": "rgba(190, 217, 255, 1)",
+        "Lanthanide": "rgba(194, 255, 255, 1)",
+        "Actinide": "rgba(200, 255, 233, 1)"
     };
     this.StandardState = {
-      "Solid": "rgba(239, 239, 239, 1)",
-      "Liquid": "rgba(254,191,196,1)",
+      "Solid": "rgba(219, 219, 219, 1)",
+      "Liquid": "rgba(254,191,196, 1)",
       "Gas": "rgba(	193, 255, 254, 1)",
-      "Expected to be a Solid": "rgba(255, 255, 255, 0.3)",
-      "Expected to be a Gas": "rgba(193, 255, 254, 0.3)",
-      "Expected to be a Liquid": "rgba(254, 191, 196, 0.3)"
+      "Expected to be a Solid": "rgba(250, 250, 250, 1)",
+      "Expected to be a Gas": "rgba(237, 255, 254, 1)",
+      "Expected to be a Liquid": "rgba(255, 235, 237, 1)"
   };
     this.properties = [
       "AtomicMass",
@@ -274,8 +274,8 @@ class PeriodicTableElements {
 
     document.querySelector("#pt-elements-card").innerHTML = this.elementCard(el);
     document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
-    if (_this.selectedProperty != 'AtomicRadius')
-      document.querySelector("#pt-elements-card .card-element").style.color = _this.getContrastColor(_this.propertyColor(el))
+    document.querySelector("#pt-elements-card .card-element").style.color = '#212529'
+    document.querySelectorAll(".pt-elements-table td[data-bs-target]").forEach( el => el.style.color = '#212529')
 
     var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
     cells.forEach(function(cell){
@@ -283,9 +283,8 @@ class PeriodicTableElements {
         var el = this.getAttribute('data-atomicnumber');
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
         document.querySelector("#pt-elements-card").innerHTML = _this.elementCard(el);
-        document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";
-        if (_this.selectedProperty != 'AtomicRadius')
-          document.querySelector("#pt-elements-card .card-element").style.color = _this.getContrastColor(_this.propertyColor(el))
+        document.querySelector("#pt-elements-card .card-element").style.background = this.style.background || _this.propertyColor(el) || "none";
+        document.querySelector("#pt-elements-card .card-element").style.color = this.style.color
       });
     });
 
@@ -303,8 +302,8 @@ class PeriodicTableElements {
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
         cell.setAttribute('data-groupblock', _this.propertyLabel(el))
         cell.style.background = _this.propertyColor(el) || "none";
-        if (_this.selectedProperty != 'AtomicRadius')
-          cell.style.color = _this.getContrastColor(_this.propertyColor(el))
+        cell.style.color = _this.getContrastColor(_this.propertyColor(el))
+        console.log(_this.propertyColor(el), _this.getContrastColor(_this.propertyColor(el)))
       });
       
     });
@@ -318,8 +317,7 @@ class PeriodicTableElements {
         el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
         cell.setAttribute('data-groupblock', _this.propertyLabel(el))
         cell.style.background = _this.propertyColor(el) || "none";
-        if (_this.selectedProperty != 'AtomicRadius')
-          cell.style.color = _this.getContrastColor(_this.propertyColor(el))
+        cell.style.color = _this.getContrastColor(_this.propertyColor(el))
       });
       
     });
@@ -327,18 +325,17 @@ class PeriodicTableElements {
     modal.addEventListener('show.bs.modal', function (event) {
 
       var button = event.relatedTarget;
-      var el = button.getAttribute('data-atomicnumber');
+      var element = button.getAttribute('data-atomicnumber');
 
       var idx = _this.elements.Table.Row.findIndex(function(x){
-          return x.Cell[0] == el;
+          return x.Cell[0] == element;
       });
 
-      el = _this.element(_this.elements.Table.Row[idx].Cell);
+      var el = _this.element(_this.elements.Table.Row[idx].Cell);
 
       var header = document.querySelector('#pt-aa-elements .modal-header');
-      header.style.background = _this.propertyColor(el) || "none";
-      if (_this.selectedProperty != 'AtomicRadius')
-        header.style.color = _this.getContrastColor(_this.propertyColor(el))
+      header.style.background = button.style.background || "none";
+      header.style.color = button.style.color || 'inherit'
 
       var title = document.querySelector('#pt-aa-elements .modal-title');
       title.innerHTML = _this.selectedProperty == 'GroupBlock'? `${el.Name} <small class="text-muted">${_this.propertyLabel(el)}</small>`: el.Name;

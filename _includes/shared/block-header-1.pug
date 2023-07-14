@@ -1,5 +1,5 @@
-header.block-header-1.sticky-top.bg-white.d-print-none
-  nav.navbar.navbar-expand-lg.navbar-light#navbar
+header.block-header-1.sticky-top.d-print-none
+  nav.navbar.navbar-expand-lg.bg-white#navbar
     .container
       a.navbar-brand(href=metadata.url)
         img.d-inline-block.align-text-top.me-1(src=filters.url(metadata.icon), alt="", width="auto", height="24")
@@ -31,3 +31,22 @@ header.block-header-1.sticky-top.bg-white.d-print-none
                 li.nav-item: a.nav-link(href=filters.url(nav.link))&attributes(helpers.getLinkActiveState( nav.link, page.url )) #{nav.title}
               else
                 li.nav-item: a.nav-link(href=filters.url(nav.link)) #{nav.title}
+    
+          li.nav-item.dropdown#bd-theme
+            a.nav-link.dropdown-toggle.d-flex.align-items-center.opacity-50(href="#" id="theme-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false")
+              i.bi.bi-sun-fill#theme-icon-active
+            ul.dropdown-menu.dropdown-menu-end
+              li
+                button.dropdown-item.d-flex.align-items-between.active(data-bs-theme-value='light')
+                  i.bi.bi-sun-fill.me-2.opacity-50
+                  div.w-100 Light
+                  i.bi.bi-check
+              li
+                button.dropdown-item.d-flex.align-items-between(data-bs-theme-value='dark')
+                  i.bi.bi-moon-stars-fill.me-2.opacity-50
+                  div.w-100 Dark
+              li
+                button.dropdown-item.d-flex.align-items-between(data-bs-theme-value='auto')
+                  i.bi.bi-circle-half.me-2.opacity-50
+                  div.w-100 Auto
+
