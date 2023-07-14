@@ -1,6 +1,6 @@
 mixin post-header(description, image, imageAlt)
-  - nextPost = filters.getNextCollectionItem(collections.posts,page)
-  - previousPost = filters.getPreviousCollectionItem(collections.posts,page)
+  //- - nextPost = filters.getNextCollectionItem(collections.posts,page)
+  //- - previousPost = filters.getPreviousCollectionItem(collections.posts,page)
   if image
     - var images = filters.imageResizedURL(filters.url(image), "webp", 1500)
     .carousel.post-header-img.shadow-sm.mb-4(style=`background-image:url(${filters.url(images.url)});`, title=imageAlt)

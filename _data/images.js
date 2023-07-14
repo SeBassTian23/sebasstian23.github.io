@@ -126,9 +126,9 @@ module.exports = {
     let options = {
       widths: [size],
       formats: [format],
-      // sizes: imageSizes,                             // choose your own formats (see docs)
+      // sizes: imageSizes,                          // choose your own formats (see docs)
       urlPath: '/images',                            // src path in HTML output
-      outputDir: './_site/images/',                   // where the generated images will go
+      outputDir: './_site/images/',                  // where the generated images will go
       // sharpOptions: {},
       // sharpWebpOptions: {
       //   quality: 95
