@@ -12,8 +12,25 @@ block append content
       .row.text-light
         .col.my-5
           h1.fs-2 #[span.fw-lighter Bits and Pieces]#[br]Small Projects &amp; Other Things
-          p Some small projects and code bits from a long time ago; polished and brought back to life. 
-            | Most of them were either part of a work project or were just from tinkering around in my free time.
+          | !{filters.markdown("text-blocks/bits-and-pieces.md")}
+
+  section
+    .container
+      .row
+        .col-12.my-5
+          .row
+            .col-4
+              a.link-darken(href="/photosynthesis-scheme/") !{filters.image( filters.url("/images/science/photosynthesis-scheme.svg"), "Photosynthesis Scheme" )}
+            .col-8
+              h4 #[span.fw-lighter Photosynthesis]#[br]Scheme Creator
+              p Creating or modifing the Photosynthetic Scheme for presentations or posters can be become time consuming, including finding figures 
+                | or previously used files, modifying, labelingen, or changing colors. 
+                | The creator was build to easily add or remove complexes, different pathways, etc. and export the 
+                | figure as a vector graphic or a regular image file. It also provides a simple figure legend based on the selected elements.
+              p.small The figure style is based on Kramer, D. M., Avenson, T. J. and Edwards, G. E. (2004) Dynamic flexibility in the light reactions of photosynthesis governed 
+                | by both electron and proton transfer reactions. Trends Plant Sci 9, 349-357
+
+              a.btn.btn-sm.btn-outline-secondary.external-link(href="https://github.com/SeBassTian23/photosynthesis-scheme", target="_blank" rel="noreferrer") Source on GitHub
 
   section
     .container
