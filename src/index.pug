@@ -10,20 +10,21 @@ include /shared/block-feature.pug
 
 block append content
   //- Welcome Header
-  +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})
+  +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})(id="about")
 
-  //- Photosynthesis Introduction
-  +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light\" href=\"https://www.pexels.com/@super-lunar-3180156\" target=\"_blank\">Pexel</a>" })(id="photosynthesis", class="bg-primary")
+  section#photosynthesis
+    //- Photosynthesis Introduction
+    +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/4980183.mp4", "/videos/4980183.webm"], poster: "/videos/4980183.jpg" }, imageSubtitle: "Video by Super Lunar from <a class=\"link-light me-2\" href=\"https://www.pexels.com/@super-lunar-3180156\" target=\"_blank\">Pexel</a>" })(class="bg-primary")
 
-  //- Feature with image aligned left
-  +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.webp", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc." })(id="photosynq")
+    //- Feature with image aligned left
+    +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.png", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc." })(id="photosynq")
 
-  +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2023-01.svg", imageAlt: "PhotosynQ Project Locations around the World, Data: PhotosynQ, Inc.", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ, Inc."})(id="hero-photosynq")
+    +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2023-01.svg", imageAlt: "PhotosynQ Project Locations around the World, Data: PhotosynQ, Inc.", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ, Inc."})(id="hero-photosynq")
 
-  //- Feature with image aligned right
-  +feature-2({headline: `<span class="fw-lighter">Photosystem I</span> Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/photosystem-i.jpg", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Image: Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
+    //- Feature with image aligned right
+    +feature-2({headline: `<span class="fw-lighter">Photosystem I</span> Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/6ZOO.png", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Image: Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
   
-  section 
+  section#experience
     .container.my-5
       .row 
         .col-sm-12.col-md-6
@@ -55,7 +56,6 @@ block append content
             li.list-inline-item.me-4 #[strong.text-secondary German] - Native 
             li.list-inline-item.me-4 #[strong.text-secondary English] - Fluent
 
-  section 
     .container.my-5
       .row 
         .col-12 
@@ -74,53 +74,59 @@ block append content
             1. Allmer, J., Kuhlgert, S. and Hippler, M. (2008) **2DB: a Proteomics database for storage, analysis, presentation, and retrieval of information from mass spectrometric experiments.** Bmc Bioinformatics 9, 302–302. (doi:[10.1186/1471-2105-9-302](https://doi.org/10.1186/1471-2105-9-302))
             1. Weinl, S., Held, K., Schlücking, K., Steinhorst, L., Kuhlgert, S., Hippler, M. and Kudla, J. (2008) **A plastid protein crucial for Ca2+‐regulated stomatal responses.** New Phytol 179, 675–686. (doi:[10.1111/j.1469-8137.2008.02492.x](https://doi.org/10.1111/j.1469-8137.2008.02492.x))
             1. Irmtraud Beyer, Hans-Peter Krull, Sebastian Kuhlgert 2001, Natura aktuell. ISBN:[978-3-12-043492-4](https://buecher-nach-isbn.info/9783120434924)
-
-  section 
-    .container.my-5
-      .row#paper-pile
-        .col.mb-4.text-center
-          h3 #[span.fw-lighter Bits and Pieces]<br>From Underneath the Paper Pile
-          p Some small projects and code bits from a long time ago; polished and brought back to life. 
-            | Most of them were either part of a work project or were just from tinkering around in my free time.
-      
-      .row.row-cols-md-6.row-cols-2.text-center.small#paper-pile-links
-        .col
-          a.link-bw(href="/periodic-table-of-elements/") !{filters.image( filters.url("/images/science/icon-elements-periodic-table.svg"), "Periodic Table of Elements" )}
-          p Interactive Periodic Chart of #[em Elements]
-        .col
-          a.link-bw(href="/periodic-chart-of-amino-acids/") !{filters.image( filters.url("/images/science/icon-aa-periodic-table.svg"), "Periodic Chart of Amino Acids" )}
-          p Interactive Periodic Chart of #[em Amino Acids]
-        .col
-          a.link-bw(href="/formatted-citation/") !{filters.image( filters.url("/images/science/doi.svg"), "Get formated Citiation by DOI" )}
-          p Get formated Citation from #[em DOI Number]
-        .col
-          a.link-bw(href="/chlorophyll-content/") !{filters.image( filters.url("/images/science/chlorophyll.svg"), "Calculate Absolute Chloropyll Content" )}
-          p Calculate Absolute Chloropyll Content
-        .col
-          a.link-bw(href="/protein-parameters/") !{filters.image( filters.url("/images/science/protein-parameters.svg"), "Predict Protein Parameters" )}
-          p Predict Protein Parameters
-        .col
-          a.link-bw(href="/format-fasta/") !{filters.image( filters.url("/images/science/fasta.svg"), "Format FASTA file output" )}
-          p FASTA Sequence Formatter
   
-  +hero-2({h2: `<span class="fw-lighter">Past & Current</span> Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics.svg", imageAlt: "Electronics, PCB lines"})(id="projects", class="bg-primary")
+  section(id="projects")
+    +hero-2({h2: `<span class="fw-lighter">Past & Current</span> Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics.svg", imageAlt: "Electronics, PCB lines"})(class="bg-primary")
 
-  //- Feature with image aligned right
-  +feature-1({headline: `<span class="fw-lighter">Electronics</span> Tinkering with the IoT`, content: filters.markdown("text-blocks/electronics.md"), image: "/images/electronics/electronics.jpg", imageAlt: "Weather and Calendar Display and Weather Station", tag: collections[ "second tag" ], tagCount: 6 })(id="electronics", class="mb-5")
-  
-  //- Feature with image aligned right
-  +feature-2({headline: `<span class="fw-lighter">Programming</span> Calendar Heatmap`, content: "A jQuery plugin to generate a heatmap calendar", image: "/images/programming/calendar-heatmap.png", imageAlt: "Calendar Heatmap" })(id="jquery-plugin", class="mb-5")
+  section.block-feature-2.mb-5#bits-pieces
+    .container
+      .row.my-5.d-flex.align-items-center
+        .col-sm-12.col-md-6.p-3.order-md-last
+          h2 #[span.fw-lighter Bits and Pieces] From Underneath the Paper Pile
+          | !{filters.markdown("text-blocks/bits-and-pieces.md")}
+          a.btn.btn-sm.btn-outline-secondary(href="/bits-pieces", target="_self") 
+            i.bi.bi-collection
+            |  All Bits and Pieces
 
-  //- Feature with image aligned right
-  - var img = filters.image( filters.url("/images/lego-moc/brand-lego-icon-black.svg"), "Lego Logo", "80px" );
-  +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span> My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.png", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
+        .col-sm-12.col-md-6.p-3.order-md-first
+          .row.row-cols-2.row-cols-md-3.text-center.small#paper-pile-links
+            .col
+              a.link-bw(href="/photosynthesis-scheme/") !{filters.image( filters.url("/images/science/photosynthesis-scheme.svg"), "Build Photosynthesis Scheme" )}
+              p Photosynthesis Scheme Creator
+            .col
+              a.link-bw(href="/periodic-table-of-elements/") !{filters.image( filters.url("/images/science/icon-elements-periodic-table.svg"), "Periodic Table of Elements" )}
+              p Interactive Periodic Chart of #[em Elements]
+            .col
+              a.link-bw(href="/periodic-chart-of-amino-acids/") !{filters.image( filters.url("/images/science/icon-aa-periodic-table.svg"), "Periodic Chart of Amino Acids" )}
+              p Interactive Periodic Chart of #[em Amino Acids]
+            .col
+              a.link-bw(href="/chlorophyll-content/") !{filters.image( filters.url("/images/science/chlorophyll.svg"), "Calculate Absolute Chloropyll Content" )}
+              p Calculate Absolute Chloropyll Content
+            .col
+              a.link-bw(href="/protein-parameters/") !{filters.image( filters.url("/images/science/protein-parameters.svg"), "Predict Protein Parameters" )}
+              p Predict Protein Parameters
+            .col
+              a.link-bw(href="/formatted-citation/") !{filters.image( filters.url("/images/science/doi.svg"), "Get formated Citiation by DOI" )}
+              p Formated Citation from #[em DOI Number]
+            //- .col
+            //-   a.link-bw(href="/format-fasta/") !{filters.image( filters.url("/images/science/fasta.svg"), "Format FASTA file output" )}
+            //-   p FASTA Sequence Formatter
 
-  //- Hero for Michigan
-  +hero-3({h2: "<span class=\"fw-lighter\">USA</span> Michigan", content: filters.markdown("text-blocks/michigan.md"), image: "/images/michigan/michigan.svg?s=400", imageAlt: "Outline of the state of Michigan" })(id="michigan" class="mb-4 bg-primary")
+    //- Feature with image aligned right
+    +feature-1({headline: `<span class="fw-lighter">Electronics</span> Tinkering with the IoT`, content: filters.markdown("text-blocks/electronics.md"), image: "/images/electronics/electronics.jpg", imageAlt: "Weather and Calendar Display and Weather Station", tag: collections[ "second tag" ], tagCount: 6 })(id="electronics", class="mb-5")
+    
+    //- Feature with image aligned right
+    +feature-2({headline: `<span class="fw-lighter">Programming</span> Calendar Heatmap`, content: "A jQuery plugin to generate a heatmap calendar", image: "/images/programming/calendar-heatmap.png", imageAlt: "Calendar Heatmap" })(id="jquery-plugin", class="mb-5")
 
-  //- eature with image aligned left
-  +feature-2({headline: `<span class="fw-lighter">Photography</span> Landscapes`, content: filters.markdown("text-blocks/photography.md"), image: "/images/michigan/IMG_8099.jpeg", imageAlt: "Fall on the Upper Peninsula, MI", tag: "Photography", tag: collections[ "second tag" ], tagCount: 3 })(id="photography", class="mb-5")
+    //- Feature with image aligned right
+    +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span> My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.png", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
+
+  section(id="michigan")
+    //- Hero for Michigan
+    +hero-3({h2: "<span class=\"fw-lighter\">USA</span> Michigan", content: filters.markdown("text-blocks/michigan.md"), image: "/images/michigan/michigan.svg?s=400", imageAlt: "Outline of the state of Michigan" })(class="mb-4 bg-primary")
+
+    //- eature with image aligned left
+    +feature-2({headline: `<span class="fw-lighter">Photography</span> Landscapes`, content: filters.markdown("text-blocks/photography.md"), image: "/images/michigan/IMG_8099.jpeg", imageAlt: "Fall on the Upper Peninsula, MI", tag: "Photography", tag: collections[ "second tag" ], tagCount: 3 })(id="photography", class="mb-5")
 
   //- Footer with links
   +columns-footer(footer)(class="footer-links-center")
-  
