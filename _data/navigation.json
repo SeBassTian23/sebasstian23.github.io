@@ -1,10 +1,22 @@
 [
     {
-        "link": "/",
-        "title": "About"
+        "link": "/#photosynthesis",
+        "title": "Photosynthesis"
     },
     {
-        "link": "/bits-pieces/",
+        "link": "/#experience",
+        "title": "Experience"
+    },
+    {
+        "link": "/#projects",
+        "title": "Projects"
+    },
+    {
+        "link": "/bits-pieces",
         "title": "Bits & Pieces"
+    },
+    {
+        "link": "/#michigan",
+        "title": "Michigan"
     }
 ]
