@@ -265,6 +265,12 @@ pre[class*="language-"] {
 
 html[data-bs-theme="dark"] {
 
+  & .link-darken {
+    &:hover {
+      filter: brightness(.75) saturate(1.5);
+    }
+  }
+
   & section.bg-primary, section.bg-secondary {
     filter: brightness(.75);
   }
@@ -376,12 +382,12 @@ html[data-bs-theme="dark"] {
     color: var(--bs-secondary) !important;
   }
 
+  & #photosynthesis-scheme {
+    & .modal-footer > button.text-dark {
+      color: var(--bs-light-text-emphasis) !important;
+    }
+  }
 }
-
-// body[data-bs-theme="dark"] section[class^="block-hero-"].bg-primary {
-//   filter: invert(1) brightness(0.75);
-// }
-
 
 @property --percentage {
   syntax: "<percentage>";
