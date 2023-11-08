@@ -2,5 +2,6 @@ Through my work, I got introduced to the world of electronics, which doesn't mea
 
 Especially the eInk technology is fascinating since, in combination with an ESP32 to access online sources, it allows to run projects displaying current data for months at a time on a single charge.
 
+<p id="weather-plugin"></p>
 
 <a href="https://github.com/SeBassTian23/" class="btn btn-sm btn-outline-secondary external-link" target="_blank" rel="noreferrer">Projects on GitHub</a>

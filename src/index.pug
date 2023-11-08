@@ -130,3 +130,9 @@ block append content
 
   //- Footer with links
   +columns-footer(footer)(class="footer-links-center")
+
+script(defer, src="/javascript/weather-widget.js")
+script.
+  document.addEventListener('DOMContentLoaded', function () {
+      new WeatherWidget("#weather-plugin").init();
+  });
