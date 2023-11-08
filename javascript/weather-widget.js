@@ -126,6 +126,7 @@ class WeatherWidget {
         margin-bottom: 1.5rem;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 20px;
         width: auto;
       }
