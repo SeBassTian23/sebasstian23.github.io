@@ -58,9 +58,9 @@ class WeatherWidget {
   aqicolor(value){
     if (value >= 301) return "rgb(76, 0, 38)";
     if (value >= 201 && value <= 300) return "rgb(153, 0, 76)";
-    if (value >= 176 && value <= 200) return "rgb(255, 0, 0)";
-    if (value >= 151 && value <= 175) return "rgb(255, 126, 0)";
-    if (value >= 51 && value <= 150) return "rgb(255, 243, 0)";
+    if (value >= 151 && value <= 200) return "rgb(255, 0, 0)";
+    if (value >= 101 && value <= 150) return "rgb(255, 126, 0)";
+    if (value >= 51 && value <= 100) return "rgb(255, 243, 0)";
     if (value >= 0 && value <= 50) return "rgb(0, 228, 0)";
     return "transparent"
   }
