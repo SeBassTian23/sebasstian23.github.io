@@ -5,7 +5,8 @@
  */
 
 class WeatherWidget {
-  constructor(selector,token) {
+  constructor(selector) {
+    this.url = 'https://average-apron-clam.cyclic.app'
     this.selector = selector || null;
     this.units = window.navigator.language == "en-US"? 'imperial': 'metric'
     this.colors = {
@@ -97,10 +98,16 @@ class WeatherWidget {
           + `<li class="ww-parameters-list-item">UV: <span>${uv} <span style="color:${this.uvcolor(uv)};font-size:0.5rem;">●</span></span></li>`
           + `</ul>`
   }
+  settings(){
+    return `<div class="ww-settings">
+      <a href="${this.url}" target="_blank" title="View all data from station">View Station ↗</a>
+      <span title="Imperial Units">℉</span> | <span title="Metric Units">℃</span>
+    </div>`
+  }
   styles(){
     return `
       .ww-parameters-list {
-        flex: 1;
+        flex: 1 1 auto;
         align-items: center;
         padding-left:0;
         list-style:none;
@@ -122,25 +129,47 @@ class WeatherWidget {
         margin: 3px 5px 0px 0px;
       }
       .weather-widget-container {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 20px;
         width: auto;
+        border: 1px solid ${this.colors.primary};
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+      }
+      .weather-widget-container div:first-child {
+        width: 100%;
+      }
+      .weather-widget-container ul {
+        width: min-content;
+      }
+      .ww-settings {
+        text-align: right;
+        width: 100%;
+        font-size: 0.6rem;
+        margin-top: -10px;
+        padding: 0 0.5rem 0 0.5rem
+      }
+      .ww-settings span {
+        cursor: pointer;
+      }
+      .ww-settings a {
+        margin-right: .4rem
       }
       .ww-temperature {
         font-size: 1.8rem;
         color: ${this.colors.primary};
-        flex: 1;
+        flex: 2 1 30%;
         align-items: center;
-        text-align: right;
+        text-align: center;
         line-height: 2.3rem;
       }
       .ww-location {
         font-weight:600;
         font-size:.85rem;
         color:${this.colors.primary};
+        width: max-content;
       }
       .ww-time {
         font-size:.75rem;
@@ -153,10 +182,25 @@ class WeatherWidget {
         flex: 1;
         align-items: center;
       }
+      .ww-loading {
+        font-size: 0.8rem;
+        flex: 1 1 100%;
+        text-align:center;
+        margin: 1.2rem 0rem 2.1rem 0rem;
+      }
     `
   }
   init() {
-    fetch(`https://average-apron-clam.cyclic.app/data/widget`, this.options)
+    const style = document.createElement('style');
+    style.setAttribute('type', 'text/css');
+    style.textContent = this.styles();
+    document.head.appendChild(style);
+    var html = `<div class="weather-widget-container">`
+              + `<div>Weather Data</div>`
+              + `<div class="ww-loading">Loading&hellip;</div>`
+              + `</div>`
+    document.querySelector(this.selector).innerHTML = html;
+    fetch(`${this.url}/data/widget`, this.options)
     .then(response => response.json())
     .then(response => {
       // Construct Widget
@@ -164,15 +208,27 @@ class WeatherWidget {
               + `<div>${this.timestamp(response.body.created_at, response.body.timezone)}${this.description(response.body.title,response.body.description)}</div>`
               + this.temperature(response.body['Temperature [C]'], this.units)
               + this.parameterlist(response.body['rel. Humidity [%]'], response.body['Pressure (PMSL) [hPa]'],response.body['AQI'],response.body['UV-Index'], this.units)
+              + this.settings()
               + `</div>`
       if(response){
-        const style = document.createElement('style');
-        style.setAttribute('type', 'text/css');
-        style.textContent = this.styles();
-        document.head.appendChild(style);
         document.querySelector(this.selector).innerHTML = html;
+        document.querySelectorAll(this.selector+' .ww-settings span').forEach(el => {
+          el.addEventListener('click', (e) => {
+            if(e.target.textContent === '℃')
+              this.units = 'metric'
+            if(e.target.textContent === '℉')
+              this.units = 'imperial'
+            if(e.target.textContent === 'K')
+              this.units = 'si'
+  
+            document.querySelector(this.selector+' .ww-temperature').outerHTML = this.temperature(response.body['Temperature [C]'], this.units)
+            document.querySelector(this.selector+' .ww-parameters-list').outerHTML = this.parameterlist(response.body['rel. Humidity [%]'], response.body['Pressure (PMSL) [hPa]'],response.body['AQI'],response.body['UV-Index'], this.units)
+          });
+        })
       }
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      document.querySelector(this.selector).innerHTML = '';
+    });
   }
 }
