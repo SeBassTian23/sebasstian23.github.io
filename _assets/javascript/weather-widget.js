@@ -41,11 +41,11 @@ class WeatherWidget {
   temperature(value, units){
     if(!isNaN(Number(value))){
       if(units == 'metric')
-        value = value.toFixed(2)+'℃'
+        value = value.toFixed(1)+'℃'
       if(units == 'imperial')
-        value = (value * 1.8 + 32).toFixed(2)+'℉'
+        value = (value * 1.8 + 32).toFixed(1)+'℉'
       if(units == 'si')
-        value = (value + 273.15).toFixed(2)+'K'
+        value = (value + 273.15).toFixed(1)+'K'
     }
     else{
       value = 'N/A'
