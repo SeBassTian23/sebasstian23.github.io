@@ -116,8 +116,8 @@ p {
 
 .post-content {
   & p:first-child {
-    font-weight: 500;
-    font-size: calc(var(--bs-body-font-size) * 1.2);
+    font-size: 1.25rem;
+    font-weight: 300;
   }
   & h1, h2, h3, h4, h5, h6 {
     color: $primary;
@@ -342,7 +342,7 @@ html[data-bs-theme="dark"] {
   }
 
 
-  & article {
+  & article, & .card {
     & .text-primary, h1, h2, h3, h4, h5, h6 {
       color: var(--bs-secondary) !important;
     }
@@ -437,6 +437,17 @@ html[data-bs-theme="dark"] {
   & > div:last-child {
     flex: 1 1 50%;
   }
+}
+
+.post-content > div > p:first-child::first-letter {
+  float: left;
+  font-size: 3em;
+  font-weight: 700;
+  color: var(--bs-secondary);
+  line-height: 1;
+  margin-right: 0.15em;
+}
+
 
 .footer-links-center .link-bw {
   filter: contrast(0);

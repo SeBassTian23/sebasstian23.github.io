@@ -48,20 +48,19 @@ block append content
       .col-md-3
         aside.pt-5(style="z-index:1!important;", class=(toc? "sticky-md-top": ""))
           //- Search Container
-          .row
+          .row.mb-4
             .col.px-3
-              h6 Search
+              .fs-6.lh-lg.fw-medium Search
               input.form-control#searchField(type="search", placeholder="Search Articles")
               .d-flex.flex-row.justify-content-end
                 ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
-          hr
+
           //-  Table of Content Container
           if toc
             .row
               .col.px-3
-                h6 On This Page
+                .fs-6.lh-lg.fw-medium Page Content
                 | !{filters.toc(content, {tags:['h2', 'h3'], wrapperClass:"toc", ul: true })}
-            hr
 
           //-  Table of Content Container
           if location
@@ -72,37 +71,85 @@ block append content
 
           //- Tags
           if collections.tagList.length > 0
-            .row
+            .row.mb-4
               .col.px-3
-                h6 Tags
+                .fs-6.lh-lg.fw-medium Tags
                 each tag, index in collections.tagList
                   - tagURL = "/tags/" + filters.slug(tag) + "/"
-                  a.tag.bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}
-            hr
+                  a.tag.text-bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}             
 
           //- More Posts
           if collections.posts.length > 1
             .row
               .col.px-3
-                h6 More Posts
+                .fs-6.lh-lg.fw-medium More Posts
                 //- collection, item, limit = 3, random = true
-                .row.d-flex.justify-content-around.p-3
+                .row.d-flex.justify-content-around.px-3
                   - var suggestions = helpers.getSiblingContent(collections.posts, page)
                   each el in suggestions
                     +post-card-sm(el)(class="col-12 mb-2 p-0")
-            hr
           
-          //- More Posts
+          //- Share Links
           .row
             .col.px-3
-              h6 Share
+              hr
               .d-flex.justify-content-around
-                +social-share({...page,...{title: title}})(class="col-12 mb-3")
+                +social-share({...page,...{title: title}})(class="col-12 mb-3 text-center")
 
     script.
-        document.addEventListener('DOMContentLoaded', function () {
-            mediumZoom('.post-album picture img');
+      document.addEventListener('DOMContentLoaded', function () {
+        // Get the p element as a node
+        const inlineAlbums = document.querySelectorAll(".post-album-inline p").forEach( parent => {
+          // Save a reference to the parent's children
+          const children = parent.childNodes;
+          // Create a DocumentFragment to hold the children
+          const docFrag = document.createDocumentFragment();
+          // Append all children to the DocumentFragment
+          while(children.length > 0) {
+            docFrag.appendChild(children[0]);
+          }
+          // Replace the parent with the DocumentFragment
+          parent.replaceWith(docFrag);
         });
+
+        document.querySelectorAll(".post-album div > *").forEach( child => {
+          if(child.nodeName == 'BR')
+            child.remove()
+          else if (child.nodeName == 'DIV')
+            child;
+          else
+            child.setAttribute('class', 'col mb-2 px-1');
+        })
+
+        let background = window.getComputedStyle( document.body ,null).getPropertyValue('background-color');
+        const zoom = mediumZoom('.post-album picture img', {background, container: null});
+
+        //- col mb-2 px-1
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver( (mutationList, observer) => {
+          for (const mutation of mutationList) {
+            if (mutation.type === "attributes" && mutation.attributeName === "data-bs-theme" ) {
+              let background = window.getComputedStyle( document.body ,null).getPropertyValue('background-color');
+              zoom.update({background});
+            }
+          }
+        });
+
+        // Start observing the target node for configured mutations
+        observer.observe( document.querySelector('html'), {
+          attributes: true,
+          childList: false,
+          subtree: false
+        });
+
+        //- zoom.on('open', event => {
+        //-   let background = window.getComputedStyle( document.body ,null).getPropertyValue('background-color');
+        //-   zoom.update({background});
+        //- });
+
+        document.querySelectorAll('.post-map p').forEach( e => e.remove() )
+
+      });
 
 block append footer
     include /shared/block-footer

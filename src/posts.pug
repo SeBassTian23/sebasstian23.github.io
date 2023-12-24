@@ -34,19 +34,18 @@ block append content
       aside.col.col-md-3
         .row
           .col.p-3
-            h6 Search
+            .fs-6.lh-lg.fw-medium Search
             input.form-control#searchField(type="search", placeholder="Search Articles")
             .d-flex.flex-row.justify-content-end
               ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
-        hr
 
         if collections.tagList.length > 0
           .row
             .col.p-3
-              h6 Tags
+              .fs-6.lh-lg.fw-medium Tags
               each tag, index in collections.tagList
                 - tagURL = "/tags/" + filters.slug(tag) + "/"
-                a.tag.bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}
+                a.tag.text-bg-light.link-darken.me-1.mb-1(href=filters.url(tagURL)) #{tag}
 
 script(defer, src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js")
 script(defer, src="/javascript/search.js")
