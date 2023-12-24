@@ -5,7 +5,7 @@ include /shared/block-post
 include /shared/block-social
 
 block append head 
-  script(defer, src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js")
+  script(defer, src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js")
   if album
     script(defer, src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
     script(defer, src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js",integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D", crossorigin="anonymous")
