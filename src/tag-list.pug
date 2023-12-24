@@ -21,7 +21,7 @@ block append content
       .col
         for tag, i in collections.tagList
           - tagUrl = "/tags/"+ filters.slugify(tag)
-          h2.mt-4 #{tag} #[a.btn.btn-sm.btn-outline-secondary.ms-3(href=filters.url(tagUrl)) →]
+          h2.mt-4.text-uppercase #{tag} #[a.btn.btn-sm.btn-outline-secondary.ms-3(href=filters.url(tagUrl)) →]
           .row.row-cols-2.row-cols-sm-3.row-cols-md-5.my-4
             for post, idx in collections[ tag ]
               if idx < 5
