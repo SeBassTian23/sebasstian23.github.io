@@ -14,10 +14,11 @@ block append content
 
   section#photosynthesis
     //- Photosynthesis Introduction
-    +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: ["/videos/10090353.mp4", "/videos/10090353.webm"], poster: "/videos/10090353.jpg" }, imageSubtitle: "Video by mark soetebier from <a class=\"link-light me-2\" href=\"https://www.pexels.com/@audio-visual-art\" target=\"_blank\">Pexel</a>" })(class="bg-primary")
-
-    //- Feature with image aligned left
-    +feature-2({ headline: `<span class="fw-lighter">PhotosynQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.png", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "Image: PhotosynQ, Inc." })(id="photosynq")
+    - season = "winter"
+    +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: [`/videos/${forestvideos[season][0]}.mp4`, `/videos/${forestvideos[season][0]}.webm`, `/videos/${forestvideos[season][0]}.vtt`], poster: `/videos/${forestvideos[season][0]}.jpg` }, imageSubtitle: `Video by ${forestvideos[season][1]} from <a class=\"link-light me-2\" href=\"https://www.pexels.com/${forestvideos[season][2]}\" target=\"_blank\">Pexel</a>` })(class="bg-primary")
+    
+    //- MultispeQ and Photosynthesis Research
+    +feature-2({ headline: `<span class="fw-lighter">MultispeQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.png", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "PhotosynQ, Inc." })(id="photosynq")
 
     +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2023-01.svg", imageAlt: "PhotosynQ Project Locations around the World, Data: PhotosynQ, Inc.", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ, Inc."})(id="hero-photosynq")
 
