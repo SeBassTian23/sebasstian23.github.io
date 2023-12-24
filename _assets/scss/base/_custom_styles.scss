@@ -14,7 +14,7 @@ p {
     cursor: pointer !important;
   }
   &:hover img {
-    transform: scale(1.025);
+    filter: brightness(0.75);
   }
 }
 
@@ -304,20 +304,11 @@ html[data-bs-theme="dark"] {
     color: var(--bs-secondary) !important;
   }
 
-  #photosynq > div > div > div.col-sm-12.col-md-6.p-3.order-md-first > picture > img,
-  #hero-photosynq > div > div > div:nth-child(2) > img {
-    filter: brightness(.75)
-  }
-
   & .navbar .nav-item:not(.dropdown) .nav-link {
     &:hover::after {
       border: 1px solid var(--bs-secondary);
     }
   }
-
-  // & .navbar-brand img, section[class^="block-footer-"] .col:first-child img {
-  //   filter: invert(1) grayscale(1);
-  // }
 
   // Periodic Table of Amino Acids
   & #periodic-table-aa {
@@ -445,5 +436,12 @@ html[data-bs-theme="dark"] {
 
   & > div:last-child {
     flex: 1 1 50%;
+  }
+
+.footer-links-center .link-bw {
+  filter: contrast(0);
+  transition: .2s ease-in-out;
+  &:hover {
+    filter: contrast(1);
   }
 }
