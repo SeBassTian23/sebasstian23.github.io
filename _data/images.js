@@ -45,8 +45,10 @@ module.exports = {
     let im = src.split(/#|\?/);
     src = path.join('./_assets', im[0]);
   
-    if(!fs.existsSync(src))
+    if(!fs.existsSync(src)){
+      // console.log(src)
       return "";
+    }
 
     if( im[1] ){
       let params = [...srcOriginal.matchAll(/(?:\?|\&)(?<key>[\w]+)(?:\=|\&?)(?<value>[\w+,.-]*)/g)];
@@ -146,6 +148,39 @@ module.exports = {
     // Generate HTML container for image
     let metadata = pluginImage.statsSync(src, options);
     return metadata[format][0];
+  },
+    /**
+   * 
+   * @param {*} src 
+   * @returns
+   */
+  album(src){
+    // Check if it is a string or array 
+    if(!Array.isArray(src)){
+      src = [src];
+    }
+
+    let imagefiles = [];
+
+    for(let i in src){
+
+      let content = path.join('./_assets', src[i]);
+
+      if(!fs.existsSync(content))
+        continue;
+
+      if(fs.lstatSync(content).isDirectory()){
+        let files = fs.readdirSync(content)
+                    .filter( (e) => ['.jpg','.jpeg','.png','.gif','.webp'].includes( path.extname(e).toLowerCase() ) )
+                    .map( (e) => path.join(src[i], e) );
+        imagefiles = [...imagefiles, ...files]
+      }
+
+      if(fs.lstatSync(content).isFile()){
+        imagefiles.push(src[i])
+      }
+    }
+    return imagefiles;
   },
   imageSizes,
   imageWidths,

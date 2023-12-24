@@ -34,7 +34,7 @@ const slugify = require("slugify");
 const purgeCssPlugin = require("eleventy-plugin-purgecss");
 
 // Helper Functions 
-const {imageHTML,imageResizedURL,imageSizes} = require('./_data/images');
+const {imageHTML,imageResizedURL,imageSizes,album} = require('./_data/images');
 const extractExcerpt = require('./_data/helpers').extractExcerpt;
 
 module.exports = function (eleventyConfig) {
@@ -187,6 +187,11 @@ module.exports = function (eleventyConfig) {
   // === Liquid needed if `markdownTemplateEngine` **isn't** changed from Eleventy default
   eleventyConfig.addJavaScriptFunction("imageResizedURL", imageResizedURL);
 
+  eleventyConfig.addNunjucksShortcode("album", album);
+  eleventyConfig.addLiquidShortcode("album", album);
+  // === Liquid needed if `markdownTemplateEngine` **isn't** changed from Eleventy default
+  eleventyConfig.addJavaScriptFunction("album", album);
+
   eleventyConfig.addShortcode("fileTime", function(filepath, dateformat='YYYY-MM-DD') {
     if ( fs.existsSync( path.join(process.cwd(), filepath) ) ){
       let stats = fs.statSync( path.join(process.cwd(), filepath) )
@@ -263,7 +268,56 @@ module.exports = function (eleventyConfig) {
         target: '_blank',
         rel: 'noreferrer'
     }
-  });
+  })
+  .use(require('markdown-it-container'), 'post', {
+
+    validate: function(params) {
+      return params.trim().match(/^map|album\s{0,}(.*)$/);
+    },
+
+    render: function (tokens, idx) {
+      var m = tokens[idx].info.trim().match(/^(map|album)\s{0,}(.*)$/);
+      
+      if (tokens[idx].nesting === 1) {
+        // if content is an album
+        if(m[0] === 'album')
+          return '<section class="post-album post-album-inline py-3">\n<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4" data-masonry="{"percentPosition": true}">\n';
+
+        // if content is a map
+        if(m[1] === 'map'){
+          let container = ''
+          let content = []
+          let options = {}
+          let width = 600;
+          let i = 1;
+          while( tokens[idx+i].type !== 'container_post_close' ){
+            if(tokens[idx+i].content !== ''){
+              container += tokens[idx+i].content;
+            }
+            i++;
+          }
+          try{
+            parsedContent = JSON.parse(container) || []
+            content = parsedContent;
+            if(!Array.isArray(parsedContent)){
+              content = parsedContent.data || []
+              options = parsedContent.options || {}
+            }
+          }
+          catch(e){
+            console.log('Issue:\n' + container);
+            console.log(e)
+          }
+
+          return '<section>\n<div class="post-map text-center">\n' + filters.image( filters.url( filters.map(content, options, filters.slugify(m[2]) || 'post-map' ) ), "Map with Location Marker", (options.containerWidth || width) ) + '\n';
+        }
+      } 
+      else {
+        // closing tag
+        return '</div>\n</section>\n';
+      }
+    }
+  })
 
   markdownLibrary.renderer.rules.image = function (tokens, idx, options, env, self) {
     const token = tokens[idx]

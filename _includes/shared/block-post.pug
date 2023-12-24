@@ -1,8 +1,11 @@
-mixin post-header(description, image, imageAlt)
+mixin post-header(description, image, imageAlt, album)
   //- - nextPost = filters.getNextCollectionItem(collections.posts,page)
   //- - previousPost = filters.getPreviousCollectionItem(collections.posts,page)
-  if image
-    - var images = filters.imageResizedURL(filters.url(image), "webp", 1500)
+  if image || album
+    if image
+      - var images = filters.imageResizedURL(filters.url(image), "webp", 1500)
+    if !image && album
+      - var images = filters.imageResizedURL(filters.url( filters.album(album)[0] || null ), "webp", 1500)
     .carousel.post-header-img.shadow-sm.mb-4(style=`background-image:url(${filters.url(images.url)});`, title=imageAlt)
       if nextPost || previousPost 
         if nextPost
@@ -30,13 +33,12 @@ mixin post-header(description, image, imageAlt)
 
 mixin album(album)
   section.post-album
-    .row.row-cols-sm-2.row-cols-lg-3.row.cols-xl-4(data-masonry='{"percentPosition": true }')
-        each el in album
-          .col.mb-4
-            if typeof el === 'string'
-              | !{filters.image(el,"")}
-            else if typeof el === 'object'
-              | !{filters.image(el.image,el.imageAlt)}
+    .row.row-cols-sm-2.row-cols-lg-3.row-cols-xl-4(data-masonry!={percentPosition: true })
+      each el in filters.album(album)
+        if typeof el === 'string'
+          | !{filters.image(el,"")}
+        else if typeof el === 'object'
+          | !{filters.image(el.image,el.imageAlt)}
 
 mixin post-card(post)
   .col&attributes(attributes)
