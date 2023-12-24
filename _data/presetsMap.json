@@ -1,0 +1,44 @@
+{
+  "post": {
+    "map": "world",
+    "areaBackground": "#b1b1b1",
+    "areaBorder": "#b1b1b1",
+    "areaBorderWidth": 1,
+    "markerRadius": 15,
+    "markerFill": "#dc3545",
+    "markerStroke": "#dee2e6",
+    "markerStrokeWidth": 5,
+    "lineStroke": "#dc3545", 
+    "lineStrokeWidth": 8,
+    "lineStyle": "8 16",
+    "labelBackground": "rgba(255,255,255,0.7)",
+    "labelColor": "#000000",
+    "labelFontSize": "1.5rem"
+  },
+  "post-dotted": {
+    "map": "world-dotted",
+    "areaBackground": "#b1b1b1",
+    "areaBorder": "#b1b1b1",
+    "areaBorderWidth": 0,
+    "markerRadius": 15,
+    "markerFill": "#dc3545",
+    "markerStroke": "#dee2e6",
+    "markerStrokeWidth": 5,
+    "lineStroke": "#dc3545", 
+    "lineStrokeWidth": 8,
+    "lineStyle": "8 16",
+    "labelBackground": "rgba(255,255,255,0.8)",
+    "labelColor": "#000000",
+    "labelFontSize": "1.5rem"
+  },
+  "photosynq": {
+    "areaBackground": "#d1d1d1",
+    "markerScale": "YlGn",
+    "m": ["lightblue","#1d3557", "YlOrBr", "YlGn", "GnBu"],
+    "markerScaleShow": true,
+    "markerPow": 0.2,
+    "legendShow": true,
+    "legendPosition": [480,345],
+    "legendSize": [80,8]
+  }
+}

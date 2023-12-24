@@ -20,7 +20,8 @@ block append content
     //- MultispeQ and Photosynthesis Research
     +feature-2({ headline: `<span class="fw-lighter">MultispeQ</span> Photosynthesis Research`, content: filters.markdown("text-blocks/photosynq.md"), image: "/images/photosynq/hero.png", imageAlt: "PhotosynQ, Inc.", imageSubtitle: "PhotosynQ, Inc." })(id="photosynq")
 
-    +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: "/images/photosynq/photosynq-projects-2023-01.svg", imageAlt: "PhotosynQ Project Locations around the World, Data: PhotosynQ, Inc.", imageSubtitle: "Image: Project Locations around the World | Data: PhotosynQ, Inc."})(id="hero-photosynq")
+    //- Large Data Collection
+    +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: filters.map(photosynq, presetsMap.photosynq, 'photosynq') , imageAlt: "PhotosynQ Project Locations around the World using MultispeQ, Data: PhotosynQ, Inc.", imageSubtitle: "Photosynthesis Research Projects around the World using MultispeQ (Data: PhotosynQ, Inc. 2023)"})(id="hero-photosynq")
 
     //- Feature with image aligned right
     +feature-2({headline: `<span class="fw-lighter">Photosystem I</span> Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/6ZOO.png", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Image: Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")

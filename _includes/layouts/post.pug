@@ -62,6 +62,14 @@ block append content
                 h6 On This Page
                 | !{filters.toc(content, {tags:['h2', 'h3'], wrapperClass:"toc", ul: true })}
             hr
+
+          //-  Table of Content Container
+          if location
+            .row
+              .col.px-3
+                .fs-6.lh-lg.fw-medium Location
+                | !{ filters.image( filters.url( filters.map(location, presetsMap["post-dotted"], page.fileSlug) ))}
+
           //- Tags
           if collections.tagList.length > 0
             .row

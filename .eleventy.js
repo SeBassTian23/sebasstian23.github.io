@@ -11,7 +11,8 @@ const pluginTOC = require('eleventy-plugin-nesting-toc');
 // Own Plugin based on @jamshop/eleventy-plugin-scss
 const pluginStyles = require('./_plugins/styles');
 
-const pluginPhotosynQMap = require('./_plugins/photosynq-map');
+// Map Gernerating Plugin
+const pluginMap = require('./_plugins/map');
 
 // DayJS
 const dayjs = require("dayjs");
@@ -45,11 +46,8 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginTOC);
-  
-  eleventyConfig.addPlugin(pluginPhotosynQMap, {
-    input: './_data/photosynq-projects.json',
-    output: './_assets/images/photosynq/photosynq-projects-2023-01.svg'
-  });
+
+  eleventyConfig.addPlugin(pluginMap);
 
   eleventyConfig.addPlugin(pluginStyles, {
     scss: {
@@ -65,6 +63,8 @@ module.exports = function (eleventyConfig) {
 
   // Add watch targets
   eleventyConfig.addWatchTarget('./_assets/');
+
+  eleventyConfig.watchIgnores.add("./_assets/images/maps");
 
   eleventyConfig.addPlugin(purgeCssPlugin, {
     // Optional: Specify the location of your PurgeCSS config
