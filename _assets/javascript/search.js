@@ -52,7 +52,6 @@
     response.json().then((rawIndex) => {
       window.searchIndex = lunr.Index.load(rawIndex);
       window.metaIndex = rawIndex.meta;
-      // window.searchIndex = elasticlunr.Index.load(rawIndex);
       document.getElementById("searchField").addEventListener("input", search);
     })
   );

@@ -4,7 +4,8 @@ dynamicPermalink: false
 permalink: "/search-index.json"
 ---
 
-- var idx = searchIndex.searchindexLunr(collections.posts);
+- var idx = JSON.stringify(searchIndex.searchindexLunr(collections.posts));
+- idx = JSON.parse(idx)
 - idx = {...idx, meta:{}}
 
 each post in collections.posts
