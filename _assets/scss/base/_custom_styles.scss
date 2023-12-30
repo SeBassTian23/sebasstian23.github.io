@@ -456,3 +456,24 @@ html[data-bs-theme="dark"] {
     filter: contrast(1);
   }
 }
+
+#photosynthesis video,
+#electronics img, 
+#michigan img {
+  border-radius: 1.5rem;
+}
+
+.block-header-1 {
+  box-shadow: none;
+  animation: scrollShadow linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timeline: scroll();
+  animation-range: 56px 0px;
+}
+
+@keyframes scrollShadow {
+  to {
+    box-shadow: $box-shadow-sm;
+  }
+}
