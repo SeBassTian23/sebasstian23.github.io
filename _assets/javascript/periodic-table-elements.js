@@ -254,7 +254,7 @@ class PeriodicTableElements {
         <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="pt-aa-elements-label">Modal title</h5>
+            <h5 class="modal-title" id="pt-aa-elements-label">Element Name</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body"></div>
@@ -338,7 +338,7 @@ class PeriodicTableElements {
       header.style.color = button.style.color || 'inherit'
 
       var title = document.querySelector('#pt-aa-elements .modal-title');
-      title.innerHTML = _this.selectedProperty == 'GroupBlock'? `${el.Name} <small class="text-muted">${_this.propertyLabel(el)}</small>`: el.Name;
+      title.innerHTML = _this.selectedProperty == 'GroupBlock'? `${el.Name} <small> - ${_this.propertyLabel(el)}</small>`: el.Name;
 
       var body = document.querySelector('#pt-aa-elements .modal-body');
       body.innerHTML = `${_this.elementLink( el )}${_this.elementLabel( el )}${_this.elementInfo( el )} `;

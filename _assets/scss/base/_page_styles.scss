@@ -44,6 +44,10 @@
   text-align: right;
 }
 
+[data-bs-theme=dark] #periodic-table-aa .btn-close {
+  filter: none;
+}
+
 // Periodic Table of Elements
 
 .pt-elements-table {
@@ -81,6 +85,15 @@
   --bs-aspect-ratio: 120%;
   overflow: hidden;
   cursor: pointer;
+}
+
+[data-bs-theme=dark] #periodic-table-elements {
+  & .btn-close {
+    filter: none;
+  }
+  & td.border {
+    border: none !important;
+  }
 }
 
 @media (max-width:575.98px) {
