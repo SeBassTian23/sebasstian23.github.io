@@ -77,7 +77,7 @@ class PeriodicTableElements {
         return `#FFFFFF`;
       let r = ( (Number(el[this.selectedProperty])  - range[0]) / (range[1] - range[0]) );
       if(this.property == "AtomicRadius")
-        return `radial-gradient(circle, hsl(${this.selectedColor},100%,50%), white ${parseInt( r * 100 )}%, white ${parseInt( r * 100 )}%)`;
+        return `radial-gradient(circle, hsl(${this.selectedColor},100%,50%) 0%, hsl(${this.selectedColor},100%,50%) ${parseInt( r * 60 )*0.8}%, #ffffffe6 ${parseInt( r * 60 )}%)`;
       if(this.property == "AtomicMass")
         return `hsl(${this.selectedColor}, 100%, ${parseInt( 100 - r * 75 )}%)`;
       else
