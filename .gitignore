@@ -1,5 +1,9 @@
 # Eleventy
 _site
+_assets/images/maps
+_assets/videos/*-original.*
+_assets/videos/video.sh
+
 
 # VSCode
 .vscode

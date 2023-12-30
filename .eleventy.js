@@ -64,6 +64,7 @@ module.exports = function (eleventyConfig) {
   // Add watch targets
   eleventyConfig.addWatchTarget('./_assets/');
 
+  // Add ignore targets
   eleventyConfig.watchIgnores.add("./_assets/images/maps");
 
   eleventyConfig.addPlugin(purgeCssPlugin, {
