@@ -1,0 +1,5 @@
+During my time in Dr. David Kramer's lab at Michigan State University, I contributed to the development of an innovative research platform to enable collaborative spectrophotometric data collection and analysis of photosynthetic data. My role involved creating online data visualizations, a desktop application, documentation, and testing hardware - all done in coordination with an interdisciplinary team.
+
+This allowed me to apply and improve my skills in software development, data science, and photosynthesis research to advance a novel platform aimed at sharing photosynthetic measurements in new ways. These tools can now be use in my research on the regulation of photosynthesis _in situ_ at a larger scale and under various, real world environmental conditions.
+
+Kuhlgert, S., Austic, G., Zegarac, R. Osei-Bonsu, I.,Hoh, D., Chilvers, M. I., et al. (2016). **MultispeQ Beta: a tool for large-scale plant phenotyping connected to the open PhotosynQ network.** *R. Soc. Open Sci. 3*, 160592. [doi:10.1098/rsos.160592](https://doi.org/10.1098/rsos.160592)

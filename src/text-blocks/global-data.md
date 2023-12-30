@@ -1,5 +1,5 @@
-Since the initial prototype of the MultispeQ in 2014, users have collected hundreds of thousands of measurements all over the world to examine plant photosynthesis.
+After the initial beta version of the MultispeQ, the current version and accompanying PhotosynQ platform have enabled thousands of users globally to collect hundreds of thousands measurements to explore plants photosynthetic phenotypes. These photosynthetic measurements were collected in lab and greenhouse settings and, more critically, in real-world field environments and natural habitats.
 
-And this is not just happening inside labs, but mostly in greenhouses and outside in the field.
+They include fluorescence changes measured using the Pulse-Amplitude-Modulation (PAM) to determine parameters like quantum efficiency (Φₗₗ), the absorbance based electrochromic shift (ECS) and relative chlorophyll content. They can be accompanied by environmental data including contactless leaf temperature.
 
-This open collection of data is providing much deeper insights into how plant photosynthesis performs in the field and how it compares to the lab.
+This large, open and growing data collection will hopefully lead to a better understanding into how photosynthesis is regulated in dynamic environements.
