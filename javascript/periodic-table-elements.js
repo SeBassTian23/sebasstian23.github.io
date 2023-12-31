@@ -77,11 +77,8 @@ class PeriodicTableElements {
         return `#FFFFFF`;
       let r = ( (Number(el[this.selectedProperty])  - range[0]) / (range[1] - range[0]) );
       if(this.property == "AtomicRadius")
-        return `radial-gradient(circle, hsl(${this.selectedColor},100%,50%), white ${parseInt( r * 100 )}%, white ${parseInt( r * 100 )}%)`;
-      if(this.property == "AtomicMass")
-        return `hsl(${this.selectedColor}, 100%, ${parseInt( 100 - r * 75 )}%)`;
-      else
-        return `hsl(${this.selectedColor}, 100%, ${parseInt( 100 - r * 75 )}%)`;
+        return `radial-gradient(circle, hsl(${this.selectedColor},100%,50%) 0%, hsl(${this.selectedColor},100%,50%) ${parseInt( r * 60 )*0.8}%, #ffffffe6 ${parseInt( r * 60 )}%)`;
+      return `hsl(${this.selectedColor}, 100%, ${parseInt( 100 - r * 75 )}%)`;
     }
     // "Electronegativity"
     // "IonizationEnergy"
@@ -146,7 +143,7 @@ class PeriodicTableElements {
     };
   }
   elementLabel(el) {
-    return `<div class="mx-auto card-element ratio mt-md-n5 pt-elements-card">
+    return `<div class="mx-auto card-element ratio mt-md-n5 pt-elements-card" data-atomicnumber="${el.AtomicNumber}" data-groupblock="${this.propertyLabel(el)}">
         <div class="border d-flex flex-column justify-content-center p-sm-1 text-center">
         <span>${el.AtomicNumber}</span>
         <span class="fs-1">${el.Symbol}</span>
@@ -254,7 +251,7 @@ class PeriodicTableElements {
         <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="pt-aa-elements-label">Modal title</h5>
+            <h5 class="modal-title" id="pt-aa-elements-label">Element Name</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body"></div>
@@ -263,6 +260,24 @@ class PeriodicTableElements {
     </div>`;  
 
     return html;
+  }
+  updateView(){
+    var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
+    cells.forEach( cell => {
+      var el = cell.getAttribute('data-atomicnumber');
+      el = this.element(this.elements.Table.Row[parseInt(el)-1].Cell);
+      cell.setAttribute('data-groupblock', this.propertyLabel(el))
+      cell.style.background = this.propertyColor(el) || "none";
+      if(this.selectedProperty == 'AtomicRadius')
+        cell.style.color = '#000000';
+      else
+        cell.style.color = this.getContrastColor(this.propertyColor(el))
+    });
+
+    var el = document.querySelector("#pt-elements-card .card-element").getAttribute('data-atomicnumber');
+    el = this.element(this.elements.Table.Row[parseInt(el)-1].Cell);
+    document.querySelector("#pt-elements-card .card-element").style.background = this.propertyColor(el) || "none";
+    document.querySelector("#pt-elements-card .card-element").style.color = this.getContrastColor(this.propertyColor(el));
   }
   init() {
     document.querySelector(this.selector).innerHTML = this.table();
@@ -295,31 +310,12 @@ class PeriodicTableElements {
 
     document.querySelector("#pt-elements-label-selector select").addEventListener('change', function(){
       _this.property = this.value;
-      
-      var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
-      cells.forEach(function(cell){
-        var el = cell.getAttribute('data-atomicnumber');
-        el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
-        cell.setAttribute('data-groupblock', _this.propertyLabel(el))
-        cell.style.background = _this.propertyColor(el) || "none";
-        cell.style.color = _this.getContrastColor(_this.propertyColor(el))
-        console.log(_this.propertyColor(el), _this.getContrastColor(_this.propertyColor(el)))
-      });
-      
+      _this.updateView();
     });
 
     document.querySelector("#pt-elements-label-selector input").addEventListener('change', function(){
       _this.selectedColor = this.value;
-      
-      var cells = document.querySelectorAll('.pt-elements-table td[data-atomicnumber]');
-      cells.forEach(function(cell){
-        var el = cell.getAttribute('data-atomicnumber');
-        el = _this.element(_this.elements.Table.Row[parseInt(el)-1].Cell);
-        cell.setAttribute('data-groupblock', _this.propertyLabel(el))
-        cell.style.background = _this.propertyColor(el) || "none";
-        cell.style.color = _this.getContrastColor(_this.propertyColor(el))
-      });
-      
+      _this.updateView();
     });
 
     modal.addEventListener('show.bs.modal', function (event) {
@@ -338,7 +334,7 @@ class PeriodicTableElements {
       header.style.color = button.style.color || 'inherit'
 
       var title = document.querySelector('#pt-aa-elements .modal-title');
-      title.innerHTML = _this.selectedProperty == 'GroupBlock'? `${el.Name} <small class="text-muted">${_this.propertyLabel(el)}</small>`: el.Name;
+      title.innerHTML = _this.selectedProperty == 'GroupBlock'? `${el.Name} <small> - ${_this.propertyLabel(el)}</small>`: el.Name;
 
       var body = document.querySelector('#pt-aa-elements .modal-body');
       body.innerHTML = `${_this.elementLink( el )}${_this.elementLabel( el )}${_this.elementInfo( el )} `;
