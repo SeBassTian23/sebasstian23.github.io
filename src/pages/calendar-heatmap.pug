@@ -1,0 +1,80 @@
+---
+layout: project
+title: "Calendar Heatmap | Sebastian"
+image: /images/programming/calendar-heatmap-sm.svg
+description: "Generate a calendar heatmap for a given dataset (csv or json)."
+permalink: "| /calendar-heatmap/"
+---
+block append head
+  script(src="/javascript/calendarheatmap.min.js")
+  script(defer, src="/javascript/calendar-heatmap.js")
+
+block append content
+
+  section.container#calendar-heatmap
+    .row
+      // SVG container
+      main.col.pt-3
+        // Downloads and Backups
+        #top-menu.row.mb-3
+          .col-12.col-md-6.col-xl-3.mb-3
+            .small.fw-bold.mb-1 Dataset
+            input#import-data.form-control.form-control-sm(type='file' accept='text/csv, application/json')
+          .col-12.col-md-6.col-xl-3.mb-3
+            .small.fw-bold.mb-1 Download
+            .btn-group.w-100(role='group' aria-label='Downloads')
+              button#download-svg.btn.btn-outline-secondary.btn-sm SVG
+              button#download-png.btn.btn-outline-secondary.btn-sm PNG
+          .col-12.col-md-6.col-xl-3.mb-3
+            .small.fw-bold.mb-1 Settings
+            .btn-group.w-100(role='group' aria-label='Settings')
+              button#download-json.btn.btn-outline-secondary.btn-sm Save
+              button#backup-click.btn.btn-outline-secondary.btn-sm Import
+            input#import-json.form-control.form-control-sm.d-none(type='file' accept='application/json')
+          .col-12.col-md-6.col-xl-3.mb-3
+            .small.fw-bold.mb-1 View
+            .btn-group.w-100(role='group' aria-label='Settings')
+              button#resetBtn.btn.btn-outline-danger.btn-sm(data-bs-toggle='modal' data-bs-target='#resetModal')
+                svg.bi.bi-arrow-counterclockwise(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                  path(fill-rule='evenodd' d='M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z')
+                  path(d='M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z')
+                |                 Reset
+              button#toggleBtn.btn.btn-outline-secondary.btn-sm
+                svg.bi.bi-arrows-angle-expand(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                  path(fill-rule='evenodd' d='M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707')
+                svg.bi.bi-layout-sidebar-reverse.d-none(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                  path(d='M16 3a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5-1v12H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm1 0h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-2z')
+        figure.figure
+          #svg.figure-img.img-thumbnail.text-center.bg-light.bg-gradient
+            svg.bd-placeholder-img(width='1400' height='600' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder' preserveaspectratio='xMidYMid slice' focusable='false')
+              rect(width='100%' height='100%' fill='#e9ecef')
+              text(x='46%' y='49%' font-family='ArialMT' font-size='14' fill='#000000') Loading...
+          figcaption#figure-legend.figure-caption.ps-1
+            svg.bi.bi-cc-circle(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16' style='vertical-align: -.25em;')
+              path(d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM5.408 5.89c-.83 0-1.318.64-1.318 1.753v.742c0 1.108.479 1.727 1.318 1.727.69 0 1.138-.435 1.187-1.05h1.147v.114c-.058 1.147-1.029 1.938-2.343 1.938-1.612 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.319 0 2.29.812 2.343 1.999v.11H6.595c-.049-.638-.506-1.108-1.187-1.108Zm5.404 0c-.831 0-1.319.64-1.319 1.753v.742c0 1.108.48 1.727 1.319 1.727.69 0 1.138-.435 1.186-1.05h1.147v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.318 0 2.29.812 2.342 1.999v.11h-1.147c-.048-.638-.505-1.108-1.186-1.108Z')
+            |             Calendar Heatmaps are free to use and modify. An attribution is not required but appreciated.
+      aside#settings-container.col-5.col-md-3.d-print-none
+        // Presets
+        .mt-3
+          .small.fw-bold.mb-1 Presets
+          #presets
+        // Settings
+        #settings.mb-3
+  #resetModal.modal.modal-sm.modal-alert(tabindex='-1' role='dialog')
+    .modal-dialog
+      .modal-content.rounded-3.shadow
+        .modal-body.p-4.text-center
+          h5.mb-2 Reset Settings?
+          p.mb-0.small You can save your settings to import them later, before you continue.
+        .modal-footer.flex-nowrap.p-0
+          button#reset-form.btn.btn-lg.btn-link.fs-6.text-decoration-none.col-6.m-0.rounded-0.border-end(type='button' data-bs-dismiss='modal')
+            strong.text-danger Yes
+          button.btn.btn-lg.btn-link.fs-6.text-decoration-none.col-6.m-0.rounded-0.text-dark(type='button' data-bs-dismiss='modal') No thanks
+  #msgModal.modal.modal-sm(tabindex='-1' role='dialog')
+    .modal-dialog
+      .modal-content.rounded-3.shadow
+        .modal-body.p-4
+          h5.mb-2.text-danger.text-center Message
+          p.mb-0.small
+        .modal-footer.flex-nowrap.p-0
+          button.btn.btn-lg.btn-link.fs-6.text-decoration-none.col.m-0.rounded-0.text-dark(type='button' data-bs-dismiss='modal') Done

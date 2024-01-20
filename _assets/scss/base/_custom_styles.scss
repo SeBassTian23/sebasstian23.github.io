@@ -262,7 +262,6 @@ pre[class*="language-"] {
   margin-top: -10px;
 }
 
-
 html[data-bs-theme="dark"] {
 
   & .link-darken {
@@ -323,7 +322,7 @@ html[data-bs-theme="dark"] {
     }
   }
 
-  & #photosynthesis-scheme {
+  & #photosynthesis-scheme, & #calendar-heatmap {
     & .figure-img.img-thumbnail {
       background: lightgrey;
     }
@@ -339,8 +338,13 @@ html[data-bs-theme="dark"] {
       border-color: var(--bs-secondary) !important;
       background-color: var(--bs-secondary);
     }
+    & .form-range::-webkit-slider-thumb {
+      background-color: var(--bs-secondary);
+    }
+    & .modal-footer > button.text-dark {
+      color: var(--bs-light-text-emphasis) !important;
+    }
   }
-
 
   & article, & .card {
     & .text-primary, h1, h2, h3, h4, h5, h6 {
@@ -373,9 +377,10 @@ html[data-bs-theme="dark"] {
     color: var(--bs-secondary) !important;
   }
 
-  & #photosynthesis-scheme {
-    & .modal-footer > button.text-dark {
-      color: var(--bs-light-text-emphasis) !important;
+  & #calendar-heatmap {
+    & .form-radio-scale:checked+label{
+      border:1px solid var(--bs-secondary) !important;
+      box-shadow: 0 0 0 0.15rem var(--bs-secondary)
     }
   }
 }
@@ -459,8 +464,14 @@ html[data-bs-theme="dark"] {
 
 #photosynthesis video,
 #electronics img, 
-#michigan img {
+#michigan img,
+#calendar-heatmap img {
   border-radius: 1.5rem;
+}
+
+#calendar-heatmap img {
+  background: rgba(255, 255, 255, 0.6);
+  padding: .8rem .5rem;
 }
 
 .block-header-1 {

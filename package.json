@@ -31,6 +31,7 @@
     "autoprefixer": "^10.4.16",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.2",
+    "calendar-heatmap": "github:sebasstian23/calendar-heatmap",
     "chroma-js": "^2.4.2",
     "clean-css": "^5.3.3",
     "css.escape": "^1.5.1",
