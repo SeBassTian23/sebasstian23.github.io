@@ -1,5 +1,5 @@
-After the initial beta version of the MultispeQ, the current version and accompanying PhotosynQ platform have enabled thousands of users globally to collect hundreds of thousands measurements to explore plants photosynthetic phenotypes. These photosynthetic measurements were collected in lab and greenhouse settings and, more critically, in real-world field environments and natural habitats.
+After the initial beta version of the MultispeQ, the current version and accompanying PhotosynQ platform have enabled thousands of users globally to collect hundreds of thousands of measurements to explore plants' photosynthetic phenotypes. These photosynthetic measurements were collected in lab and greenhouse settings and, more critically, in real-world field environments and natural habitats.
 
-They include fluorescence changes measured using the Pulse-Amplitude-Modulation (PAM) to determine parameters like quantum efficiency (Φₗₗ), the absorbance based electrochromic shift (ECS) and relative chlorophyll content. They can be accompanied by environmental data including contactless leaf temperature.
+They include fluorescence changes measured using the Pulse-Amplitude-Modulation (PAM) to determine parameters like quantum efficiency (Φₗₗ), the absorbance-based electrochromic shift (ECS), and relative chlorophyll content. They can be accompanied by environmental data including contactless leaf temperature.
 
-This large, open and growing data collection will hopefully lead to a better understanding into how photosynthesis is regulated in dynamic environements.
+This large, open, and growing data collection will hopefully lead to a better understanding of how photosynthesis is regulated in dynamic environments.
