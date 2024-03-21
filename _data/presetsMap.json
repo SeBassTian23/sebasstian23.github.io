@@ -39,6 +39,7 @@
     "markerPow": 0.2,
     "legendShow": true,
     "legendPosition": [480,345],
-    "legendSize": [80,8]
+    "legendSize": [80,8],
+    "legendStrokeWidth": 0.1
   }
 }
