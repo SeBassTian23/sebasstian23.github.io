@@ -10,11 +10,15 @@ include /shared/block-feature.pug
 
 block append content
   //- Welcome Header
-  +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living and Working in Michigan; exploring the Regulation of Photosynthesis."})(id="about")
+  +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living in Europe; exploring the Regulation of Photosynthesis."})(id="about")
 
   section#photosynthesis
     //- Photosynthesis Introduction
-    - season = "winter"
+    //- spring (March 1 to May 31)
+    //- summer (June 1 to August 31)
+    //- fall (September 1 to November 30)
+    //- winter (December 1 to February 28/29)
+    - season = "spring"
     +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: [`/videos/${forestvideos[season][0]}.mp4`, `/videos/${forestvideos[season][0]}.webm`, `/videos/${forestvideos[season][0]}.vtt`], poster: `/videos/${forestvideos[season][0]}.jpg` }, imageSubtitle: `Video by ${forestvideos[season][1]} from <a class=\"link-light me-2\" href=\"https://www.pexels.com/${forestvideos[season][2]}\" target=\"_blank\">Pexel</a>` })(class="bg-primary")
     
     //- MultispeQ and Photosynthesis Research
@@ -33,9 +37,9 @@ block append content
           h3 Experience
 
           dl.ps-0
-            dt.text-secondary Since 2022
+            dt.text-secondary 2022-2024
             dd Science Research Specialist, Plant Research Lab, #[em Michigan State University, USA] 
-            dt.text-secondary Since 2013-2022
+            dt.text-secondary 2013-2022
             dd Postdoctoral Associate, Plant Research Lab, #[em Michigan State University, USA] 
             dt.text-secondary 2015
             dd Co-founder of PhotosynQ, Inc.
@@ -133,8 +137,8 @@ block append content
   //- Footer with links
   +columns-footer(footer)(class="footer-links-center")
 
-script(defer, src="/javascript/weather-widget.js")
-script.
-  document.addEventListener('DOMContentLoaded', function () {
-      new WeatherWidget("#weather-plugin").init();
-  });
+//- script(defer, src="/javascript/weather-widget.js")
+//- script.
+//-   document.addEventListener('DOMContentLoaded', function () {
+//-       new WeatherWidget("#weather-plugin").init();
+//-   });
