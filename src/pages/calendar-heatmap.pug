@@ -17,21 +17,21 @@ block append content
       main.col.pt-3
         // Downloads and Backups
         #top-menu.row.mb-3
-          .col-12.col-md-6.col-xl-3.mb-3
+          .col-12.col-sm-6.col-md-3.mb-3
             .small.fw-bold.mb-1 Dataset
             input#import-data.form-control.form-control-sm(type='file' accept='text/csv, application/json')
-          .col-12.col-md-6.col-xl-3.mb-3
+          .col-12.col-sm-6.col-md-3.mb-3
             .small.fw-bold.mb-1 Download
             .btn-group.w-100(role='group' aria-label='Downloads')
               button#download-svg.btn.btn-outline-secondary.btn-sm SVG
               button#download-png.btn.btn-outline-secondary.btn-sm PNG
-          .col-12.col-md-6.col-xl-3.mb-3
+          .col-12.col-sm-6.col-md-3.mb-3
             .small.fw-bold.mb-1 Settings
             .btn-group.w-100(role='group' aria-label='Settings')
               button#download-json.btn.btn-outline-secondary.btn-sm Save
               button#backup-click.btn.btn-outline-secondary.btn-sm Import
             input#import-json.form-control.form-control-sm.d-none(type='file' accept='application/json')
-          .col-12.col-md-6.col-xl-3.mb-3
+          .col-12.col-sm-6.col-md-3.mb-3
             .small.fw-bold.mb-1 View
             .btn-group.w-100(role='group' aria-label='Settings')
               button#resetBtn.btn.btn-outline-danger.btn-sm(data-bs-toggle='modal' data-bs-target='#resetModal')
