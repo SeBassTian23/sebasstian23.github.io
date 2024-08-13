@@ -1,10 +1,10 @@
 {
-    "name": "Eleventy",
-    "short_name": "Eleventy",
+    "name": "Sebastian Kuhlgert",
+    "short_name": "Kuhlgert",
     "start_url": "/",
     "background_color": "#ffffff",
     "theme_color": "#1d3557",
-    "display": "standalone",
+    "display": "browser",
     "icon": "assets/favicon.svg",
     "icons": [
         {
