@@ -8,6 +8,9 @@ include /shared/block-hero.pug
 include /shared/block-columns.pug
 include /shared/block-feature.pug
 
+block append head
+  script(defer, src="/javascript/scroll-tracker.js")
+
 block append content
   //- Welcome Header
   +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living in Europe; exploring the Regulation of Photosynthesis."})(id="about")
