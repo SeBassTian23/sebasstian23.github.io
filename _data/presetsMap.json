@@ -33,7 +33,7 @@
   },
   "photosynq": {
     "areaBackground": "#d1d1d1",
-    "markerScale": "YlGn",
+    "markerScale": "BuGn",
     "m": ["lightblue","#1d3557", "YlOrBr", "YlGn", "GnBu"],
     "markerScaleShow": true,
     "markerPow": 0.2,
