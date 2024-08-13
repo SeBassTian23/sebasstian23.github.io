@@ -3,6 +3,10 @@ p {
   font-weight: 300;
 }
 
+#about h1 {
+  font-size: calc(2rem + 1.5vw);
+}
+
 // Zoom effect on hover for images in posts albums
 .post-album .row > div {
   & .album-img-wrapper {
