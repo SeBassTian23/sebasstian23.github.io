@@ -3,22 +3,22 @@ let applyUpdate = (settings) => {
     let el = document.querySelector(`input[name="${name}"]`)
     if (!el)
       continue;
-    if (el.checked !== null)
+    if (el.type == 'checkbox' && el.checked !== null){
       el.checked = settings[name] == 'true' ? true : false;
-    else
+    }
+    else{
       el.value = settings[name]
+    }
   }
   document.querySelector('#svg').innerHTML = calendarheatmap.build();
   document.querySelector('#svg svg').classList.add("img-fluid");
-  document.querySelector('#svg svg').alt = 'Scheme of the photosynthetic machinery of higher plants.';
+  document.querySelector('#svg svg').alt = 'Calendar style heatmap.';
 }
 
 // Initiate
 const calendarheatmap = new CalendarHeatmap();
 
 // Figure container
-document.querySelector('#svg').innerHTML = calendarheatmap.build();
-
 applyUpdate(Object.fromEntries([]))
 
 // Figure settings
@@ -44,7 +44,7 @@ document.querySelector('#settings form').addEventListener("change", (event) => {
 document.querySelector('#download-svg').addEventListener('click', (event) => {
   event.preventDefault();
 
-  let svg = calendarheatmap.build();
+  let svg = document.querySelector('#svg').getHTML()
 
   let blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
   let URL = window.URL || window.webkitURL || window;
@@ -60,7 +60,8 @@ document.querySelector('#download-png').addEventListener('click', (event) => {
   event.preventDefault();
   const canvas = document.createElement("canvas");
   const svg = document.querySelector('#svg svg');
-  const base64doc = btoa(unescape(encodeURIComponent(calendarheatmap.build())));
+  const svgHTML = document.querySelector('#svg').getHTML()
+  const base64doc = btoa(unescape(encodeURIComponent( svgHTML )));
   const w = parseInt(svg.getAttribute('width')) * 2;
   const h = parseInt(svg.getAttribute('height')) * 2;
   const img_to_download = document.createElement('img');
@@ -189,7 +190,6 @@ document.querySelector('#reset-form').addEventListener('click', (event) => {
   document.querySelector('#settings form').reset();
   document.querySelector('#presets-selector').value = '-1';
   calendarheatmap.reset();
-  document.querySelector('#svg').innerHTML = calendarheatmap.build();
   applyUpdate(Object.fromEntries([]));
 });
 
@@ -209,3 +209,10 @@ document.querySelector('#toggleBtn').addEventListener('click', (event) => {
     document.querySelector('#top-menu').classList.remove('col-7','col-md-9')
   }
 })
+
+document.querySelectorAll('input[type="range"]').forEach( e => { 
+  e.title = e.value;
+  e.addEventListener( 'input', (e) => {
+    e.target.title = e.target.value;
+  });
+});  
