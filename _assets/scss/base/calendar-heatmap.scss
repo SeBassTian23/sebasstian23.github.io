@@ -85,4 +85,15 @@
   figure > div > svg {
     width: 100%
   }
+
+  #svg {
+    aspect-ratio: auto 1400/400;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #svg:empty::after {
+    content: "Loading…";
+  }
 }
