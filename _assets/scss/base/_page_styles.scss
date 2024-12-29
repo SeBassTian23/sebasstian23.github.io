@@ -24,6 +24,14 @@
   cursor:pointer;
 }
 
+td:has(.pt-aa-table-card) {
+  filter: none;
+  transition: 0.1s ease-out;
+  &:hover {
+    filter: brightness(0.9) ;
+  }
+}
+
 .pt-aa-table-card-values {
   font-size:0.65rem;
 }
@@ -85,6 +93,14 @@
   --bs-aspect-ratio: 120%;
   overflow: hidden;
   cursor: pointer;
+}
+
+.border:has(.pt-elements-card-sm) {
+  filter: none;
+  transition: 0.1s ease-in-out;
+  &:hover {
+    filter: brightness(0.9) ;
+  }
 }
 
 [data-bs-theme=dark] #periodic-table-elements {
