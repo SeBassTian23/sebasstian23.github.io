@@ -109,7 +109,7 @@ script.
       })
       fasta.entry = sequence.value;
       if(fasta.link)
-        source.innerHTML = "<a href=\""+fasta.link+"\" target=\"_blank\">View</a>"
+        source.innerHTML = `<a href="${fasta.link.href}" target="_blank">${fasta.link.name}</a>`
       else
         source.innerHTML = "not available"
 

@@ -19,7 +19,7 @@ class FASTA{
             "name": "NCBI",
             "example": "NCBI|NC_001638.1|NP_042570.1|11467095|NADH",
             "structure": ["NCBI","genome","accession","gi"],
-            "link": "http://www.ncbi.nlm.nih.gov/protein/{{gi}}"
+            "link": "http://www.ncbi.nlm.nih.gov/protein/{{accession}}"
         },
         "jgi": {
             "name": "JGI",
@@ -45,12 +45,14 @@ class FASTA{
         "gb": {
             "name": "GenBank",
             "example": "gb|M73307|AGMA13GT",
-            "structure": ["gb","accession","locus"]
+            "structure": ["gb","accession","locus"],
+            "link": "https://www.ncbi.nlm.nih.gov/nuccore/{{accession}}"
         },
-        "emb": {
+        "emn": {
             "name": "EMBL",
-            "example": "emb|CAM43271.1|",
-            "structure": ["emb","accession","locus"]
+            "example": "ENA|CAM43271|CAM43271.1 proteophosphoglycan ppg4",
+            "structure": ["emn","accession","locus"],
+            "link": "https://www.ebi.ac.uk/ena/browser/view/{{accession}}"
         },
         "pir": {
             "name": "PIR",
@@ -60,7 +62,8 @@ class FASTA{
         "sp": {
             "name": "SWISS-PROT",
             "example": "sp|P01013|OVAX_CHICK",
-            "structure": ["sp","accession","name"]
+            "structure": ["sp","accession","name"],
+            "link": "https://www.uniprot.org/uniprot/{{accession}}"
         },
         "pat": {
             "name": "patent",
@@ -95,7 +98,8 @@ class FASTA{
         "pdb": {
             "name": "PDB",
             "example": "pdb|1I4L|D",
-            "structure": ["pdb","entry","chain"]
+            "structure": ["pdb","entry","chain"],
+            "link": "https://www.rcsb.org/structure/{{entry}}"
         },
         "tpg": {
             "name": "third-party GenBank",
@@ -249,12 +253,12 @@ class FASTA{
         for(let i in this.dbs[key].structure){
             str[`${this.dbs[key].structure[i]}`] = entry[i] || '';
         }
-        return this.dbs[key].link.replace(/\{\{(.*)\}\}/, function(m,k){ return str[k]; });
+        return {href: this.dbs[key].link.replace(/\{\{(.*)\}\}/, function(m,k){ return str[k]; }), name: this.dbs[key].name };
     }
     else {
         return null;
     }
-}
+  }
   // Sanitize Sequence removing header, spaces, etc.
   get sanitize() {
     if(this.isFasta){
