@@ -17,12 +17,13 @@ block append content
   section
     .container
       .row
-        .col-12.my-5
+        .col-12.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/photosynthesis-scheme/") !{filters.image( filters.url("/images/science/photosynthesis-scheme.svg"), "Photosynthesis Scheme" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Photosynthesis]#[br]Scheme Creator
+            .col-12.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/photosynthesis-scheme/") !{filters.image( filters.url("/images/science/photosynthesis-scheme.svg"), "Photosynthesis Scheme" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p Creating or modifying the Photosynthetic Scheme for presentations or posters can become time-consuming, 
                 | including finding figures or previously used files, modifying, labeling, or changing colors.
                 | The creator was built to easily add or remove complexes, different pathways, etc.,
@@ -31,92 +32,115 @@ block append content
               p.small The figure style is based on Kramer, D. M., Avenson, T. J. and Edwards, G. E. (2004) Dynamic flexibility in the light reactions of photosynthesis governed 
                 | by both electron and proton transfer reactions. Trends Plant Sci 9, 349-357
 
+              a.btn.btn-sm.btn-outline-secondary(href="/photosynthesis-scheme", target="_blank" rel="noreferrer") Create a Figure
+              | 
               a.btn.btn-sm.btn-outline-secondary.external-link(href="https://github.com/SeBassTian23/photosynthesis-scheme", target="_blank" rel="noreferrer") Source on GitHub
 
   section
     .container
       .row
-        .col-12.my-5
+        .col-12.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/calendar-heatmap/") !{filters.image( filters.url("/images/programming/calendar-heatmap-sm.svg"), "Calendar Heatmap" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Data Visualization]#[br]Calendar Heatmap
+            .col-12.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/calendar-heatmap/") !{filters.image( filters.url("/images/programming/calendar-heatmap-sm.svg"), "Calendar Heatmap" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p When working with time-resolved data, Calendar heatmaps can be a great tool to visualize clusters, outliers,
                 | trends, and seasonal cycles over different periods, using a calendar layout with color gradients.
                 | This tool makes it easy to create a heatmap from a dataset formatted as a CSV or JSON file.
                 | The resulting map can be edited and saved as SVG or PNG.
+
+              a.btn.btn-sm.btn-outline-secondary(href="/calendar-heatmap", target="_blank" rel="noreferrer") Create SVG Heatmap
+              | 
               a.btn.btn-sm.btn-outline-secondary.external-link(href="https://github.com/SeBassTian23/calendar-heatmap", target="_blank" rel="noreferrer") Source on GitHub
 
   section
     .container
       .row
-        .col-12.col-md-6.my-5
+        .col-12.col-md-6.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/periodic-table-of-elements/") !{filters.image( filters.url("/images/science/icon-elements-periodic-table.svg"), "Periodic Table of Elements" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Periodic Table]#[br]Elements
+            .col-6.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/periodic-table-of-elements/") !{filters.image( filters.url("/images/science/icon-elements-periodic-table.svg"), "Periodic Table of Elements" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p This was a small project to build an interactive Periodic Chart of Elements as part of an application, that never came to be.
               p The element information is provided by Pubchem.
-        .col-12.col-md-6.my-5
+              a.btn.btn-sm.btn-outline-secondary(href="/periodic-table-of-elements/") View Elements
+
+        .col-12.col-md-6.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/periodic-chart-of-amino-acids/") !{filters.image( filters.url("/images/science/icon-aa-periodic-table.svg"), "Periodic Chart of Amino Acids" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Periodic Table]#[br]Amino Acids
+            .col-6.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/periodic-chart-of-amino-acids/") !{filters.image( filters.url("/images/science/icon-aa-periodic-table.svg"), "Periodic Chart of Amino Acids" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p Biologists have a Periodic Chart too! Like the one for Elements, this chart was also intended to be part of an application.
               p The chart was originally published by Bachem AG.
+              a.btn.btn-sm.btn-outline-secondary(href="/periodic-chart-of-amino-acids/") View Amino Acids
   
   section
     .container
       .row
-        .col-12.col-md-6.my-5
+        .col-12.col-md-6.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/protein-parameters/") !{filters.image( filters.url("/images/science/protein-parameters.svg"), "Predict Protein Parameters" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Predict &amp; Calculate]#[br]Protein Properties
+            .col-6.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/protein-parameters/") !{filters.image( filters.url("/images/science/protein-parameters.svg"), "Predict Protein Parameters" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p The MS/MS database application MS2DB was supposed to have numerous little functions helping to quickly characterize proteins identified by mass spectrometry.
               p The functions, originally in PHP, have found a new home here.
-        .col-12.col-md-6.my-5
+              a.btn.btn-sm.btn-outline-secondary(href="/protein-parameters/") View Parameters
+
+        .col-12.col-md-6.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/chlorophyll-content/") !{filters.image( filters.url("/images/science/chlorophyll.svg"), "Get formated Citiation by DOI" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Predict &amp; Calculate]#[br]Chlorophyll Content
+            .col-6.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/chlorophyll-content/") !{filters.image( filters.url("/images/science/chlorophyll.svg"), "Calculate Chlorophyll Content" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p Working with plants or algae provides the option to use either total protein content or chlorophyll content for the planned experiment.
               p This calculator allows calculating the chlorophyll content according to Porra et al.
+              a.btn.btn-sm.btn-outline-secondary(href="/chlorophyll-content/") Calculate Content
+
 
   section
     .container
       .row
-        .col-12.col-md-6.my-5
+        .col-12.col-md-6.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/format-fasta/") !{filters.image( filters.url("/images/science/fasta.svg"), "Format FASTA file output" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Formatting]#[br]FASTA
+            .col-6.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/format-fasta/") !{filters.image( filters.url("/images/science/fasta.svg"), "Format FASTA file output" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p Formatting a DNA/RNA or AminoAcid sequence can be a pain, especially if you only have to do it occasionally and you don't have those fancy tools.
               p This tool you allows to quickly format your sequence to fit your needed layout.
-        .col-12.col-md-6.my-5
+              a.btn.btn-sm.btn-outline-secondary(href="/format-fasta/") Format FASTA
+
+        .col-12.col-md-6.my-md-5.my-3
           .row
-            .col-4
-              a.link-darken(href="/formatted-citation/") !{filters.image( filters.url("/images/science/doi.svg"), "Get formated Citiation by DOI" )}
-            .col-8
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Formatting]#[br]Citations
+            .col-6.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/formatted-citation/") !{filters.image( filters.url("/images/science/doi.svg"), "Get formated Citiation by DOI" )}
+            .col-12.col-md-8.offset-md-4.order-last
               p Originally part of a simple function made for the PhotosynQ platform to add references, this form can now be used to receive a formatted citation.
-              P No need to fire up your reference manager, a DOI number is enough. 
+              p No need to fire up your reference manager, a DOI number is enough.
+              a.btn.btn-sm.btn-outline-secondary(href="/formatted-citation/") Get Citation
 
   section
     .container
       .row
         .col-12.my-5
           .row
-            .col-4.col-md-2
-              a.link-darken(href="/jugend-forscht/") !{filters.image( filters.url("/images/jugend-forscht/jugend-forscht.svg"), "Jugend Forscht" )}
-            .col-8.col-md-10
+            .col-12.col-md-10.order-first.order-md-2
               h4 #[span.fw-lighter From Before the New Millenium]#[br]Jugend Forscht
+            .col-6.col-md-2.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/jugend-forscht/") !{filters.image( filters.url("/images/jugend-forscht/jugend-forscht.svg"), "Jugend Forscht" )}
+            .col-12.col-md-10.offset-md-2.order-last
               p
                 | #[a.external-link(href="https://www.jugend-forscht.de/" rel="nofollow" target="_blank" lang="de-DE") Jugend forscht] (Youth researches) is a German
                 | competition in the areas of science, technology, engineering, and mathematics (STEM) which two friends and I entered in high school back in 1999.
