@@ -9,7 +9,7 @@
   * @param {sting} doi Enter a DOI string.
   * @returns {Promise} Promise object is a citation string
   */
-var getCitationFromDOI = async function(doi, style = "harvard1"){
+const getCitationFromDOI = async function(doi, style = "harvard1"){
 
   // Try to remove DOI: if user copyed it
   doi.replace( new RegExp("doi:\s{0,}","gi"),"");
@@ -26,18 +26,23 @@ var getCitationFromDOI = async function(doi, style = "harvard1"){
   });
 
   var response = await getResp;
-  if( response.statusText == "OK")
+  if( response.ok)
     return response.text();
-  else{
-    return {msg: response.statusText };
-  }
+
+  return {msg: response.statusText };
 };
 
+/**
+  * Validate a given DOI number
+  * @summary Validate DOI number
+  * @link https://www.crossref.org/blog/dois-and-matching-regular-expressions/
+  * @param {sting} doi Enter a DOI string.
+  * @returns {Boolean} True if the DOI is valid, otherwise false
+  */
+const checkDOI = (doi) => {
+  if(doi.match( /^10.\d{4,9}\/[-._;()\/:A-Z0-9]+$/i ) )
+    return true
 
-//  const rp = require('request-promise-native');
-
-
- // \b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?!["&\'])\S)+)\b
- 
- // /\b(10\.[0-9]{4,}(?:\.[0-9]+)*\/(?:(?![\"&\'])\S)+)\b/gim
+  return false
+}
  

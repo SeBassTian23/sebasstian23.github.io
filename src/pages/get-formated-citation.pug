@@ -14,8 +14,8 @@ block append content
         .col-12.mb-3
           label.form-label(for="doiNumber") DOI Number for Citation
           .input-group
-            span.input-group-text#doi-input DOI:
-            input.form-control#doiNumber(type="search", name="doiNumber", placeholder="DOI Number", aria-label="DOI-Input", aria-describedby="doi-input", autocomplete="on")
+            span.input-group-text#doi-input doi:
+            input.form-control#doiNumber(type="search", name="doiNumber", placeholder="10.1145/2783446.2783605", aria-label="DOI-Input", aria-describedby="doi-input", autocomplete="on")
           .form-text e.g. 10.1145/2783446.2783605
         .col-12.mb-3
           label.form-label(for="citationStyle") Citation Style
@@ -58,16 +58,40 @@ script.
         getCitationFromDOI(doi, style)
         .then(function(response){
           if( typeof response == "string"){
-            document.querySelector('#citationText').innerHTML = response;
-            event.target.reset();
+            document.querySelector('#citationText').innerHTML = response.replace(/((https?:\/\/)?[^\s.]+\.[\w][^\s]*(?<!\.))/gm, '<a href="$1" class="external-link" target="_blank">$1</a>');
           }
-          else 
-            document.querySelector('#citationText').innerHTML = `<p class="text-danger">Issue: ${response.msg}</p>`;
+          else
+            document.querySelector('#citationText').innerHTML = `¯\\_(ツ)_/¯<p class="text-danger">${response.msg == ""? "Citation not found or DOI invalid." : response.msg }</p>`;
         })
         .then(function(){
-          document.querySelector('#citationText').classList.remove("placeholder-glow")
+          document.querySelector('#citationText').classList.remove("placeholder-glow");
+          document.querySelector('#doiNumber').className = "form-control";
+          event.target.reset();
         })
       else 
-        document.querySelector('#citationText').innerHTML = `<p class="text-danger">No DOI Number provided</p>¯\\_(ツ)_/¯`;
+        document.querySelector('#doiNumber').classList.add('is-invalid');
+        document.querySelector('#citationText').classList.remove("placeholder-glow")
     });
+
+     document.querySelector('#doiNumber').addEventListener("focus", function(event){
+      document.querySelector('#citationText').innerHTML = placeholder;
+    })
+
+    let keyEvents = ["keyup", "input"]
+
+    keyEvents.forEach(e => {
+      document.querySelector('#doiNumber').addEventListener(e, function(event){
+
+      event.target.className = "form-control";
+
+      console.log(event.target.value)
+
+      if( event.target.value != "" && checkDOI(event.target.value) )
+        event.target.classList.add("is-valid");
+
+      if( event.target.value != "" && !checkDOI(event.target.value) )
+        event.target.classList.add("is-invalid");
+      })
+    })
+
   });
