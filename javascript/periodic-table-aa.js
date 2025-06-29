@@ -24,16 +24,16 @@
     return {
         "SingleLetterCode": (el[0] || ""),
         "ThreeLetterCode": (el[1] || ""),
-        "Name": (el[2] || ""),
-        "MolecularFormula": (this.formula(el[3]) || el[3]),
-        "RelativeMolecularMass": (el[4] || ""),
-        "Mz-H2O": (el[5] || ""),
-        "pI": (el[6] || ""),
-        "pK1": (el[7] || ""),
-        "pK2": (el[8] || ""),
-        "pK3": (el[9] || ""),
-        "GroupBlock": (el[10] || ""),
-        "ChemicalStructure": (el[11] || "")
+        "Name": (el[3] || el[2] || ""),
+        "MolecularFormula": (this.formula(el[4]) || el[4]),
+        "RelativeMolecularMass": (el[5] || ""),
+        "Mz-H2O": (el[6] || ""),
+        "pI": (el[7] || ""),
+        "pK1": (el[8] || ""),
+        "pK2": (el[9] || ""),
+        "pK3": (el[10] || ""),
+        "GroupBlock": (el[11] || ""),
+        "ChemicalStructure": (el[12] || "")
     };
   }
   elementLabel(el) {
@@ -54,10 +54,9 @@
   }
   elementLabelSM(el){
     return `<div class="ratio pt-aa-table-card">
-      <div class="d-flex flex-row-reverse flex-wrap justify-content-between p-1 pt-0">
+      <div class="d-flex flex-row-reverse flex-wrap justify-content-between p-1 pt-0" style="--bg-image: url('${el.ChemicalStructure}');">
         <span class="fw-bolder fs-3">${el.ThreeLetterCode}</span>  
         <span class="d-none d-lg-block pt-2 pt-aa-table-card-values"><strong>${el.SingleLetterCode}</strong><br>${el.RelativeMolecularMass}<br>${el["Mz-H2O"]}<br>${el.MolecularFormula}</span>
-        <div class="d-none d-lg-block pt-aa-table-card-img" style="background-image:url('${el.ChemicalStructure}');"></div>
         <span lang="en" class="fw-bold d-none d-md-block pt-aa-table-card-name">${el.Name}</span>
       </div>
     </div>`;
