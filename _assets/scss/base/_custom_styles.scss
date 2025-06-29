@@ -212,6 +212,13 @@ pre[class*="language-"] {
       column-gap: 1.5rem;
       -webkit-columns: 2;
       -moz-columns: 2;
+      & li {
+        break-inside: avoid;
+        page-break-inside: avoid; /* For older browser support */
+      }
+      & li:nth-child(6) {
+        break-after: column;
+      }
     }
   }
 }
