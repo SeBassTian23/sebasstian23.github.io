@@ -24,6 +24,15 @@
   cursor:pointer;
 }
 
+.pt-aa-table-card > div::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 35%;
+  margin: calc(-1rem) auto 0;
+  background: var(--bg-image) center / contain no-repeat;
+}
+
 td:has(.pt-aa-table-card) {
   filter: none;
   transition: 0.1s ease-out;
@@ -34,15 +43,6 @@ td:has(.pt-aa-table-card) {
 
 .pt-aa-table-card-values {
   font-size:0.65rem;
-}
-
-.pt-aa-table-card-img {
-  width:100%;
-  height:35%;
-  margin-top: -1rem;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 }
 
 .pt-aa-table-card-name {
@@ -130,6 +130,9 @@ td:has(.pt-aa-table-card) {
 }
 @media (max-width:767.98px) {
   #pt-elements-label-selector select {min-height: auto; font-size: 9px; padding: 2px;}
+}
+@media (max-width:991.98px) {
+  .pt-aa-table-card > div {--bg-image: none !important;}
 }
 
 // Protein Parameters
