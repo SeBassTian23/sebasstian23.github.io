@@ -31,6 +31,7 @@ class PeriodicTableElements {
     this.properties = [
       "AtomicMass",
       "CPKHexColor",
+      "OxidationStates",
       "Electronegativity",
       "AtomicRadius",
       "IonizationEnergy",
@@ -59,6 +60,23 @@ class PeriodicTableElements {
       return this.GroupBlock[el.GroupBlock];
     else if(this.selectedProperty == "StandardState")
       return this.StandardState[el.StandardState];
+    else if(this.property == "AtomicRadius")
+      return `radial-gradient(circle, hsl(${this.selectedColor},100%,50%) 0%, hsl(${this.selectedColor},100%,50%) ${parseInt( r * 60 )*0.8}%, #ffffffe6 ${parseInt( r * 60 )}%)`;
+    else if(this.property == "OxidationStates"){
+      try{
+        let oxstates = el.OxidationStates.slice(0).split(',').map(itm => {
+          if(Number(itm) < 0)
+            return `hsl(${parseInt(this.selectedColor * 0.299)}, 100%, ${parseInt( 75 - Number(itm) * 6.25 * -1 )}%)`;
+          return `hsl(${this.selectedColor}, 100%, ${parseInt( 75 - Number(itm) * 6.25 )}%)`;
+        })
+        return `linear-gradient(90deg, ${oxstates.join(', ')})`;
+      }
+      catch(e){
+        return '#FFFFFF'
+      }
+    }
+    else if(el[this.selectedProperty] == "" || Number.isNaN(Number(el[this.selectedProperty])))
+      return `#FFFFFF`;
     else{
       let values = []
       for( let i in this.elements.Table.Row){
@@ -72,12 +90,7 @@ class PeriodicTableElements {
         Math.min.apply(Math, values),
         Math.max.apply(Math, values)
       ];
-
-      if(el[this.selectedProperty] == "" || Number.isNaN(Number(el[this.selectedProperty])))
-        return `#FFFFFF`;
       let r = ( (Number(el[this.selectedProperty])  - range[0]) / (range[1] - range[0]) );
-      if(this.property == "AtomicRadius")
-        return `radial-gradient(circle, hsl(${this.selectedColor},100%,50%) 0%, hsl(${this.selectedColor},100%,50%) ${parseInt( r * 60 )*0.8}%, #ffffffe6 ${parseInt( r * 60 )}%)`;
       return `hsl(${this.selectedColor}, 100%, ${parseInt( 100 - r * 75 )}%)`;
     }
     // "Electronegativity"
@@ -268,7 +281,7 @@ class PeriodicTableElements {
       el = this.element(this.elements.Table.Row[parseInt(el)-1].Cell);
       cell.setAttribute('data-groupblock', this.propertyLabel(el))
       cell.style.background = this.propertyColor(el) || "none";
-      if(this.selectedProperty == 'AtomicRadius')
+      if(this.selectedProperty == 'AtomicRadius' || this.selectedProperty == 'OxidationStates')
         cell.style.color = '#000000';
       else
         cell.style.color = this.getContrastColor(this.propertyColor(el))
