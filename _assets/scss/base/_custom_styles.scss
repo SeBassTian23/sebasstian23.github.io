@@ -147,8 +147,13 @@ p {
 }
 
 // Link Style for external links
-.external-link:after {
+a:not(.navbar-brand):not(:empty):not(:has(i[class^="bi-"])):not(:has(svg)):not([href^="#"]):not([href^="/"])::after {
   content: " \2197";
+  white-space: nowrap;
+}
+// add support for older browsers
+a[href^="http"]:has(i[class^="bi-"]):has(svg)::after {
+  content: none !important;
 }
 
 // Tags style

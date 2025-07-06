@@ -268,7 +268,6 @@ module.exports = function (eleventyConfig) {
   .use(markdownItLinkAttr, {
       pattern: /^https?:\/\//,
       attrs: {
-        class: 'external-link',
         target: '_blank',
         rel: 'noreferrer'
     }

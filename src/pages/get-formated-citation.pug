@@ -58,7 +58,7 @@ script.
         getCitationFromDOI(doi, style)
         .then(function(response){
           if( typeof response == "string"){
-            document.querySelector('#citationText').innerHTML = response.replace(/((https?:\/\/)?[^\s.]+\.[\w][^\s]*(?<!\.))/gm, '<a href="$1" class="external-link" target="_blank">$1</a>');
+            document.querySelector('#citationText').innerHTML = response.replace(/((https?:\/\/)?[^\s.]+\.[\w][^\s]*(?<!\.))/gm, '<a href="$1" target="_blank">$1</a>');
           }
           else
             document.querySelector('#citationText').innerHTML = `¯\\_(ツ)_/¯<p class="text-danger">${response.msg == ""? "Citation not found or DOI invalid." : response.msg }</p>`;

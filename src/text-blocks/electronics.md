@@ -4,7 +4,7 @@ Especially the eInk technology is fascinating since, in combination with an ESP3
 
 <div id="electronics-content">
   <div>
-    <a href="https://github.com/SeBassTian23/" class="btn btn-sm btn-outline-secondary external-link" target="_blank" 
+    <a href="https://github.com/SeBassTian23/" class="btn btn-sm btn-outline-secondary" target="_blank" 
     rel="noreferrer">Projects on GitHub</a>
   </div>
   <div id="weather-plugin"></div>
