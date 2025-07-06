@@ -413,11 +413,13 @@ html[data-bs-theme="dark"] {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   background-color: var(--bs-primary);
-  background-image: linear-gradient(
-    135deg,
-    var(--bs-primary) 50%,
-    var(--bs-secondary) 100%
-  );
+  // background-image: linear-gradient(
+  //   135deg,
+  //   var(--bs-primary) 50%,
+  //   var(--bs-secondary) 100%
+  // );
+  // https://mycolor.space/gradient3 #1d3557 #005F83 #454B75
+  background-image: linear-gradient(to right bottom, #1d3557, #1c3d60, #194468, #154c71, #0e5479, #14567c, #19587f, #1e5a82, #2b5680, #35537d, #3e4f79, #454b75);
 }
 
 .bg-secondary {
