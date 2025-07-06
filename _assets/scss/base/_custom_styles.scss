@@ -336,7 +336,7 @@ html[data-bs-theme="dark"] {
     }
   }
 
-  & #photosynthesis-scheme, & #calendar-heatmap {
+  & #photosynthesis-scheme, & #calendar-heatmap, & .pt-elements-table {
     & .figure-img.img-thumbnail {
       background: lightgrey;
     }
@@ -354,6 +354,9 @@ html[data-bs-theme="dark"] {
     }
     & .form-range::-webkit-slider-thumb {
       background-color: var(--bs-secondary);
+    }
+    & .form-range::-webkit-slider-runnable-track {
+      background-color: var(--bs-border-color);
     }
     & .modal-footer > button.text-dark {
       color: var(--bs-light-text-emphasis) !important;

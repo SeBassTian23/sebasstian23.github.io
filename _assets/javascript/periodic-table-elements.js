@@ -319,7 +319,7 @@ class PeriodicTableElements {
     var options = _this.propertyOptions.map(function(p){ return `<option value="${p}" ${p=="GroupBlock"? "selected" : ""}>${p.replace(/([a-z])([A-Z])/g, '$1 $2')}</option>` });
     document.querySelector("#pt-elements-label-selector").innerHTML =`<select class="form-select form-select-sm d-print-none" title="Select Property or Trend to display">${options}</select>`;
 
-    document.querySelector("#pt-elements-label-selector").innerHTML += `<input type="range" title="Change Trend Color" class="form-range form-range-sm d-none d-md-block d-print-none" min="0" max="360" step="1" value="${_this.selectedColor}"></input>`;
+    document.querySelector("#pt-elements-label-selector").innerHTML += `<input type="range" title="Change Trend Color" class="form-range form-range-sm d-none d-md-block d-print-none mt-2" min="0" max="360" step="1" value="${_this.selectedColor}"></input>`;
 
     document.querySelector("#pt-elements-label-selector select").addEventListener('change', function(){
       _this.property = this.value;
