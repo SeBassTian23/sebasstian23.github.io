@@ -71,7 +71,7 @@ function generateMap(content=[],options){
       });
 
       if(markers)
-        markers = markers.map( e => {
+        markersElements = markers.map( e => {
           if( isNaN(e.x) || isNaN(e.y) )
             return "";
 
@@ -174,7 +174,7 @@ function generateMap(content=[],options){
   }
 
   if(markers){
-    let markersToStr = `<g class="svg-map-markers" stroke="${options.markerStroke}" stroke-width="${options.markerStrokeWidth}">${markers.join("")}</g>`
+    let markersToStr = `<g class="svg-map-markers" stroke="${options.markerStroke}" stroke-width="${options.markerStrokeWidth}">${markersElements.join("")}</g>`
     map = map.replace(/(<\/svg>)$/, `${markersToStr}$1`)
   }
 
@@ -234,6 +234,50 @@ function generateMap(content=[],options){
       map = map.replace(/(<svg .*?)(.*?)(>)/, `$1$2$3${defs}`)
 
     map = map.replace(/(<\/svg>)$/, `${legend}$1`)
+  }
+
+  if(options.markerAnimation){
+
+    if(markers && options.markerAnimationType == 'pulse'){
+
+      markersAnimated = markers
+
+      if(options.markerAnimationSort == 'desc')
+        markersAnimated = markersAnimated.reverse()
+
+      if(options.markerAnimationSort == 'random')
+        markersAnimated = markersAnimated.sort( () => Math.random() - .5 )
+
+      if(!Number.isNaN(Number(options.markerAnimationSelect)))
+        markersAnimated = markersAnimated.slice(0,parseInt(Number(options.markerAnimationSelect)))
+
+      if(Array.isArray(options.markerAnimationSelect))
+        markersAnimated = markersAnimated.filter( (el, idx) => options.markerAnimationSelect.indexOf(idx) > -1)
+
+      defs = `<defs>
+        <circle id="animatedCircle" cx="0" cy="0" r="3.5" fill="none" opacity="1" stroke="#000000" stroke-width="0.25">
+          <animate attributeName="opacity" values="1;0.5;0" keyTimes="0;0.7;1" dur="${options.markerAnimationDuration}s" repeatCount="indefinite" />
+          <animate attributeName="r" values="3.5;7.5%" dur="${options.markerAnimationDuration}s" repeatCount="indefinite" />
+          <animate attributeName="cx"
+            values="${markersAnimated.map(itm => itm.x).join(';')}"
+            dur="${options.markerAnimationDuration * markersAnimated.length}s" repeatCount="indefinite" calcMode="discrete" />
+          <animate attributeName="cy"
+            values="${markersAnimated.map(itm => itm.y).join(';')}"
+            dur="${options.markerAnimationDuration * markersAnimated.length}s" repeatCount="indefinite" calcMode="discrete" />
+          <animate attributeName="fill"
+            values="${markersAnimated.map(itm => itm.fill).join(';')}"
+            dur="${options.markerAnimationDuration * markersAnimated.length}s" repeatCount="indefinite" />
+        </circle>
+      </defs>`
+    }
+    if(map.match(/(<\/defs>)/))
+      map = map.replace(/(<\/defs>)/, `<\/defs>\n${defs}\n`)
+    else
+      map = map.replace(/(<svg .*?)(.*?)(>)/, `$1$2$3${defs}`)
+
+    let markersUseAnimation = `<g><use href="#animatedCircle" /></g>\n`
+    map = map.replace(/(<g class="svg-map-markers")/, `${markersUseAnimation}$1`)
+
   }
 
   return map;

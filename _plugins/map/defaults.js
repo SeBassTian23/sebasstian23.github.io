@@ -43,5 +43,12 @@ module.exports = {
   legendTickMax: null,
   legendTickColor: '#a1a1a1',
   legendTickFont: "system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
-  legendTickFontSize: '0.5rem'
+  legendTickFontSize: '0.5rem',
+
+  // Animation
+  markerAnimation: false,
+  markerAnimationType: 'pulse',
+  markerAnimationSort: 'random',  // random, asc, desc
+  markerAnimationSelect: 50,   // all, number (int), array
+  markerAnimationDuration: 1.25
 }

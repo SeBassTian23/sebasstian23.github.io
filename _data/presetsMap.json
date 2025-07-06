@@ -40,6 +40,7 @@
     "legendShow": true,
     "legendPosition": [480,345],
     "legendSize": [80,8],
-    "legendStrokeWidth": 0.1
+    "legendStrokeWidth": 0.1,
+    "markerAnimation": true
   }
 }
