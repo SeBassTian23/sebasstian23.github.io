@@ -21,7 +21,7 @@ block append content
     //- summer (June 1 to August 31)
     //- fall (September 1 to November 30)
     //- winter (December 1 to February 28/29)
-    - season = "winter"
+    - season = "summer"
     +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: [`/videos/${forestvideos[season][0]}.mp4`, `/videos/${forestvideos[season][0]}.webm`, `/videos/${forestvideos[season][0]}.vtt`], poster: `/videos/${forestvideos[season][0]}.jpg` }, imageSubtitle: `Video by ${forestvideos[season][1]} from <a class=\"link-light me-2\" href=\"https://www.pexels.com/${forestvideos[season][2]}\" target=\"_blank\">Pexel</a>` })(class="bg-primary")
     
     //- MultispeQ and Photosynthesis Research
@@ -31,7 +31,7 @@ block append content
     +feature-1({ headline: `<span class="fw-lighter">Global Data</span> Photosynthesis Research`, content: filters.markdown("/text-blocks/global-data.md"), image: filters.map(photosynq, presetsMap.photosynq, 'global-projects') , imageAlt: "PhotosynQ Project Locations around the World using MultispeQ, Data: PhotosynQ, Inc.", imageSubtitle: "Photosynthesis Research Projects around the World using MultispeQ colored by measurements per Project (Data: PhotosynQ, Inc. 2023)"})(id="global-projects")
 
     //- Photosystem I research
-    +feature-2({headline: `<span class="fw-lighter">Photosystem I</span> Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/6ZOO.png", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
+    +feature-2({headline: `<span class="fw-lighter">Photosystem I</span> Photosynthetic Machinery`, content: filters.markdown("text-blocks/photosystem-i.md"), image: "/images/science/6ZOO.png", imageAlt: "Structure of Photosystem I with bound Plactocyanin", imageSubtitle: "Side view of the Photosystem I – Plastocyanin complex. Caspy, I. et al. (2021) doi:10.1042/bcj20210267." })(id="photosystem-i")
   
   section#experience
     .container.my-5
@@ -86,7 +86,7 @@ block append content
             1. Irmtraud Beyer, Hans-Peter Krull, Sebastian Kuhlgert 2001, Natura aktuell. ISBN:[978-3-12-043492-4](https://buecher-nach-isbn.info/9783120434924)
   
   section(id="projects")
-    +hero-2({h2: `<span class="fw-lighter">Past & Current</span> Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics.svg", imageAlt: "Electronics, PCB lines"})(class="bg-primary")
+    +hero-2({h2: `<span class="fw-lighter">Past & Current</span> Projects`, content: filters.markdown("/text-blocks/projects.md"), image: "/images/electronics/electronics-animated.svg", imageAlt: "Electronics, PCB lines"})(class="bg-primary")
 
   section.block-feature-2.mb-5#bits-pieces
     .container
