@@ -188,13 +188,6 @@ pre[class*="language-"] {
   }
 }
 
-#hero-photosynq {
-  & img {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-}
-
 #publications {
   & ol {
     list-style: none;
