@@ -534,3 +534,15 @@ html[data-bs-theme="dark"] {
     position: absolute;
   }
 }
+
+
+html[data-bs-theme="dark"] #calendar-heatmap .order-md-first > svg {
+ .title { fill: #dee2e6 !important;}
+ .subtitle { fill: rgba(222, 226, 230, 0.75) !important;}
+ .legend { fill: #dee2e6 !important;}
+ .calendar-month { fill: #dee2e6 !important;}
+ .calendar-week { fill: #dee2e6 !important;}
+ rect {
+  opacity: 0.75
+ }
+}

@@ -10,6 +10,10 @@ include /shared/block-feature.pug
 
 block append head
   script(defer, src="/javascript/scroll-tracker.js")
+  script(defer, src="/javascript/calendarheatmap.min.js")
+  script(defer, src="/javascript/weather-data.js")
+  script.
+    const weather = !{ JSON.stringify(weatherData) }
 
 block append content
   //- Welcome Header
@@ -125,8 +129,27 @@ block append content
     //- Feature with image aligned right
     +feature-1({headline: `<span class="fw-lighter">Electronics</span> Tinkering with the IoT`, content: filters.markdown("text-blocks/electronics.md"), image: "/images/electronics/electronics.jpg", imageAlt: "Weather and Calendar Display and Weather Station", tag: collections[ "second tag" ], tagCount: 6 })(id="electronics", class="mb-5")
     
-    //- Feature with image aligned right
-    +feature-2({headline: `<span class="fw-lighter">Data Visualization</span> Calendar Heatmap`, content: filters.markdown("text-blocks/heatmaps.md"), image: "/images/programming/calendar-heatmap.svg", imageAlt: "Calendar Heatmap" })(id="calendar-heatmap", class="mb-5")
+    section.block-feature-2.mb-5#calendar-heatmap
+      .container.mb-5
+        .row.my-5.d-flex.align-items-center
+            .col-sm-12.col-md-6.p-3.order-md-last
+                h2.light 
+                  span.fw-lighter Data Visualization
+                  | Calendar Heatmaps
+                | !{ filters.markdown("text-blocks/heatmaps.md") }
+            .col-sm-12.col-md-6.p-3.order-md-first
+
+              img.img-fluid(src="/images/3fc63f52.svg", alt="Calendar Heatmap", loading="lazy", decoding="async", width="100%", height="auto")
+
+              nav.nav.nav-pills.nav-fill.mb-3.me-5#calendar-heatmap-examples
+                a.nav-link.active#heatmap-high(href='#', title="High Temperatures (℃)") #[i.bi.bi-thermometer-sun] High (℃)
+                a.nav-link#heatmap-low(href='#', title="Low Temperatures (℃)") #[i.bi.bi-thermometer-snow] Low (℃)
+                a.nav-link#heatmap-rain(href='#', title="Precipitation (cm)") #[i.bi.bi-cloud-rain] Rain (cm)
+                a.nav-link#heatmap-snow(href='#', title="Snow (cm)") #[i.bi.bi-cloud-snow] Snow (cm)                
+
+              small.text-muted.fw-lighter
+                | Source: Lansing Weather Data 
+                a(href="https://www.extremeweatherwatch.com/cities/lansing/year-2025") (extremeweatherwatch.com)
 
     //- Feature with image aligned right
     +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span> My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.png", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
