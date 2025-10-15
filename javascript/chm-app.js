@@ -1,17 +1,23 @@
-let applyUpdate = (settings) => {
+let applyUpdate = () => {
+
+  let settings = calendarheatmap.settings
+
   for (let name in settings) {
-    let el = document.querySelector(`input[name="${name}"]`)
-    if (!el)
-      continue;
-    if (el.type == 'checkbox' && el.checked !== null){
-      el.checked = settings[name] == 'true' ? true : false;
-    }
-    else{
-      el.value = settings[name]
+    const options = Object.entries(settings[name])
+    for(let option of options){
+      // find elements
+      let el = document.querySelector(`input[name="${name}.${option[0]}"]`)
+      if (!el)
+        continue;
+      if (el.type == 'checkbox' && el.checked !== null){
+        el.checked = option[1] ? true : false;
+      }
+      else{
+        el.value = option[1]
+      }
     }
   }
   document.querySelector('#svg').innerHTML = calendarheatmap.build();
-  document.querySelector('#svg svg').classList.add("img-fluid");
   document.querySelector('#svg svg').alt = 'Calendar style heatmap.';
 }
 
@@ -19,7 +25,7 @@ let applyUpdate = (settings) => {
 const calendarheatmap = new CalendarHeatmap();
 
 // Figure container
-applyUpdate(Object.fromEntries([]))
+applyUpdate()
 
 // Figure settings
 document.querySelector('#settings').innerHTML = calendarheatmap.settingsHTML();
@@ -37,8 +43,26 @@ document.querySelector('#settings form').addEventListener("change", (event) => {
     if (!el.checked)
       formData.append(el.name, false)
   });
-  calendarheatmap.update(Object.fromEntries(formData));
-  applyUpdate(Object.fromEntries(formData));
+
+  let settings = {}
+  for (const [key, value] of formData.entries()) {
+    const keys = key.split('.');
+
+    // Create category key, if it doesn't exist
+    if( settings[keys[0]] === undefined)
+      settings[keys[0]] = {}
+
+    // Add key and value to category
+    if(value === "false" || value === "true" || value === "null")
+      settings[keys[0]][keys[1]] = JSON.parse(value);
+    else if(!isNaN(value) && value.trim() !== '')
+      settings[keys[0]][keys[1]] = Number(value);
+    else
+      settings[keys[0]][keys[1]] = value;
+  }
+
+  calendarheatmap.settings = settings
+  applyUpdate();
 });
 
 document.querySelector('#download-svg').addEventListener('click', (event) => {
@@ -82,21 +106,13 @@ document.querySelector('#download-png').addEventListener('click', (event) => {
       a.href = dataURL;
       a.dispatchEvent(my_evt);
     }
-    // canvas.parentNode.removeChild(canvas);
   }
 });
 
 document.querySelector('#download-json').addEventListener('click', (event) => {
   event.preventDefault();
 
-  const formData = new FormData(document.querySelector('#settings form')) || {}
-
-  document.querySelectorAll('#settings form input[type=checkbox]').forEach(el => {
-    if (!el.checked)
-      formData.append(el.name, false)
-  });
-
-  let settings = JSON.stringify(Object.fromEntries(formData), null, 2);
+  let settings = JSON.stringify(calendarheatmap.settings, null, 2);
 
   let blob = new Blob([settings], { type: 'text/json;charset=utf-8' });
   let URL = window.URL || window.webkitURL || window;
@@ -120,8 +136,8 @@ document.querySelector('#import-json').addEventListener('change', (event) => {
     reader.readAsText(file);
     reader.onload = function () {
       let importedSettings = JSON.parse(reader.result);
-      calendarheatmap.update(importedSettings);
-      applyUpdate(importedSettings);
+      calendarheatmap.settings = importedSettings;
+      applyUpdate();
     };
     reader.onerror = function () {
       console.log(reader.error);
@@ -139,38 +155,32 @@ document.querySelector('#import-data').addEventListener('change', (event)=> {
 
     reader.readAsText(file);
     reader.onload = function () {
-      if(calendarheatmap.importData(reader.result)){
+      if(!calendarheatmap.importData(reader.result)){
         document.querySelector('#msgModal h5').innerHTML = "Import Error"
         document.querySelector('#msgModal p').innerHTML = "The file content seems not to be in the correct format. CSV and JSON are supported."
         msgModal.show()
       }
       else{
-        let colName = "Unknown"
-        calendarheatmap.settings.forEach( e => {
-          if(e.id == 'data-input')
-            e.options.forEach( (e,i) => {
-              // Empty selection options
-              document.querySelector(`select[name="data-input.options[${i}].${e.name}"]`).innerHTML = "";
-
-              // Disable imported data
-              if(document.querySelector(`input[name="data-input.show"]`).checked)
-                document.querySelector(`input[name="data-input.show"]`).click();
-
-              let content = e.options.map( (e,idx) => `<option value="${e}"${ i==idx? 'selected': ''}>${e}</option>`);
-                colName = e.options[1] || "Unknown"
-              // Add new selection options
-              document.querySelector(`select[name="data-input.options[${i}].${e.name}"]`).innerHTML = content;
-            })
-        })
+        // Add selection options
+        document.querySelector(`select[name="data-input.dateColumn"]`).innerHTML = calendarheatmap.headers.map( 
+          header => `<option value="${header}" ${calendarheatmap.settings['data-input'].dateColumn === header? 'selected': ''}>${header}</option>`
+        ).join('\n');
+        
+        document.querySelector(`select[name="data-input.valueColumn"]`).innerHTML = calendarheatmap.headers.map(
+          header => `<option value="${header}" ${calendarheatmap.settings['data-input'].valueColumn === header? 'selected': ''}>${header}</option>`
+        ).join('\n');
 
         // Add second column as Title
-        document.querySelector(`input[name="title.options[0].titleText"]`).value = `Heatmap of ${colName}`;
+        document.querySelector(`input[name="title.titleText"]`).value = `Heatmap of ${calendarheatmap.settings['data-input'].valueColumn || "Unknown"}`;
 
         // Add filename as subtitle
-        document.querySelector(`input[name="subtitle.options[0].titleText"]`).value = file.name;
+        document.querySelector(`input[name="subtitle.titleText"]`).value = file.name;
         
         // Add a click event to the data to trigger an update
-        document.querySelector(`input[name="data-input.show"]`).click();
+        if(!document.querySelector(`input[name="data-input.show"]`).checked){
+          document.querySelector('#settings input[name="data-input.show"]').checked = true;
+          document.querySelector('#settings input[name="data-input.show"]').dispatchEvent(new Event('change', { bubbles: true }));
+        }
       }
     };
     reader.onerror = function () {
@@ -181,16 +191,19 @@ document.querySelector('#import-data').addEventListener('change', (event)=> {
 
 document.querySelector('#presets-selector').addEventListener('change', (event) => {
   calendarheatmap.reset();
-  calendarheatmap.update(calendarheatmap.getPreset(event.target.value));
-  applyUpdate(calendarheatmap.getPreset(event.target.value));
+  calendarheatmap.applyPreset(event.target.value);
+  applyUpdate();
 });
 
 document.querySelector('#reset-form').addEventListener('click', (event) => {
   event.preventDefault();
   document.querySelector('#settings form').reset();
+  document.querySelectorAll('#settings form select').forEach( itm => itm.innerHTML = "" );
+  document.querySelector('#settings input[name="data-input.show"]').checked = false;
+  document.querySelector('#settings input[name="data-input.show"]').dispatchEvent(new Event('change', { bubbles: true }));
   document.querySelector('#presets-selector').value = '-1';
   calendarheatmap.reset();
-  applyUpdate(Object.fromEntries([]));
+  applyUpdate();
 });
 
 document.querySelector('#toggleBtn').addEventListener('click', (event) => {
