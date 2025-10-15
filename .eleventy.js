@@ -222,9 +222,11 @@ module.exports = function (eleventyConfig) {
 
   // Photosynthesis Scheme
   eleventyConfig.addPassthroughCopy({ "./node_modules/photosynthesis-scheme/dist/photosynthesis.min.js": "./javascript/photosynthesis.min.js" });
+  eleventyConfig.addPassthroughCopy({ "./node_modules/photosynthesis-scheme/public/js/main.js": "./javascript/ps-app.js" });
 
   // Calendar Heatmap
   eleventyConfig.addPassthroughCopy({ "./node_modules/calendar-heatmap/dist/calendarheatmap.min.js": "./javascript/calendarheatmap.min.js" });
+  eleventyConfig.addPassthroughCopy({ "./node_modules/calendar-heatmap/public/js/main.js": "./javascript/chm-app.js" });
 
   // Copy font files
   eleventyConfig.addPassthroughCopy({ "./node_modules/bootstrap-icons/font/fonts": "/css/fonts" });
