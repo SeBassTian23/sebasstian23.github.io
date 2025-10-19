@@ -3,9 +3,17 @@ eleventyExcludeFromCollections: true
 dynamicPermalink: false
 permalink: "/sitemap.xml"
 ---
-<?xml version="1.0" encoding="utf-8"?>
-urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+<?xml version="1.0" encoding="UTF-8"?>
+urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml")
   each page in collections.all
-    url
-      loc #{ filters.url(metadata.url) + filters.url(page.url) }
-      lastmod #{ filters.htmlDatetimeString(page.date) }
+    if !page.data.excludeFromSitemap
+      url
+        loc #{ filters.url(metadata.url) + filters.url(page.url) }
+        if page.date
+          lastmod #{ filters.htmlDatetimeString(page.date) }
+        changefreq monthly
+        if filters.url(page.url) === '/'
+          priority 1.0
+        else 
+          priority 0.8
