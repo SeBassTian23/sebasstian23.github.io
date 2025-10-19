@@ -138,8 +138,8 @@ block append content
                   | Calendar Heatmaps
                 | !{ filters.markdown("text-blocks/heatmaps.md") }
             .col-sm-12.col-md-6.p-3.order-md-first
-
-              img.img-fluid(src="/images/3fc63f52.svg", alt="Calendar Heatmap", loading="lazy", decoding="async", width="100%", height="auto")
+              #calendar-heatmap-img
+                img.img-fluid(src="/images/3fc63f52.svg", alt="Calendar Heatmap", loading="lazy", decoding="async", width="100%", height="auto")
 
               nav.nav.nav-pills.nav-fill.mb-3.me-5#calendar-heatmap-examples
                 a.nav-link.active#heatmap-high(href='#', title="High Temperatures (℃)") #[i.bi.bi-thermometer-sun] High (℃)

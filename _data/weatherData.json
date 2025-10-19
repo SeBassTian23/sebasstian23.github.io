@@ -27,6 +27,72 @@
       "show": true
     }
   },
+  "views": {
+    "high": {
+      "data-input": {
+        "valueColumn": "High (°C)"
+      },
+      "title": {
+        "titleText": "High Temperatures"
+      },
+      "legend": {
+        "suffix": "°C"
+      },
+      "scale": {
+        "name": "YlOrRd"
+      }
+    },
+    "low": {
+      "data-input": {
+        "valueColumn": "Low (°C)"
+      },
+      "title": {
+        "titleText": "Low Temperatures"
+      },
+      "legend": {
+        "suffix": "°C"
+      },
+      "scale": {
+        "name": "GnBu",
+        "reverse": true
+      }
+    },
+    "rain": {
+      "calendar": {
+        "tileShape": "rectangle (rounded)"
+      },
+      "data-input": {
+        "valueColumn": "Precip. (cm)"
+      },
+      "title": {
+        "titleText": "Precipitation"
+      },
+      "legend": {
+        "suffix": "cm"
+      },
+      "scale": {
+        "name": "YlGnBu"
+      }
+    },
+    "snow": {
+      "calendar": {
+        "tileShape": "circle"
+      },
+      "data-input": {
+        "valueColumn": "Snow (cm)"
+      },
+      "title": {
+        "titleText": "Snow"
+      },
+      "legend": {
+        "suffix": "cm"
+      },
+      "scale": {
+        "name": "PuBuGn",
+        "reverse": true
+      }
+    }
+  },
   "data": [
     {
       "Day": "Wed Jan 01 2025",
