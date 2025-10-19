@@ -79,20 +79,25 @@
   }
 
   figure {
-    width: 100%
+    width: 100%;
+    & > div > svg {
+      width: 100%;
+      height: auto;
+    }
   }
 
   figure > div > svg {
-    width: 100%
+    width: 100%;
+    height: auto;
   }
 
-  #svg {
+  #svg:empty {
     aspect-ratio: auto 1400/400;
     display:flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   #svg:empty::after {
     content: "Loading…";
   }
