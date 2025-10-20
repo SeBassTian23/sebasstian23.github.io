@@ -1,15 +1,14 @@
-const striptags = require("striptags");
+import striptags from "striptags";
 
-module.exports = {
-  /**
-   * Returns back some attributes based on whether the
-   * link is active or a parent of an active item
-   *
-   * @param {String} itemUrl The link in question
-   * @param {String} pageUrl The page context
-   * @returns {String} The attributes or empty
-   */
-  getLinkActiveState(itemUrl, pageUrl) {
+/**
+ * Returns back some attributes based on whether the
+ * link is active or a parent of an active item
+ *
+ * @param {String} itemUrl The link in question
+ * @param {String} pageUrl The page context
+ * @returns {String} The attributes or empty
+ */
+export const getLinkActiveState = (itemUrl, pageUrl) => {
     let response = {};
 
     if (itemUrl === pageUrl) {
@@ -23,18 +22,19 @@ module.exports = {
     }
 
     return response;
-  },
-  /**
-   * Filters out the passed item from the passed collection
-   * and randomises and limits them based on flags
-   *
-   * @param {Array} collection The 11ty collection we want to take from
-   * @param {Object} item The item we want to exclude (often current page)
-   * @param {Number} limit=3 How many items we want back
-   * @param {Boolean} random=true Wether or not this should be randomised
-   * @returns {Array} The resulting collection
-   */
- getSiblingContent(collection, item, limit = 3, random = true) {
+}
+
+/**
+ * Filters out the passed item from the passed collection
+ * and randomises and limits them based on flags
+ *
+ * @param {Array} collection The 11ty collection we want to take from
+ * @param {Object} item The item we want to exclude (often current page)
+ * @param {Number} limit=3 How many items we want back
+ * @param {Boolean} random=true Wether or not this should be randomised
+ * @returns {Array} The resulting collection
+ */
+export const getSiblingContent = (collection, item, limit = 3, random = true) => {
   let filteredItems = collection.filter(x => x.url !== item.url);
 
   if (random) {
@@ -60,24 +60,21 @@ module.exports = {
   }
   
     return filteredItems;
-  },
+}
 
-  extractExcerpt(article, experptLength = 500) {
+export const extractExcerpt = (article, experptLength = 500) => {
 
-    let content = "";
-    let excerpt = null;
-  
-    if (!article.hasOwnProperty("data"))
-      content = article
-    else
-      content = article.data.page.excerpt;
-  
-    excerpt = striptags(content)
-      .substring(0, experptLength) // Cap at 200 characters
-      .replace(/^\s+|\s+$|\s+(?=\s)/g, "")
-      .trim();
-    return (excerpt && excerpt.length == experptLength)? `${excerpt}…` : excerpt || "" ;
-  }
+  let content = "";
+  let excerpt = null;
 
-};
-  
+  if (!article.hasOwnProperty("data"))
+    content = article
+  else
+    content = article.data.page.excerpt;
+
+  excerpt = striptags(content)
+    .substring(0, experptLength) // Cap at 200 characters
+    .replace(/^\s+|\s+$|\s+(?=\s)/g, "")
+    .trim();
+  return (excerpt && excerpt.length == experptLength)? `${excerpt}…` : excerpt || "" ;
+}
