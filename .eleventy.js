@@ -97,7 +97,6 @@ module.exports = function (eleventyConfig) {
 
   // Format dates
   eleventyConfig.addFilter("formatedDate", dateObj => {
-    // return dayjs.utc(dateObj).format("DD MMM YYYY");
     return dayjs.utc(dateObj).format("MM/DD/YYYY");
   });
   eleventyConfig.addFilter('htmlDatetimeString', (dateObj) => {
