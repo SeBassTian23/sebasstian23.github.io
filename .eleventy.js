@@ -36,6 +36,7 @@ const purgeCssPlugin = require("eleventy-plugin-purgecss");
 // Helper Functions 
 const {imageHTML,imageResizedURL,imageSizes,album} = require('./_data/images');
 const extractExcerpt = require('./_data/helpers').extractExcerpt;
+import dependencyCopies from './_configs/dependencies.js'
 
 module.exports = function (eleventyConfig) {
   // Add plugins
@@ -207,37 +208,6 @@ module.exports = function (eleventyConfig) {
    * Passthrough Settings
    */
 
-  // Copy css dependencies
-  // eleventyConfig.addPassthroughCopy({ "./node_modules/prismjs/themes/": "/css/prism" });
-  // eleventyConfig.addPassthroughCopy({ "_assets/scss/base/prism-theme.css": "/css/prism.css" });
-
-  // Copy javascript dependencies
-  eleventyConfig.addPassthroughCopy({ "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "./javascript/bootstrap.bundle.min.js" });
-  eleventyConfig.addPassthroughCopy({ "_assets/javascript/*.js": "./javascript/" });
-
-  // Photosynthesis Scheme
-  eleventyConfig.addPassthroughCopy({ "./node_modules/photosynthesis-scheme/dist/photosynthesis.min.js": "./javascript/photosynthesis.min.js" });
-  eleventyConfig.addPassthroughCopy({ "./node_modules/photosynthesis-scheme/public/js/main.js": "./javascript/ps-app.js" });
-
-  // Calendar Heatmap
-  eleventyConfig.addPassthroughCopy({ "./node_modules/calendar-heatmap/dist/calendarheatmap.min.js": "./javascript/calendarheatmap.min.js" });
-  eleventyConfig.addPassthroughCopy({ "./node_modules/calendar-heatmap/public/js/main.js": "./javascript/chm-app.js" });
-
-  // Copy font files
-  eleventyConfig.addPassthroughCopy({ "./node_modules/bootstrap-icons/font/fonts": "/css/fonts" });
-
-  // Copy favicon files and manifest file
-  eleventyConfig.addPassthroughCopy({ "_assets/icons": "/" });
-  eleventyConfig.addPassthroughCopy({ "_assets/*.webmanifest": "/" });
-  eleventyConfig.addPassthroughCopy({ "_assets/videos": "/videos" });
-
-  // Copy asset images to img
-  // eleventyConfig.addPassthroughCopy( {"_assets/images/**/*.svg": "/images"});
-  eleventyConfig.addPassthroughCopy({ "_assets/public": "/public" });
-
-  // Copy CNAME
-  eleventyConfig.addPassthroughCopy({ "_assets/CNAME": "CNAME" });
-
   /**
    * Markdown Setup
    */
@@ -328,6 +298,8 @@ module.exports = function (eleventyConfig) {
     const imgSize = token.attrGet('title') || imageSizes;
 
     return imageHTML(imgSrc, imgAlt, sizes = "100vw");
+  for(let dependency of dependencyCopies){
+    eleventyConfig.addPassthroughCopy(dependency);
   }
 
   markdownLibrary.renderer.rules.table_open = function(tokens, idx) {
