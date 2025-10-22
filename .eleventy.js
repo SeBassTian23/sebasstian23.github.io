@@ -175,24 +175,9 @@ module.exports = function (eleventyConfig) {
    * Add shortcodes
    */
 
-  eleventyConfig.addNunjucksShortcode("image", imageHTML);
-  eleventyConfig.addLiquidShortcode("image", imageHTML);
-  // === Liquid needed if `markdownTemplateEngine` **isn't** changed from Eleventy default
-  eleventyConfig.addJavaScriptFunction("image", imageHTML);
-
-  eleventyConfig.addNunjucksShortcode("imageResizedURL", imageResizedURL);
-  eleventyConfig.addLiquidShortcode("imageResizedURL", imageResizedURL);
-  // === Liquid needed if `markdownTemplateEngine` **isn't** changed from Eleventy default
-  eleventyConfig.addJavaScriptFunction("imageResizedURL", imageResizedURL);
-
-  eleventyConfig.addNunjucksShortcode("album", album);
-  eleventyConfig.addLiquidShortcode("album", album);
-  // === Liquid needed if `markdownTemplateEngine` **isn't** changed from Eleventy default
-  eleventyConfig.addJavaScriptFunction("album", album);
-
-  eleventyConfig.addShortcode("fileTime", function(filepath, dateformat='YYYY-MM-DD') {
-    if ( fs.existsSync( path.join(process.cwd(), filepath) ) ){
-      let stats = fs.statSync( path.join(process.cwd(), filepath) )
+  eleventyConfig.addFilter("fileTime", function (filepath, dateformat = 'YYYY-MM-DD') {
+    if (fs.existsSync(path.join(process.cwd(), filepath))) {
+      let stats = fs.statSync(path.join(process.cwd(), filepath))
       return dayjs.utc(stats.mtime).format(dateformat);
     }
     return "Unknown date"
