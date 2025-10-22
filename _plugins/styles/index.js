@@ -1,214 +1,190 @@
-const sass = require("sass");
-const CleanCSS = require("clean-css");
-require("css.escape");
-const path = require("path");
-const fs = require("fs");
-const postcss = require('postcss');
-const autoprefixer = require("autoprefixer");
+import path from "path";
+import fs from "fs";
+import * as sass from "sass";
+import CleanCSS from "clean-css";
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
 
+// Get relative path from cwd
 const pathRel = (file) => path.relative(process.cwd(), file);
 
-/**
- * 
- * @param {*} css 
- * @param {*} options 
- * @returns 
- */
+// Minify CSS using CleanCSS
 const minifyCSS = (css, options = {}) => {
   const minified = new CleanCSS(options).minify(css);
+  
   if (!minified.styles) {
-    // At any point where we return CSS if it
-    // errors we try to show an overlay.
-    console.error("Error minifying stylesheet.");
-    console.log(minified);
-    return minified.errors[0];
+    console.error("Error minifying CSS:", minified.errors);
+    return css; // Return unminified on error
   }
+  
   return minified.styles;
 };
 
-/**
- * 
- * @param {*} css 
- * @param {*} options 
- * @returns 
- */
-const postCSS = (css, options = {}) => {
-  css = postcss([ autoprefixer ]).process(css).css;
-  return css;
+// Process CSS with PostCSS (autoprefixer)
+const processPostCSS = async (css) => {
+  const result = await postcss([autoprefixer]).process(css, { from: undefined });
+  return result.css;
 };
 
-// The input can be anything accepted by renderSync. E.g.
-// {data: "css { ... }"} OR { file: "path/to.css" }
-
-/**
- * 
- * @param {*} options 
- * @returns 
- */
-const compileScss = (options) => {
-  let result;
+// Compile a single SCSS file
+const compileSCSS = (filePath, options = {}) => {
   try {
-    result = sass.compile(options.file);
-  } catch (error) {
-    result = error;
-  }
-
-  if (!result || !result.css) {
-    console.error("Error compiling stylesheet.");
-    // We're using the same shape returned by renderSync
-    // if css is a string result.css.toString() will still work
+    const result = sass.compile(filePath, options);
     return {
-      ...result,
-      error: result && result.message
-      // css: (result) => {
-      //   (result && result.message) || "Error compiling stylesheet."
-      // },
+      css: result.css,
+      loadedUrls: result.loadedUrls,
+      success: true,
+    };
+  } catch (error) {
+    console.error(`SCSS compilation error in ${filePath}:`, error.message);
+    return {
+      css: `/* SCSS Error: ${error.message} */`,
+      error: error.message,
+      success: false,
     };
   }
-  return result;
 };
 
-/**
- * 
- * @param {*} eleventyConfig 
- * @param {*} param1 
- * @returns 
- */
-const compileScssEntryPoints = (
-  eleventyConfig,
-  options = {}
-) => {
-  let watchPaths = [];
+// Main SCSS Plugin for Eleventy 3
+export default function scssPlugin(eleventyConfig, options = {}) {
+  // Default configuration
+  const config = {
+    entryPoints: {},
+    outputDir: null,
+    sassOptions: {
+      loadPaths: ["_assets/scss", "node_modules"],
+      style: "compressed",
+      silenceDeprecations: ["import","color-functions", "global-builtin"], // Bootstrap related
+    },
+    minify: true,
+    autoprefixer: true,
+    ...options,
+  };
 
-  let scssOptions = { entryPoints = {}, output } = options.scss || {};
-  let cssOptions  = options.minifyCss || {};
-  let postOptions = options.postCss || {};
-
-  if (Object.entries(entryPoints).length === 0) {
-    if (eleventyConfig.addGlobalData) {
-      // If the plugin is used a key may be expected by the theme
-      // return an empty object if no scss
-      eleventyConfig.addGlobalData("scss", {});
-    }
-    console.log(`No scss entryPoints found.`);
-    console.log(
-      `Plugin expects data to be in the shape: { entryPoints: { name: "path/to/file.scss"} }`
-    );
+  // Check if we have entry points
+  if (Object.keys(config.entryPoints).length === 0) {
+    console.log("No SCSS entry points defined");
+    eleventyConfig.addGlobalData("scss", {});
     return;
   }
-  const data = {};
-  const keys = Object.keys(entryPoints);
-  for (let index = 0; index < keys.length; index++) {
-    const key = keys[index];
-    const result = compileScss({ file: entryPoints[key], ...scssOptions });
-    let css = result.css.toString();
-    css = postCSS( css, postOptions );
-    css = minifyCSS(css, cssOptions);
-    if (output) {
-      let outfile = path.join(output, `${key}.css`);
-      if(!fs.existsSync(eleventyConfig.dir.output))
-        fs.mkdirSync(eleventyConfig.dir.output);
-      if(!fs.existsSync(output))
-        fs.mkdirSync(output);
-      fs.writeFileSync(outfile, css);
+
+  let compiledData = {};
+  let watchedPaths = new Set();
+
+  // Compile all SCSS entry points
+  const compileAll = async () => {
+    const data = {};
+    const allWatchPaths = new Set();
+
+    for (const [key, filePath] of Object.entries(config.entryPoints)) {
+      console.log(`Compiling ${key}: ${filePath}`);
+
+      // Compile SCSS
+      const result = compileSCSS(filePath, config.sassOptions);
+      
+      if (!result.success) {
+        data[key] = result.css;
+        continue;
+      }
+
+      let css = result.css;
+
+      // Apply PostCSS (autoprefixer)
+      if (config.autoprefixer) {
+        css = await processPostCSS(css);
+      }
+
+      // Minify CSS
+      if (config.minify) {
+        css = minifyCSS(css);
+      }
+
+      // Write to file if output directory specified
+      if (config.outputDir) {
+        const outputPath = path.join(config.outputDir, `${key}.css`);
+        fs.mkdirSync(config.outputDir, { recursive: true });
+        fs.writeFileSync(outputPath, css);
+        console.log(`Written to ${outputPath}`);
+      }
+
+      // Track dependencies for watch mode
+      if (result.loadedUrls) {
+        result.loadedUrls.forEach(url => {
+          if (url.protocol === "file:") {
+            const filePath = url.pathname;
+            allWatchPaths.add(pathRel(filePath));
+          }
+        });
+      }
+
+      data[key] = css;
     }
 
-    // We are getting the includedFiles from the SCSS renderSync result
-    // We use this to add watch paths to 11ty because the CSS files
-    // might be outside the project root
-    // We want to capture all files use to compile scss not just the entry
-    if (result && result.stats) {
-      watchPaths = [
-        ...watchPaths,
-        ...result.stats.includedFiles.map((file) => pathRel(file)),
-      ];
-    } else if (result && result.file) {
-      watchPaths = [...watchPaths, pathRel(result.file)];
-    }
-    data[key] = css;
-  }
+    // Add all watch targets
+    allWatchPaths.forEach(watchPath => {
+      if (!watchedPaths.has(watchPath)) {
+        eleventyConfig.addWatchTarget(watchPath);
+        watchedPaths.add(watchPath);
+      }
+    });
 
-  watchPaths.forEach((watchPath) => {
-    eleventyConfig.addWatchTarget(watchPath);
-  });
+    return data;
+  };
 
-  return { data, watchPaths };
-};
-
-const scssShortcode = (content) => {
-  const result = compileScss({ data: content });
-  const post = postCss( result.css.toString() );
-  const minified = minifyCSS(post);
-  return minified;
-};
-
-
-const addCachedGlobalData = (eleventyConfig, cb, key) => {
-  // Compile once to prime cache (data varaiable is our cache) and add watch targets
-  let data = cb();
+  // Compile on first run and cache
   let buildCounter = 0;
   let lastCompile = 0;
 
-  // After each build increment the build counter
-  eleventyConfig.on("afterBuild", () => {
+  eleventyConfig.on("eleventy.before", async () => {
+    compiledData = await compileAll();
+  });
+
+  eleventyConfig.on("eleventy.after", () => {
     buildCounter++;
   });
 
-  // If this is a function 11ty will attempt to resolve the data
-  // If it is async 11ty will add the key scss and resolve data when called
-  eleventyConfig.addGlobalData(key, () => {
-    // if the lastCompile can buildCounter don't match the cached data
+  // Add global data with caching
+  eleventyConfig.addGlobalData("scss", async () => {
     if (lastCompile !== buildCounter) {
       lastCompile = buildCounter;
-      data = cb();
+      compiledData = await compileAll();
     }
-    return data;
+    return compiledData;
+  });
+
+  // Recompile on file changes
+  eleventyConfig.on("eleventy.beforeWatch", async (changedFiles) => {
+    const changedPaths = changedFiles.map(file => pathRel(file));
+    
+    // Check if any watched SCSS files changed
+    const shouldRecompile = changedPaths.some(changed => 
+      Array.from(watchedPaths).includes(changed)
+    );
+
+    if (shouldRecompile) {
+      console.log("SCSS files changed, recompiling...");
+      compiledData = await compileAll();
+    }
+  });
+
+  // Optional: Add paired shortcode for inline SCSS
+  eleventyConfig.addPairedShortcode("scss", async (content) => {
+    try {
+      const result = sass.compileString(content, config.sassOptions);
+      let css = result.css;
+
+      if (config.autoprefixer) {
+        css = await processPostCSS(css);
+      }
+
+      if (config.minify) {
+        css = minifyCSS(css);
+      }
+
+      return css;
+    } catch (error) {
+      console.error("Inline SCSS error:", error.message);
+      return `/* Error: ${error.message} */`;
+    }
   });
 }
-
-/**
- * 
- * @param {*} eleventyConfig 
- * @param {*} options 
- */
- const stylesPlugin = (eleventyConfig, options) => {
-  let watchedPaths = [];
-
-  if (eleventyConfig.addGlobalData) {
-    addCachedGlobalData(
-      eleventyConfig,
-      () => {
-        const { data, watchPaths } = compileScssEntryPoints(
-          eleventyConfig,
-          options
-        );
-        watchedPaths = [...new Set([...watchedPaths, ...watchPaths])];
-        return data;
-      },
-      "scss"
-    );
-  } else {
-    const { watchPaths } = compileScssEntryPoints(eleventyConfig, options);
-    watchedPaths = [...new Set([...watchedPaths, ...watchPaths])];
-  }
-
-  eleventyConfig.on("beforeWatch", (changedFiles) => {
-    console.log({ watchedPaths, changedFiles: changedFiles.map((file) => pathRel(file)) });
-
-    // Run me before --watch or --serve re-runs
-    if (
-      watchedPaths.some((watchPath) =>
-        changedFiles.map((file) => pathRel(file)).includes(watchPath)
-      )
-    ) {
-      const { watchPaths } = compileScssEntryPoints(eleventyConfig, options);
-      watchedPaths = [...new Set([...watchedPaths, ...watchPaths])];
-    }
-  });
-
-  eleventyConfig.addPairedShortcode("scss", scssShortcode);
-};
-
-stylesPlugin.scssShortcode = scssShortcode;
-
-module.exports = stylesPlugin;

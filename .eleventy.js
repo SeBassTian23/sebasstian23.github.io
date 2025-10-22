@@ -9,7 +9,7 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 
 // Own Plugin based on @jamshop/eleventy-plugin-scss
-const pluginStyles = require('./_plugins/styles');
+import scssPlugin from "./_plugins/styles/index.js";
 
 // Map Gernerating Plugin
 const pluginMap = require('./_plugins/map');
@@ -49,16 +49,11 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginMap);
 
-  eleventyConfig.addPlugin(pluginStyles, {
-    scss: {
-      entryPoints: {
-        main: "_assets/scss/main.scss"
-      },
-      output: "_site/css/"
-    },
-    minifyCss: {
-      aggressiveMerging: false
-    }
+  eleventyConfig.addPlugin(scssPlugin, {
+    entryPoints: { main: "_assets/scss/main.scss" },
+    outputDir: "_site/css",
+    minify: true,
+    autoprefixer: true,
   });
 
   // Add watch targets
