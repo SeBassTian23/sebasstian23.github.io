@@ -201,18 +201,13 @@ module.exports = function (eleventyConfig) {
   // Markdown Library Setup
   eleventyConfig.setLibrary("md", markdownLibrary);
 
-  /**
-   * Pug Setup
-   */
-
-  // Set options for Pug
-  global.filters = eleventyConfig.javascriptFunctions;
-  eleventyConfig.setPugOptions({
-    globals: ['filters'],
+  // Pug Rendering Plugin
+  eleventyConfig.addPlugin(pugPlugin, {
     filters: {
+      ...eleventyConfig.getFilters(),
       'markdown-it': function (text, options) {
         return markdownLibrary.render(text, options);
-      }
+      },
     },
     debug: false
   });
