@@ -41,7 +41,8 @@ import { extractExcerpt } from "./_data/helpers.js";
 import serverConfigs from './_configs/server.js'
 import dependencyCopies from './_configs/dependencies.js'
 
-module.exports = function (eleventyConfig) {
+export default async function (eleventyConfig) {
+
   // Add plugins
   eleventyConfig.addFilter("imageResizedURL", imageResizedURL);
   eleventyConfig.addFilter("image", imageHTML);
