@@ -1,12 +1,14 @@
 // Native
-const fs = require("fs");
-const path = require('path');
+import fs from "fs";
+import path from "path";
 
 // Eleventy Plugins
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const pluginNavigation = require("@11ty/eleventy-navigation");
-const pluginTOC = require('eleventy-plugin-nesting-toc');
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import pluginNavigation from "@11ty/eleventy-navigation";
+import pluginTOC from "eleventy-plugin-nesting-toc";
+import pugPlugin from "@11ty/eleventy-plugin-pug";
+
 
 // Own Plugin based on @jamshop/eleventy-plugin-scss
 import scssPlugin from "./_plugins/styles/index.js";
