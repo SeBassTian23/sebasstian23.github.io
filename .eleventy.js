@@ -204,6 +204,7 @@ module.exports = function (eleventyConfig) {
     excerpt_separator: "<!-- excerpt -->"
   });
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
+  eleventyConfig.addFilter("excerpt", extractExcerpt);
 
   /**
    * Passthrough Settings
