@@ -137,11 +137,11 @@ p {
     text-decoration: underline;
   }
   & ul,
-  ol {
+  & ol {
     list-style: none;
   }
   & > ul,
-  > ol {
+  & > ol {
     padding-left: 0;
   }
 }

@@ -6,7 +6,7 @@ import path from "path";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
-import pluginTOC from "eleventy-plugin-nesting-toc";
+import pluginTOC from "eleventy-plugin-toc";
 import pugPlugin from "@11ty/eleventy-plugin-pug";
 
 
@@ -54,6 +54,8 @@ export default async function (eleventyConfig) {
   });
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginTOC);
+  
+  eleventyConfig.addFilter('toc', (input, options = {}) => eleventyConfig.javascript.filters.toc(input, options ) );
 
   eleventyConfig.addPlugin(pluginMap);
 
