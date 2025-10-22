@@ -15,8 +15,8 @@ import scssPlugin from "./_plugins/styles/index.js";
 const pluginMap = require('./_plugins/map');
 
 // DayJS
-const dayjs = require("dayjs");
-const utc = require('dayjs/plugin/utc');
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js"; // TODO: Not sure why this needs a .js
 dayjs.extend(utc);
 
 // Libraries
@@ -26,10 +26,10 @@ import markdownLibrary from './_libraries/markdownLibrary.js'
 const natsort = require("natsort").default;
 
 // Slugify
-const slugify = require("slugify");
+import slugify from "slugify";
 
 // CSS
-const purgeCssPlugin = require("eleventy-plugin-purgecss");
+import purgeCssPlugin from "eleventy-plugin-purgecss";
 
 // Helper Functions 
 const {imageHTML,imageResizedURL,imageSizes,album} = require('./_data/images');
