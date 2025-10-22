@@ -23,7 +23,7 @@ dayjs.extend(utc);
 import markdownLibrary from './_libraries/markdownLibrary.js'
 
 // Natural Sorting
-const natsort = require("natsort").default;
+import { natsort } from "natsort-esm";
 
 // Slugify
 import slugify from "slugify";
@@ -112,7 +112,7 @@ module.exports = function (eleventyConfig) {
     return slugify(input, options);
   });
 
-
+  // Add natural sorting
   eleventyConfig.addFilter("natsort", (list) => { return list.sort(natsort({ insensitive: true })); });
 
   eleventyConfig.addFilter("getSingleCategory", (collection, str) => {
