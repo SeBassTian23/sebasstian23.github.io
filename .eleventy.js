@@ -34,8 +34,8 @@ import slugify from "slugify";
 import purgeCssPlugin from "eleventy-plugin-purgecss";
 
 // Helper Functions 
-const {imageHTML,imageResizedURL,imageSizes,album} = require('./_data/images');
-const extractExcerpt = require('./_data/helpers').extractExcerpt;
+import { imageHTML, imageResizedURL, imageSizes, album } from "./_data/images.js";
+import { extractExcerpt } from "./_data/helpers.js";
 
 // Configurations
 import serverConfigs from './_configs/server.js'
@@ -43,6 +43,9 @@ import dependencyCopies from './_configs/dependencies.js'
 
 module.exports = function (eleventyConfig) {
   // Add plugins
+  eleventyConfig.addFilter("imageResizedURL", imageResizedURL);
+  eleventyConfig.addFilter("image", imageHTML);
+  eleventyConfig.addFilter("album", album);
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight, {
     templateFormats: ["md"],
