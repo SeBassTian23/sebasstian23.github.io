@@ -5,8 +5,10 @@ pagination:
   size: 1
   alias: tag
   addAllPagesToCollections: true
-title: "Hello Tags"
-permalink: "| /tags/#{filters.url(filters.slugify(tag))}/"
+excludeFromSitemap: true
+eleventyComputed:
+  permalink: "| tags/#{ filters.slugify(tag) }/"
+  title: "| Tag #{\"|\"} #{tag}"
 ---
 include /shared/block-hero
 include /shared/block-post
