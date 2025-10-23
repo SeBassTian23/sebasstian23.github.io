@@ -70,6 +70,19 @@ block append content
                 .fs-6.lh-lg.fw-medium Location
                 | !{ filters.image( filters.url( filters.generateMap(location, presetsMap["post-dotted"], page.fileSlug) ))}
 
+          if download
+            .row.mb-4
+              .col.px-3
+                .fs-6.lh-lg.fw-medium Downloads
+                - if (typeof download === "string")
+                  - filename = download.split("/").splice(-1)
+                  a.tag.text-bg-light.link-darken.me-1.mb-1(href=filters.url(download)) #[i.bi.bi-file-earmark] #{download}
+                - else if (typeof download === "object" && Array.isArray(download))
+                  each file, index in download
+                    - filename = file.split("/").splice(-1)
+                    a.tag.text-bg-light.link-darken.me-1.mb-1(href=filters.url(file)) #{filename}
+                    //- TODO: Add different icons depending on the file type
+
           //- Tags
           if collections.tagList.length > 0
             .row.mb-4
