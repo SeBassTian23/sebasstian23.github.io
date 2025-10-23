@@ -14,7 +14,7 @@ import pugPlugin from "@11ty/eleventy-plugin-pug";
 import scssPlugin from "./_plugins/styles/index.js";
 
 // Map Gernerating Plugin
-const pluginMap = require('./_plugins/map');
+import mapPlugin from "./_plugins/maps/index.js";
 
 // DayJS
 import dayjs from "dayjs";
@@ -47,6 +47,10 @@ export default async function (eleventyConfig) {
   eleventyConfig.addFilter("imageResizedURL", imageResizedURL);
   eleventyConfig.addFilter("image", imageHTML);
   eleventyConfig.addFilter("album", album);
+
+  // TODO: establish correct import of plugins
+  eleventyConfig.addPlugin(mapPlugin);
+
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight, {
     templateFormats: ["md"],
@@ -56,8 +60,9 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginTOC);
   
   eleventyConfig.addFilter('toc', (input, options = {}) => eleventyConfig.javascript.filters.toc(input, options ) );
-
-  eleventyConfig.addPlugin(pluginMap);
+  eleventyConfig.addFilter('generateMap', (content, options, file) => {
+    return eleventyConfig.javascript.filters.generateMap(content, options, file )
+  });
 
   eleventyConfig.addPlugin(scssPlugin, {
     entryPoints: { main: "_assets/scss/main.scss" },
@@ -222,6 +227,7 @@ export default async function (eleventyConfig) {
   // Set up Server
   eleventyConfig.setServerOptions(serverConfigs);
 
+};
 
 
 // This named export is optional

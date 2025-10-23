@@ -1,20 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-const chroma = require("chroma-js");
-const mapTranslateLatLng = require("./marker");
-const initArguments = require("./defaults");
-const parseLocation = require("./parselocation")
+import fs from "fs";
+import path from "path";
+import chroma from "chroma-js";
+import mapTranslateLatLng from "./marker.js";
+import initArguments from "./defaults.js";
+import parseLocation from "./parselocation.js";
 
 // https://jvm-docs.vercel.app/
-function generateMap(content=[],options){
+const generateMap = (content=[], options={}) => {
   
   // Add user settings
   options = {...initArguments, ...options}
   
-  let map = fs.readFileSync(path.join(process.cwd(),'_plugins','map','maps',`${options.map}-${options.projection}.svg`), { encoding: 'utf8', flag: 'r' })
+  let map = fs.readFileSync(path.join(process.cwd(),'_plugins','maps','maps',`${options.map}-${options.projection}.svg`), { encoding: 'utf8', flag: 'r' })
   let markers;
+  let markersElements;
+  let markersAnimated;
   let lines;
   let labels;
+  let defs;
 
   // Add content
   if(content && Array.isArray(content)){
@@ -199,7 +202,7 @@ function generateMap(content=[],options){
   if(options.legendShow){
     let legend = ``
 
-    let defs = `<linearGradient id="LegendGradientFill">`
+    defs = `<linearGradient id="LegendGradientFill">`
 
     let legendFill = `url(#LegendGradientFill)`
     let legendColorGradient = chroma.scale(options.markerScale).colors()
@@ -283,4 +286,4 @@ function generateMap(content=[],options){
   return map;
 }
 
-module.exports = generateMap;
+export default generateMap

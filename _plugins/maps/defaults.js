@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   width: 600,
   background: 'transparent',
   

@@ -68,7 +68,7 @@ block append content
             .row
               .col.px-3
                 .fs-6.lh-lg.fw-medium Location
-                | !{ filters.image( filters.url( filters.map(location, presetsMap["post-dotted"], page.fileSlug) ))}
+                | !{ filters.image( filters.url( filters.generateMap(location, presetsMap["post-dotted"], page.fileSlug) ))}
 
           //- Tags
           if collections.tagList.length > 0

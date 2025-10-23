@@ -52,8 +52,6 @@ const mapTranslateLatLng = (lat, lng, mapWidth, projection='miller') => {
   return point;
 };
 
-module.exports = mapTranslateLatLng;
-
 // Miller Projection
 function miller(lat, lng, center) {
   return {
@@ -130,3 +128,5 @@ function mercator(lat, lng, center) {
   //     y: y + this.transY * this.scale + inset.top * this.scale
   //   }
   // }
+
+  export default mapTranslateLatLng;
