@@ -12,6 +12,7 @@
     "favicon": "sh favicon.sh",
     "clean": "rm -r _site"
   },
+  "type": "module",
   "keywords": [],
   "repository": {
     "type": "git",
