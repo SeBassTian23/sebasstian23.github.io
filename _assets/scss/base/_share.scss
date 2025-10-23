@@ -1,0 +1,23 @@
+.link-logo {
+
+  & i[class^=bi-] {
+    transition: 0.2s ease-in-out;
+  }
+
+  & .bi-facebook:hover {
+    color: #1877f2 !important;
+    transform: scale(2.1);
+  }
+  & .bi-twitter-x:hover {
+    color: #000000 !important;
+  }
+  & .bi-bluesky:hover {
+    color: #01aaff !important;
+  }
+  & .bi-reddit:hover {
+    color: #ff5700 !important;
+  }
+  & .bi-linkedin:hover {
+    color: #0a66c2 !important;
+  }
+}
