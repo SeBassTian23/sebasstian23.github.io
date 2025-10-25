@@ -53,7 +53,8 @@ block append content
           .row.mb-4
             .col.px-3
               .fs-6.lh-lg.fw-medium Search
-              input.form-control#searchField(type="search", placeholder="Search Articles")
+              .search-container
+                input.form-control#searchField(type="search", placeholder="Search Articles")
               .d-flex.flex-row.justify-content-end
                 ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
 

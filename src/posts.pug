@@ -35,9 +35,10 @@ block append content
         .row
           .col.p-3
             .fs-6.lh-lg.fw-medium Search
-            input.form-control#searchField(type="search", placeholder="Search Articles")
-            .d-flex.flex-row.justify-content-end
-              ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
+            .search-container
+              input.form-control#searchField(type="search", placeholder="Search Articles")
+              .d-flex.flex-row.justify-content-end
+                ul#searchResults.dropdown-menu.dropdown-menu-end(style="min-width:20rem;")
 
         if collections.tagList.length > 0
           .row

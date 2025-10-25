@@ -156,6 +156,24 @@ a[href^="http"]:has(i[class^="bi-"]):has(svg)::after {
   content: none !important;
 }
 
+.search-container {
+  position: relative;
+  &:has(input:placeholder-shown)::after {
+    content: "/";
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    // padding: 0 .55rem;
+    // line-height: 1.5rem;
+    border-radius: var(--bs-border-radius);
+    position: absolute;
+    top: 0.35rem;
+    right: 0.5rem;
+    color: var(--bs--secondary-color);
+    aspect-ratio: auto 1 / 1;
+    width: 1.5rem;
+    text-align: center;
+  }
+}
+
 // Tags style
 .tag {
   text-transform: uppercase;
