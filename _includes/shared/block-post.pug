@@ -61,7 +61,7 @@ mixin post-card-sm(post)
           - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 300)
           .card-img-top-sm.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`, title=post.data.imageAlt)
         else if post.data && !post.data.image && post.data.album
-          - var images = filters.imageResizedURL(filters.url( filters.album(post.data.album)[0] || null ), "jpeg", 300)
+          - var images = filters.imageResizedURL(filters.url( filters.titleImgFromAlbum( post.data.album )  || null ), "jpeg", 300)
           .card-img-top-sm.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`)
         else
           svg.bd-placeholder-img.card-img-top-sm.rounded-0(width='100%' height='125' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail' preserveaspectratio='xMidYMid slice' focusable='false')
@@ -98,7 +98,7 @@ mixin post-card-lg(post)
           - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 1500)
           .card-img-top-lg.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`, title=post.data.imageAlt)
         else if post.data && !post.data.image && post.data.album
-          - var images = filters.imageResizedURL(filters.url( filters.album(post.data.album)[0] || null ), "jpeg", 1500)
+          - var images = filters.imageResizedURL(filters.url( filters.titleImgFromAlbum( post.data.album )  || null ), "jpeg", 1500)
           .card-img-top-lg.border.rounded-0(style=`background-image:url(${filters.url(images.url)});`)
         else
           svg.bd-placeholder-img.card-img-top-sm.rounded-0(width='100%' height='125' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail' preserveaspectratio='xMidYMid slice' focusable='false')
@@ -134,7 +134,7 @@ mixin post-carussel(posts)
               - var images = filters.imageResizedURL(filters.url(post.data.image), "jpeg", 1500)
               .post-header-img(style=`background-image:url(${filters.url(images.url)}); filter:brightness(0.5);`, title=post.data.imageAlt)
             else if !post.data.image && post.data.album
-              - var images = filters.imageResizedURL(filters.url( filters.album(post.data.album)[0] || null ), "jpeg", 1500)
+              - var images = filters.imageResizedURL(filters.url( filters.titleImgFromAlbum( post.data.album )  || null ), "jpeg", 1500)
               .post-header-img(style=`background-image:url(${filters.url(images.url)}); filter:brightness(0.5);`)
             else
               svg.bd-placeholder-img(width='100%' height='400px' xmlns='http://www.w3.org/2000/svg' aria-hidden='true' preserveaspectratio='xMidYMid slice' focusable='false')
