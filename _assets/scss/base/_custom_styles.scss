@@ -401,12 +401,12 @@ html[data-bs-theme="dark"] {
       filter: brightness(.75);
     }
     & .carousel-caption {
-      & h5, p {
+      & .fs-5, p {
         color: var(--bs-light-text-emphasis) !important;
       }
     }
     & .carousel-control-next-icon, .carousel-control-prev-icon {
-      filter: invert(0);
+      filter: invert(1);
     }
     & .carousel-indicators [data-bs-target] {
       background-color: var(--bs-light-text-emphasis) !important;
