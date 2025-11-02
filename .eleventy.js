@@ -9,7 +9,6 @@ import pluginNavigation from "@11ty/eleventy-navigation";
 import pluginTOC from "eleventy-plugin-toc";
 import pugPlugin from "@11ty/eleventy-plugin-pug";
 
-
 // Own Plugin based on @jamshop/eleventy-plugin-scss
 import scssPlugin from "./_plugins/styles/index.js";
 
@@ -38,7 +37,7 @@ import slugify from "slugify";
 import purgeCssPlugin from "eleventy-plugin-purgecss";
 
 // Helper Functions 
-import { imageHTML, imageResizedURL, imageSizes, album } from "./_data/images.js";
+import { imageHTML, imageResizedURL, album, titleImgFromAlbum } from "./_data/images.js";
 import { extractExcerpt } from "./_data/helpers.js";
 
 // Configurations
@@ -51,6 +50,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addFilter("imageResizedURL", imageResizedURL);
   eleventyConfig.addFilter("image", imageHTML);
   eleventyConfig.addFilter("album", album);
+  eleventyConfig.addFilter("titleImgFromAlbum", titleImgFromAlbum);
 
   // TODO: establish correct import of plugins
   eleventyConfig.addPlugin(mapPlugin);
