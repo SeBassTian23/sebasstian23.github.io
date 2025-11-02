@@ -19,7 +19,11 @@ import mapPlugin from "./_plugins/maps/index.js";
 // DayJS
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js"; // TODO: Not sure why this needs a .js
+import duration from "dayjs/plugin/duration.js"; // TODO: Not sure why this needs a .js
+import relativeTime from "dayjs/plugin/relativeTime.js"; // TODO: Not sure why this needs a .js
 dayjs.extend(utc);
+dayjs.extend(duration)
+dayjs.extend(relativeTime)
 
 // Libraries
 import markdownLibrary from './_libraries/markdownLibrary.js'
@@ -69,6 +73,12 @@ export default async function (eleventyConfig) {
     outputDir: "_site/css",
     minify: true,
     autoprefixer: true,
+  });
+
+  eleventyConfig.addFilter('readingTime', (html) => {
+    const text = html.replace(/<[^>]*>/g, '');
+    const mins = text.split(' ').length / 200;
+    return dayjs.duration(mins, "minutes").humanize();
   });
 
   // Add watch targets
