@@ -20,6 +20,30 @@ block append content
         .col-12.my-md-5.my-3
           .row
             .col-12.col-md-8.order-first.order-md-2
+              h4 #[span.fw-lighter Data Analysis]#[br]React Data Viewer
+            .col-12.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="/react-data-viewer/") !{filters.image( filters.url("/images/programming/browser-window-react.svg"), "Data Viewer" )}
+            .col-12.col-md-8.offset-md-4.order-last
+              p This data viewer web application lets you bring in data from text, CSV, and JSON files for analysis. You can filter data, 
+                | set thresholds, define data types, and plot data. You can also perform statistical tests and add data to maps 
+                | when you have geocoordinates. 
+                | The analysis can be saved, including the original data, and shared with others for collaboration. 
+                | Results can be added to a dashboard, which updates automatically when you filter, set thresholds, or change the selection of subsets.
+              p.small
+                em This is a very early version, so if you spot any issues or need any help, please let me know!
+              p.small Why is React in the title? Well, the application is based on the free and open-source front-end JavaScript library #[a(href="https://react.dev" target="_blank" rel="noreferrer") React], but  
+               | there are many other amazing open libraries like #[a(href="https://plotly.com/", target="_blank" rel="noreferrer") Plotly] for visualizing the data making this app possible.
+
+              a.btn.btn-sm.btn-outline-secondary(href="/react-data-viewer/" target="_blank" rel="noreferrer") #[i.bi.bi-binoculars] Explore Your Data
+              | 
+              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/SeBassTian23/react-data-viewer", target="_blank" rel="noreferrer") #[i.bi.bi-github] Source on GitHub
+
+  section
+    .container
+      .row
+        .col-12.my-md-5.my-3
+          .row
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Photosynthesis]#[br]Scheme Creator
             .col-12.col-md-4.order-2.order-md-first
               a.link-darken.d-block.position-relative(href="/photosynthesis-scheme/") !{filters.image( filters.url("/images/science/photosynthesis-scheme.svg"), "Photosynthesis Scheme" )}
