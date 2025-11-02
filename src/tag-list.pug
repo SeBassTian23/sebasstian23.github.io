@@ -9,7 +9,7 @@ include /shared/block-hero
 include /shared/block-post
 block append content
 
-  +hero-1({h2: "# Tags"})(class="mb-4 bg-secondary")
+  +hero-1({h2: "Tags"})(class="mb-4 bg-secondary")
 
   section.container
     .row.mb-1.px-2
@@ -22,9 +22,9 @@ block append content
       .col
         for tag, i in collections.tagList
           - tagUrl = "/tags/"+ filters.slugify(tag)
-          h2.mt-4.text-uppercase #{tag} #[a.btn.btn-sm.btn-outline-secondary.ms-3(href=filters.url(tagUrl)) →]
+          h2.mt-4.text-uppercase #{tag} #[a.btn.btn-sm.btn-outline-secondary.ms-3(href=filters.url(tagUrl) style="margin-top: -0.5rem;") →]
           .row.row-cols-2.row-cols-sm-3.row-cols-md-5.my-4
-            for post, idx in collections[ tag ]
+            for post, idx in collections[ tag ].toReversed()
               if idx < 5
                 +post-card-sm(post)
           if collections[ tag ].length > 5
