@@ -32,9 +32,9 @@ block append content
               p.small The figure style is based on Kramer, D. M., Avenson, T. J. and Edwards, G. E. (2004) Dynamic flexibility in the light reactions of photosynthesis governed 
                 | by both electron and proton transfer reactions. Trends Plant Sci 9, 349-357
 
-              a.btn.btn-sm.btn-outline-secondary(href="/photosynthesis-scheme", target="_blank" rel="noreferrer") Create a Figure
+              a.btn.btn-sm.btn-outline-secondary(href="/photosynthesis-scheme", target="_blank" rel="noreferrer") #[i.bi.bi-pencil-square] Create a Figure
               | 
-              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/SeBassTian23/photosynthesis-scheme", target="_blank" rel="noreferrer") Source on GitHub
+              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/SeBassTian23/photosynthesis-scheme", target="_blank" rel="noreferrer") #[i.bi.bi-github] Source on GitHub
 
   section
     .container
@@ -51,9 +51,9 @@ block append content
                 | This tool makes it easy to create a heatmap from a dataset formatted as a CSV or JSON file.
                 | The resulting map can be edited and saved as SVG or PNG.
 
-              a.btn.btn-sm.btn-outline-secondary(href="/calendar-heatmap", target="_blank" rel="noreferrer") Create SVG Heatmap
+              a.btn.btn-sm.btn-outline-secondary(href="/calendar-heatmap", target="_blank" rel="noreferrer") #[i.bi.bi-pencil-square] Create SVG Heatmap
               | 
-              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/SeBassTian23/calendar-heatmap", target="_blank" rel="noreferrer") Source on GitHub
+              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/SeBassTian23/calendar-heatmap", target="_blank" rel="noreferrer") #[i.bi.bi-github] Source on GitHub
 
   section
     .container
@@ -67,7 +67,13 @@ block append content
             .col-12.col-md-8.offset-md-4.order-last
               p This was a small project to build an interactive Periodic Chart of Elements as part of an application, that never came to be.
               p The element information is provided by Pubchem.
-              a.btn.btn-sm.btn-outline-secondary(href="/periodic-table-of-elements/") View Elements
+              a.btn.btn-sm.btn-outline-secondary(href="/periodic-table-of-elements/")
+                svg(viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' style="height: 1rem; width: 1rem; margin-top: -0.1rem; margin-right: 0.25rem; display: inline-block; vertical-align: middle; fill: currentColor;")
+                  circle(cx='158.52' cy='158.913' r='24.163' transform='translate(-8.52 -8.913)')
+                  path(d='M215.934 33.897c26.501 14.954 18.422 79.545-18.032 144.15-36.453 64.604-87.564 104.914-114.066 89.96-26.501-14.954-18.422-79.544 18.031-144.149 36.454-64.604 87.565-104.914 114.067-89.96zm-5.12 9.073c-7.953-4.488-18.588-.869-30.565 6.424-22.809 13.89-48.474 42.657-69.31 79.583-20.835 36.926-32.19 73.768-32.287 100.473-.05 14.022 2.35 24.997 10.303 29.485 7.953 4.487 18.589.868 30.565-6.425 22.81-13.89 48.475-42.657 69.31-79.582 20.836-36.926 32.19-73.768 32.288-100.473.05-14.023-2.35-24.998-10.303-29.485z')
+                  path(d='M83.836 33.897c-26.501 14.954-18.422 79.545 18.032 144.15 36.453 64.604 87.564 104.914 114.066 89.96 26.501-14.954 18.422-79.544-18.031-144.149-36.454-64.604-87.565-104.914-114.067-89.96zm5.12 9.073c7.953-4.488 18.588-.869 30.565 6.424 22.809 13.89 48.474 42.657 69.31 79.583 20.835 36.926 32.19 73.768 32.287 100.473.05 14.022-2.35 24.997-10.303 29.485-7.953 4.487-18.589.868-30.565-6.425-22.81-13.89-48.475-42.657-69.31-79.582C90.104 136.002 78.75 99.16 78.652 72.455c-.05-14.023 2.35-24.998 10.303-29.485z')
+                  path(d='M15.482 151.007c.012 30.429 60.246 55.11 134.425 55.079 74.18-.03 134.393-24.76 134.38-55.189-.012-30.43-60.246-55.11-134.425-55.08-74.18.031-134.393 24.76-134.38 55.19zm10.417-.004c-.004-9.132 8.371-16.62 20.606-23.472 23.3-13.048 60.963-21.28 103.361-21.297 42.399-.017 80.068 8.184 103.38 21.213 12.24 6.842 20.621 14.322 20.625 23.454.003 9.132-8.372 16.62-20.606 23.471-23.3 13.049-60.964 21.28-103.362 21.297-42.398.018-80.068-8.183-103.38-21.212-12.24-6.842-20.62-14.323-20.624-23.454z')
+                | View Elements
 
         .col-12.col-md-6.my-md-5.my-3
           .row
@@ -78,8 +84,17 @@ block append content
             .col-12.col-md-8.offset-md-4.order-last
               p Biologists have a Periodic Chart too! Like the one for Elements, this chart was also intended to be part of an application.
               p The chart was originally published by Bachem AG.
-              a.btn.btn-sm.btn-outline-secondary(href="/periodic-chart-of-amino-acids/") View Amino Acids
-  
+              a.btn.btn-sm.btn-outline-secondary(href="/periodic-chart-of-amino-acids/")
+                svg(width='100%' height='100%' viewBox='0 0 81 74' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;height: 1rem; width: 1rem; margin-top: -0.1rem; margin-right: 0.25rem; display: inline-block; vertical-align: middle; fill: currentColor;")
+                  g(transform='matrix(1,0,0,1,-46.238,-22.014)')
+                    path(d='M46.238,54.41L47.045,53.032L69.988,66.237L69.988,67.187L69.133,67.614L46.238,54.41Z' style='fill-rule:nonzero;')
+                    path(d='M70.843,67.614L69.988,67.187L69.988,66.237L102.62,47.427L102.62,49.28L70.843,67.614Z' style='fill-rule:nonzero;')
+                    path(d='M102.62,49.28L102.62,47.427L127.083,61.535L126.275,62.96L102.62,49.28Z' style='fill-rule:nonzero;')
+                    rect(x='98.963' y='22.014' width='1.616' height='27.978' style='fill-rule:nonzero;')
+                    rect(x='104.663' y='22.014' width='1.615' height='27.978' style='fill-rule:nonzero;')
+                    path(d='M73.599,95.355L66.33,95.355L69.132,67.615L69.987,67.187L70.842,67.614L73.597,95.355L73.599,95.355Z' style='fill-rule:nonzero;')
+                | View Amino Acids
+
   section
     .container
       .row
@@ -90,9 +105,9 @@ block append content
             .col-6.col-md-4.order-2.order-md-first
               a.link-darken.d-block.position-relative(href="/protein-parameters/") !{filters.image( filters.url("/images/science/protein-parameters.svg"), "Predict Protein Parameters" )}
             .col-12.col-md-8.offset-md-4.order-last
-              p The MS/MS database application MS2DB was supposed to have numerous little functions helping to quickly characterize proteins identified by mass spectrometry.
+              p A future update of the MS/MS database application #[a(href="https://doi.org/10.1186/1471-2105-9-302" target="_blank") 2DB] was supposed to have numerous little functions helping to quickly characterize proteins identified by mass spectrometry.
               p The functions, originally in PHP, have found a new home here.
-              a.btn.btn-sm.btn-outline-secondary(href="/protein-parameters/") View Parameters
+              a.btn.btn-sm.btn-outline-secondary(href="/protein-parameters/") #[i.bi.bi-calculator] Calculate Parameters
 
         .col-12.col-md-6.my-md-5.my-3
           .row
@@ -103,7 +118,7 @@ block append content
             .col-12.col-md-8.offset-md-4.order-last
               p Working with plants or algae provides the option to use either total protein content or chlorophyll content for the planned experiment.
               p This calculator allows calculating the chlorophyll content according to Porra et al.
-              a.btn.btn-sm.btn-outline-secondary(href="/chlorophyll-content/") Calculate Content
+              a.btn.btn-sm.btn-outline-secondary(href="/chlorophyll-content/") #[i.bi.bi-calculator]  Calculate Content
 
 
   section
@@ -118,7 +133,7 @@ block append content
             .col-12.col-md-8.offset-md-4.order-last
               p Formatting a DNA/RNA or AminoAcid sequence can be a pain, especially if you only have to do it occasionally and you don't have those fancy tools.
               p This tool you allows to quickly format your sequence to fit your needed layout.
-              a.btn.btn-sm.btn-outline-secondary(href="/format-fasta/") Format FASTA
+              a.btn.btn-sm.btn-outline-secondary(href="/format-fasta/") #[i.bi.bi-chevron-right] Format FASTA
 
         .col-12.col-md-6.my-md-5.my-3
           .row
@@ -129,7 +144,7 @@ block append content
             .col-12.col-md-8.offset-md-4.order-last
               p Originally part of a simple function made for the PhotosynQ platform to add references, this form can now be used to receive a formatted citation.
               p No need to fire up your reference manager, a DOI number is enough.
-              a.btn.btn-sm.btn-outline-secondary(href="/formatted-citation/") Get Citation
+              a.btn.btn-sm.btn-outline-secondary(href="/formatted-citation/") #[i.bi.bi-quote] Get Citation
 
   section
     .container
