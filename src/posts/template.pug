@@ -1,0 +1,20 @@
+---
+title: "Template Post"
+image: /images/...
+imagesource: 'Photo by [John Doe](https://)'
+author: Author Name
+description: Post description line.
+tags: ["tag name"]
+album: ['/images/...']
+language: "en"
+featured: true
+eleventyComputed:
+  permalink: "| #{filters.dateToPath()}/#{ filters.slugify(title) }/"
+  title: "| #{title || `${metadata.title | page.title}`}"
+---
+
+| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat ac felis donec et odio pellentesque diam volutpat. Turpis in eu mi bibendum. Dignissim sodales ut eu sem integer vitae. Cras semper auctor neque vitae tempus quam pellentesque nec nam. Tempus iaculis urna id volutpat lacus. Ac turpis egestas sed tempus urna et pharetra. Feugiat in fermentum posuere urna nec. Adipiscing elit ut aliquam purus sit amet luctus venenatis. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Sem integer vitae justo eget magna fermentum iaculis. Volutpat odio facilisis mauris sit amet. Ultrices eros in cursus turpis massa tincidunt dui ut. Ut sem nulla pharetra diam sit amet nisl suscipit. Tristique nulla aliquet enim tortor at auctor urna. Aliquam faucibus purus in massa tempor nec feugiat nisl. Viverra tellus in hac habitasse platea dictumst vestibulum. Sed ullamcorper morbi tincidunt ornare massa.
+<!-- excerpt -->
+
+
+| Your content starts here
