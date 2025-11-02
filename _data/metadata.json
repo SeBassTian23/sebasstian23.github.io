@@ -1,42 +1,42 @@
 {
-    "title": "Sebastian",
+  "title": "Sebastian",
+  "url": "https://kuhlgert.com",
+  "language": "en",
+  "locale": "en_US",
+  "description": "Currently Living in Europe; exploring the Regulation of Photosynthesis.",
+  "icon": "/icon.svg",
+  "icon_alt": "Logo - Letters Sk inside a square resembling an element from the Periodic Table",
+  "themecolor": "#1d3557",
+  "feed": {
+    "subtitle": "Currently Living in Europe; exploring the Regulation of Photosynthesis.",
+    "filename": "feed.xml",
+    "path": "/feed.xml",
+    "id": "https://kuhlgert.com/"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "https://kuhlgert.com/feed/feed.json"
+  },
+  "author": {
+    "name": "Sebastian Kuhlgert",
+    "email": "sebastian.kuhlgert@gmail.com",
     "url": "https://kuhlgert.com",
-    "language": "en",
-    "locale": "en_US",
-    "description": "I am a postdoc currently living and working in Michigan; exploring the regulation of photosynthesis.",
-    "icon": "/icon.svg",
-    "icon_alt": "Logo - Letters Sk inside a square",
-    "themecolor": "#1d3557",
-    "feed": {
-      "subtitle": "I am a postdoc currently living and working in Michigan; exploring the regulation of photosynthesis.",
-      "filename": "feed.xml",
-      "path": "/feed.xml",
-      "id": "https://kuhlgert.com/"
-    },
-    "jsonfeed": {
-      "path": "/feed/feed.json",
-      "url": "https://kuhlgert.com/feed/feed.json"
-    },
-    "author": {
-      "name": "Sebastian Kuhlgert",
-      "email": "sebastian.kuhlgert@gmail.com",
-      "url": "https://kuhlgert.com",
-      "twitter": null
-    },
-    "CSP": [
-      "block-all-mixed-content",
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net *.getclicky.com clicky.com https://unpkg.com",
-      "style-src 'self' 'unsafe-inline'",
-      "object-src 'none'",
-      "frame-src 'self'",
-      "child-src 'self'",
-      "img-src 'self' data:",
-      "font-src 'self'",
-      "connect-src 'self' https://doi.org https://api.crossref.org https://average-apron-clam.cyclic.app",
-      "manifest-src 'self'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      "media-src 'self'"
-    ]
+    "twitter": null
+  },
+  "CSP": [
+    "block-all-mixed-content",
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net *.getclicky.com clicky.com https://unpkg.com",
+    "style-src 'self' 'unsafe-inline'",
+    "object-src 'none'",
+    "frame-src 'self'",
+    "child-src 'self'",
+    "img-src 'self' data:;",
+    "font-src 'self'",
+    "connect-src 'self' https://doi.org https://api.crossref.org https://average-apron-clam.cyclic.app",
+    "manifest-src 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "media-src 'self'"
+  ]
 }

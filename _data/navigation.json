@@ -1,22 +1,22 @@
 [
-    {
-        "link": "/#photosynthesis",
-        "title": "Photosynthesis"
-    },
-    {
-        "link": "/#experience",
-        "title": "Experience"
-    },
-    {
-        "link": "/#projects",
-        "title": "Projects"
-    },
-    {
-        "link": "/bits-pieces",
-        "title": "Bits & Pieces"
-    },
-    {
-        "link": "/#michigan",
-        "title": "Michigan"
-    }
+  {
+    "link": "/#photosynthesis",
+    "title": "Photosynthesis"
+  },
+  {
+    "link": "/#experience",
+    "title": "Experience"
+  },
+  {
+    "link": "/#projects",
+    "title": "Projects"
+  },
+  {
+    "link": "/bits-pieces",
+    "title": "Bits & Pieces"
+  },
+  {
+    "link": "/#michigan",
+    "title": "Michigan"
+  }
 ]
