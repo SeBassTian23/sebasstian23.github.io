@@ -143,13 +143,15 @@ export default async function (eleventyConfig) {
    * Add collections
    */
 
+  const collectionsPath = './src/posts/**/*.{md,pug}'
+
   eleventyConfig.addCollection('posts', collection => {
-    return collection.getFilteredByGlob('./src/posts/**/*.md');
+    return collection.getFilteredByGlob(collectionsPath);
   });
 
   eleventyConfig.addCollection('categories', collection => {
     let categories = [];
-    collection.getFilteredByGlob('./src/posts/**/*.md')
+    collection.getFilteredByGlob(collectionsPath)
       .forEach(item => {
         if (item.data.categories)
           categories.push(item);
@@ -159,7 +161,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addCollection('categoryList', collection => {
     let categories = [];
-    collection.getFilteredByGlob('./src/posts/**/*.md')
+    collection.getFilteredByGlob(collectionsPath)
       .forEach(item => {
         if (item.data.categories)
           categories = [...item.data.categories, ...categories]
@@ -169,7 +171,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addCollection('tagList', collection => {
     let tags = [];
-    collection.getFilteredByGlob('./src/posts/**/*.md')
+    collection.getFilteredByGlob(collectionsPath)
       .forEach(item => {
         if (item.data.tags)
           tags = [...item.data.tags, ...tags]
@@ -178,8 +180,8 @@ export default async function (eleventyConfig) {
   });
 
   eleventyConfig.addCollection('featured', collection => {
-    return collection.getFilteredByGlob('./src/posts/**/*.md')
-      .filter(x => x.data.featured);
+    return collection.getFilteredByGlob(collectionsPath)
+      .filter(x => x.data.featured).toReversed();
   });
 
 
