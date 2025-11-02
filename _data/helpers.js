@@ -78,8 +78,8 @@ export const extractExcerpt = (article, experptLength = 500) => {
   }
 
   excerpt = striptags(content)
-    .substring(0, experptLength) // Cap at 200 characters
     .replace(/^\s+|\s+$|\s+(?=\s)/g, "")
-    .trim();
-  return (excerpt && excerpt.length == experptLength)? `${excerpt}…` : excerpt || "" ;
+    .trim()
+    .substring(0, experptLength); // Cap at n characters
+  return (excerpt && excerpt.length == experptLength)? `${excerpt.substring(0, experptLength-1)}…` : excerpt || "" ;
 }
