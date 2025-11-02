@@ -22,15 +22,15 @@ block append content
       .col
         for tag, i in collections.tagList
           - tagUrl = "/tags/"+ filters.slugify(tag)
-          h2.mt-4.text-uppercase #{tag} #[a.btn.btn-sm.btn-outline-secondary.ms-3(href=filters.url(tagUrl) style="margin-top: -0.5rem;") →]
-          .row.row-cols-2.row-cols-sm-3.row-cols-md-5.my-4
-            for post, idx in collections[ tag ].toReversed()
-              if idx < 5
-                +post-card-sm(post)
-          if collections[ tag ].length > 5
-            .row.my-4
+          h2.text-uppercase #[a.text-decoration-none(href=href=filters.url(tagUrl)) #{tag}]
+          .row.row-cols-2.row-cols-sm-3.row-cols-md-5.mt-2
+            for post, idx in collections[ tag ].toReversed().slice(0,5)
+              +post-card-sm(post)(class=`pb-3${idx > 3? ' d-none d-sm-block' : ''}`)
+          if collections[ tag ].length > 4
+            .row.my-2
               .col 
-                a.btn.btn-outline-secondary(href=filters.url(tagUrl)) Show all #[span.ms-3.badge.bg-secondary #{collections[ tag ].length}]
+                a.btn.btn-outline-secondary(href=filters.url(tagUrl))
+                  | Show all #{collections[ tag ].length} →
 
           if collections.tagList.length-1 > i
             .row.px-5.py-2
