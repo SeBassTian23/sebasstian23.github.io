@@ -14,7 +14,7 @@ include /shared/block-hero
 include /shared/block-post
 block append content
 
-  +hero-1({h2: '# '+tag})(class="bg-secondary mb-4")
+  +hero-1({h2: tag})(class="bg-secondary mb-4")
 
   section.container
     .row.mb-1.px-2
@@ -27,5 +27,5 @@ block append content
     .row 
       .col
         .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3
-          for post in collections[ tag ]
+          for post in collections[ tag ].toReversed()
             +post-card(post)
