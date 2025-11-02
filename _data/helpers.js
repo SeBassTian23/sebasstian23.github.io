@@ -1,4 +1,5 @@
 import striptags from "striptags";
+import pug from 'pug'
 
 /**
  * Returns back some attributes based on whether the
@@ -71,6 +72,10 @@ export const extractExcerpt = (article, experptLength = 500) => {
     content = article
   else
     content = article.data.page.excerpt;
+
+  if(article?.data?.page?.templateSyntax == 'pug'){
+    content = pug.render(article?.data?.page?.excerpt)
+  }
 
   excerpt = striptags(content)
     .substring(0, experptLength) // Cap at 200 characters
