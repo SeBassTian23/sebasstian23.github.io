@@ -107,6 +107,9 @@ export default async function (eleventyConfig) {
   eleventyConfig.addFilter("htmlToAbsoluteUrls", pluginRss.convertHtmlToAbsoluteUrls);
 
   // Format dates
+  eleventyConfig.addFilter("dateToPath", dateObj => {
+    return dayjs.utc().format("YYYY/MM/DD");
+  });
   eleventyConfig.addFilter("formatedDate", dateObj => {
     return dayjs.utc(dateObj).format("MM/DD/YYYY");
   });
