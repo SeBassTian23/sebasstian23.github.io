@@ -13,7 +13,7 @@ include /shared/block-post
 block append content
 
   if page.url == pagination.hrefs[ 0 ]
-    +post-carussel(collections.featured.reverse())(class="mb-5")
+    +post-carussel(collections.featured)(class="mb-5")
 
   .container#posts
     .row
