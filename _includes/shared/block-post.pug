@@ -43,8 +43,6 @@ mixin post-card(post)
         p.card-text
           if filters.excerpt(post)
             | #{filters.excerpt(post, 120)}
-            if (filters.excerpt(post,120).length >= 119)
-              | &hellip;
           else
             | #{post.data.description}
       .card-footer.bg-transparent.border-0.text-muted.text-uppercase.small.px-2.py-0
@@ -78,7 +76,7 @@ mixin post-card-sm(post)
 mixin post-card-lg(post)
   .col&attributes(attributes)
     .card.border-0.rounded-0
-      .card-body
+      .card-body.py-0
         span.text-muted(style="text-transform: uppercase; font-size:80%;")
           each tag, index in post.data.tags
             if( index > 0)
@@ -104,13 +102,13 @@ mixin post-card-lg(post)
                 stop(offset="100%" style="stop-color:rgb(69,123,157);stop-opacity:1")
             rect(width='100%' height='100%' fill='url(#bgprimary)')
             text(x='50%' y='50%'  dominant-baseline="middle" text-anchor="middle" fill='#ffffff' dy='.3em') #{post.data.title}
-      .card-body
+      .card-body.pt-2
         if post.data.description != undefined
           | #{post.data.description}
-        else
-          | #{filters.excerpt(post,500)}
-          if (filters.excerpt(post,500).length >= 499)
-            | &hellip;
+        - excerpt = filters.excerpt(post,500)
+        if excerpt.length > 0
+          small.d-block
+            | #{excerpt}
 
 mixin post-carussel(posts)
   if posts.length > 0
@@ -140,8 +138,6 @@ mixin post-carussel(posts)
                 p #{post.data.description}
               else
                 p #{filters.excerpt(post,500)}
-                  if (filters.excerpt(post,500).length >= 499)
-                    | &hellip;
               
               p: a.btn.btn-sm.btn-light(href=filters.url(post.url) aria-label=`Read post ${post.data.title}` title=post.data.title) Read #[i.bi-arrow-right]
 
