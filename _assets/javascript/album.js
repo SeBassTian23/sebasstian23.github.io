@@ -19,13 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
     else if (child.nodeName == 'DIV')
       child;
     else
-      child.setAttribute('class', 'col mb-2 px-1');
+      child.classList.add('col', 'mb-2', 'px-1');
   })
 
   let background = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
-  const zoom = mediumZoom('.post-album picture img', { background, container: null });
+  const zoom = mediumZoom('.post-album img', { background, container: null });
 
-  //- col mb-2 px-1
   // Create an observer instance linked to the callback function
   const observer = new MutationObserver((mutationList, observer) => {
     for (const mutation of mutationList) {
@@ -42,11 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
     childList: false,
     subtree: false
   });
-
-  //- zoom.on('open', event => {
-  //-   let background = window.getComputedStyle( document.body ,null).getPropertyValue('background-color');
-  //-   zoom.update({background});
-  //- });
 
   document.querySelectorAll('.post-map p').forEach(e => e.remove())
 
