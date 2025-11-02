@@ -3,5 +3,6 @@
   "language": "en",
   "permalink": "{{page.date | date: '%Y/%m/%d' }}/{{title | slugify}}/",
   "tags": [],
+  "date": "Created",
   "title": "{{metadata.title | page.title}}"
 }
