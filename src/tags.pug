@@ -28,4 +28,4 @@ block append content
       .col
         .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3
           for post in collections[ tag ].toReversed()
-            +post-card(post)
+            +post-card(post)(class="mb-4")
