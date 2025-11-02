@@ -33,11 +33,18 @@ block append content
                     span.mx-2 |
                   a.text-muted(href=filters.url(tagURL) style="text-decoration:none") #{tag}
 
-              h1.text-primary #{title}
-              .small.mb-1 #{author || "unknown"}
-              .small.text-muted #[time(datetime=filters.htmlDatetimeString(page.date)) #{filters.formatedDate(page.date)}]
+              h1.text-primary.mb-3 #{title}
+              .d-flex.flex-row.align-items-center
+                if avatar
+                  - var image = filters.imageResizedURL(avatar, "webp", 80)
+                  img.rounded-circle.me-2(src=filters.url(image.url), style="width:3.125rem;")
+                div
+                  .fs-6 #{author || "unknown"}
+                  time.small.text-muted(datetime=filters.htmlDatetimeString(page.date)) #{filters.formatedDate(page.date)}
 
-          section.row.post-content   
+                .ms-auto.small Reading: #{filters.readingTime(content)}
+
+          section.row.post-content
             .col.clearfix
               | !{content}
 
@@ -113,4 +120,4 @@ block append content
                 +social-share({...page,...{title: title}})(class="col-12 mb-3 text-center")
 
 block append footer
-    include /shared/block-footer
+  include /shared/block-footer
