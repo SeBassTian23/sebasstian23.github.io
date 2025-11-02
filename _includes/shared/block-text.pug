@@ -6,3 +6,22 @@ mixin text-1(section)
                     h3 !{section.header}
                 .col.p-3
                     p !{section.content}
+
+mixin text-2(section)
+    section.block-text&attributes(attributes)
+        .container
+            .row.my-5
+                .col.p-3
+                    p !{section.content}
+                .col.p-3.col-5
+                    h3 !{section.header}
+
+mixin text-3(section)
+    section.block-text&attributes(attributes)
+        .container
+            .row.my-5
+                .col.p-3
+                    if section.header
+                        h3 !{section.header}
+                    if section.content
+                        p !{section.content}
