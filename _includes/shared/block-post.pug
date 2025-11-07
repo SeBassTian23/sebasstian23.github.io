@@ -12,7 +12,7 @@ mixin post-header(title, description, image, imageAlt, album)
 
 mixin album(album)
   section.post-album
-    .row.row-cols-sm-2.row-cols-lg-3.row-cols-xl-4(data-masonry!={percentPosition: true })
+    .row.row-cols-sm-2.row-cols-lg-3.row-cols-xl-4
       each el in filters.album(album)
         if typeof el === 'string'
           | !{filters.image(el,"")}

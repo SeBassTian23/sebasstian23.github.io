@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     else if (child.nodeName == 'DIV')
       child;
     else
-      child.classList.add('col', 'mb-2', 'px-1');
+      child.classList.add('col', 'p-1');
   })
 
   let background = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
@@ -43,5 +43,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.querySelectorAll('.post-map p').forEach(e => e.remove())
+
+  if( document.querySelector('.post-album') ){
+    let msnry = new Masonry( '.post-album', {
+      itemSelector: '.col'
+    });
+  }
+
+  if( document.querySelector('.post-album-inlinep') ){
+    let msnry_inline = new Masonry( '.post-album-inline', {
+      itemSelector: '.col'
+    });
+  }
 
 });

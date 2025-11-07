@@ -45,7 +45,7 @@ let markdownLibrary = markdownIt({
       if (tokens[idx].nesting === 1) {
         // if content is an album
         if (m[0] === 'album')
-          return '<section class="post-album post-album-inline py-3">\n<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4" data-masonry="{"percentPosition": true}">\n';
+          return '<section class="post-album post-album-inline py-3">\n<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">\n';
 
         // if content is a map
         if (m[1] === 'map') {
