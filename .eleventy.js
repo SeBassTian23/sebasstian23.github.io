@@ -30,6 +30,9 @@ import markdownLibrary from './_libraries/markdownLibrary.js'
 // Natural Sorting
 import { natsort } from "natsort-esm";
 
+// Prism
+import { pairedShortcode } from "@11ty/eleventy-plugin-syntaxhighlight";
+
 // Slugify
 import slugify from "slugify";
 
@@ -235,6 +238,11 @@ export default async function (eleventyConfig) {
       'markdown-it': function (text, options) {
         return markdownLibrary.render(text, options);
       },
+      'prism': function (content, options){
+        if(options.code)
+          content = options.code
+        return pairedShortcode(content, options?.language || '')
+      }
     },
     debug: false
   });
