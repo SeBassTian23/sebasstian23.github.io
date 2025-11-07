@@ -76,7 +76,7 @@ mixin post-card-sm(post)
 mixin post-card-lg(post)
   .col&attributes(attributes)
     .card.border-0.rounded-0
-      .card-body.py-0
+      .card-body.py-0.px-2
         span.text-muted(style="text-transform: uppercase; font-size:80%;")
           each tag, index in post.data.tags
             if( index > 0)
@@ -102,9 +102,9 @@ mixin post-card-lg(post)
                 stop(offset="100%" style="stop-color:rgb(69,123,157);stop-opacity:1")
             rect(width='100%' height='100%' fill='url(#bgprimary)')
             text(x='50%' y='50%'  dominant-baseline="middle" text-anchor="middle" fill='#ffffff' dy='.3em') #{post.data.title}
-      .card-body.pt-2
+      .card-body.p-2
         if post.data.description != undefined
-          | #{post.data.description}
+          span.fw-semibold #{post.data.description}
         - excerpt = filters.excerpt(post,500)
         if excerpt.length > 0
           small.d-block
@@ -132,7 +132,7 @@ mixin post-carussel(posts)
             else
               svg.bd-placeholder-img(width='100%' height='400px' xmlns='http://www.w3.org/2000/svg' aria-hidden='true' preserveaspectratio='xMidYMid slice' focusable='false')
                   rect(width='100%' height='100%' fill='#777')
-            .carousel-caption.d-none.d-md-block
+            .carousel-caption
               .fs-5.lh-lg.fw-medium #{post.data.title}
               if post.data.description != undefined
                 p #{post.data.description}
