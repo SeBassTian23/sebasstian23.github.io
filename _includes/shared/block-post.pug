@@ -46,7 +46,7 @@ mixin post-card(post)
           else
             | #{post.data.description}
       .card-footer.bg-transparent.border-0.text-muted.text-uppercase.small.px-2.py-0
-        | #{post.data.author} | #[time(datetime=filters.htmlDatetimeString(page.date)) #{filters.formatedDate(page.date)}]
+        | #{post.data.author} | #[time(datetime=filters.htmlDatetimeString(post.date)) #{filters.formatedDate(post.date)}]
 
 mixin post-card-sm(post)
   .col&attributes(attributes)
@@ -71,7 +71,7 @@ mixin post-card-sm(post)
         span.text-primary #{post.data.title}
 
         .text-muted.d-block.text-uppercase(style="font-size:70%;")
-          | #{post.data.author} | #[time(datetime=filters.htmlDatetimeString(page.date)) #{filters.formatedDate(page.date)}]
+          | #{post.data.author} | #[time(datetime=filters.htmlDatetimeString(post.date)) #{filters.formatedDate(post.date)}]
 
 mixin post-card-lg(post)
   .col&attributes(attributes)
@@ -84,7 +84,7 @@ mixin post-card-lg(post)
             | #{tag}
           if( post.data.tags.length > 0)
             span.mx-2 |
-          | #{filters.formatedDate(post.date)}
+          | #[time(datetime=filters.htmlDatetimeString(post.date)) #{filters.formatedDate(post.date)}]
         h3.text-primary #{post.data.title}
       a.link-darken(href=filters.url(post.url) aria-label=`Post: ${post.data.title}` title=post.data.title)
         if post.data && post.data.image
