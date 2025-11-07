@@ -149,13 +149,18 @@ export const imageResizedURL = (src, format = "jpeg", size = 1200) => {
     // sizes: imageSizes,                          // choose your own formats (see docs)
     urlPath: '/images',                            // src path in HTML output
     outputDir: './_site/images/',                  // where the generated images will go
-    // sharpOptions: {},
+    sharpOptions: {
+      animated: true
+    },
     // sharpWebpOptions: {
     //   quality: 95
     // },
     // sharpPngOptions: {},
     // sharpJpegOptions: {},
     // sharpAvifOptions: {}
+    transform: (sharp) => {
+      sharp.resize(size)   // Forcing the size here, since no image is generated if the size is smaller than set size
+    }
   };
 
   if (!src.match(/^https?:\/\//))
