@@ -140,6 +140,9 @@ export const imageHTML = (src, alt = "", sizes = "100%", addClass = "img-fluid")
  */
 export const imageResizedURL = (src, format = "jpeg", size = 1200) => {
 
+  if (!src)
+    return null;
+
   let options = {
     widths: [size],
     formats: [format],
@@ -206,6 +209,9 @@ export const album = (src) => {
  * Find title image in album by aspect ratio
  */
 export const titleImgFromAlbum = (src) => {
+
+  if(!src)
+    return null;
 
   // Get all album images
   src = album(src)

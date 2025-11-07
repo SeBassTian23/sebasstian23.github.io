@@ -1,7 +1,6 @@
 //- Setup Variables
 - var currentUrl =  filters.url(metadata.url+page.url)
-- var socialImage = image? filters.url(metadata.url+ filters.imageResizedURL(image, "png", 1200).url) : null
-- var socialImageMeta = socialImage? filters.imageResizedURL(image, "png", 1200) : null
+- var socialImage = (image || album)? filters.imageResizedURL( (image || filters.titleImgFromAlbum(album)), "png", 1200) : null
 - var excerpt = filters.excerpt(content, 100);
 - var isPost = collections.posts.find(function(x){ return x.url === page.url });
 - var metaDesc = description || (isPost? excerpt: null) || metadata.description || null
@@ -24,11 +23,11 @@ meta( property="og:url", content=currentUrl )
 if metaDesc
   meta( property="og:description", content=metaDesc )
 if socialImage
-  meta( property="og:image", content=socialImage )
-  meta( property="og:image:secure_url" content=socialImage )
+  meta( property="og:image", content=filters.url(metadata.url + socialImage.url) )
+  meta( property="og:image:secure_url" content=filters.url(metadata.url + socialImage.url) )
   meta( property="og:image:alt", content=(title || metadata.title) )
-  meta( property="og:image:width", content=socialImageMeta.width )
-  meta( property="og:image:height", content=socialImageMeta.height )
+  meta( property="og:image:width", content=socialImage.width )
+  meta( property="og:image:height", content=socialImage.height )
 if metadata.locale
   meta( property="og:locale", content=metadata.locale)
 
@@ -36,7 +35,7 @@ if metadata.locale
 meta( property="twitter:title", content=(title || metadata.title) )
 if socialImage
   meta( property="twitter:card", content="summary_large_image" )
-  meta( property="twitter:image", content=socialImage )
+  meta( property="twitter:image", content=filters.url(metadata.url + socialImage.url) )
   meta( property="twitter:image:alt", content=(title || metadata.title) )
 if metaDesc
   meta( property="twitter:description", content=metaDesc )
