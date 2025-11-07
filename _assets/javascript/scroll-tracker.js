@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const button = document.createElement('button');
 
   // Button classes
-  button.classList.add('btn', 'btn-sm', 'btn-secondary', 'scroll-up-btn', 'border', 'border-light');
+  button.classList.add('btn', 'btn-sm', 'btn-secondary', 'scroll-up-btn', 'border', 'border-light-subtle');
 
   // Button styles
   button.style.position = 'fixed';
