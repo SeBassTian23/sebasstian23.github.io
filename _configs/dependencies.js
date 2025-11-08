@@ -1,9 +1,5 @@
 export default [
 
-  // Copy css dependencies
-  // { "./node_modules/prismjs/themes/": "/css/prism" },
-  // { "_assets/scss/base/prism-theme.css": "/css/prism.css" },
-
   // Copy javascript dependencies
   { "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js": "./javascript/bootstrap.bundle.min.js" },
   { "_assets/javascript/*.js": "./javascript/" },
