@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   let background = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
-  const zoom = mediumZoom('.post-album img', { background, container: null });
+  const zoom = mediumZoom('.post-album img', { background, container: {top: 56} });
 
   // Create an observer instance linked to the callback function
   const observer = new MutationObserver((mutationList, observer) => {
