@@ -9,6 +9,7 @@ excludeFromSitemap: true
 eleventyComputed:
   permalink: "| tags/#{ filters.slugify(tag) }/"
   title: "| Tag #{\"|\"} #{tag}"
+  description: "| All Posts with the Tag \"#{tag}\""
 ---
 include /shared/block-hero
 include /shared/block-post
