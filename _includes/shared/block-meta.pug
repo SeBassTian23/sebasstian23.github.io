@@ -1,6 +1,7 @@
 //- Setup Variables
 - var currentUrl =  filters.url(metadata.url+page.url)
-- var socialImage = (image || album)? filters.imageResizedURL( (image || filters.titleImgFromAlbum(album)), "png", 1200) : null
+- var tag = tag || collections.tagList[Math.floor(Math.random() * collections.tagList.length)]
+- var socialImage = filters.imageResizedURL( (image || filters.titleImgFromAlbum(album) || collections[ tag ].toReversed()[0].data.image || filters.titleImgFromAlbum(collections[ tag ].toReversed()[0].data.album)), "png", 1200) || null
 - var excerpt = filters.excerpt(content, 100);
 - var isPost = collections.posts.find(function(x){ return x.url === page.url });
 - var metaDesc = description || (isPost? excerpt: null) || metadata.description || null
