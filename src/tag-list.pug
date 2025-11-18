@@ -10,7 +10,9 @@ include /shared/block-hero
 include /shared/block-post
 block append content
 
-  +hero-1({h2: "Tags"})(class="mb-4 bg-secondary")
+  - var tag = tag || collections.tagList[Math.floor(Math.random() * collections.tagList.length)]
+  - var headerImage = filters.imageResizedURL( image || filters.titleImgFromAlbum(album) || collections[ tag ].toReversed()[0].data.image || filters.titleImgFromAlbum(collections[ tag ].toReversed()[0].data.album), "webp", 1500) || {url: null}
+  +hero-1({h2: "Tags"})(class="mb-4", style=`background-image: linear-gradient(135deg,rgba(var(--bs-secondary-rgb), ${headerImage.url? "0.85" : "1.0"}) 50%, rgba(var(--bs-primary-rgb), ${headerImage.url? "0.85" : "1.0"}) 100%)${headerImage.url? ", url(" + headerImage.url + ");" : ";"} background-position: center; background-size: cover;`) 
 
   section.container
     .row.mb-1.px-2
