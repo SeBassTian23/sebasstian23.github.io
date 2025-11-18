@@ -24,10 +24,21 @@ p {
 
 // Link hover effects
 .link-darken {
-  filter: none;
-  transition: 0.1s ease-out;
-  &:hover {
-    filter: brightness(0.9) ;
+  &:has(img),
+  & > svg,
+  &:not(:has(*)) {
+    filter: none;
+    transition: 0.1s ease-out;
+    &:hover {
+      filter: brightness(0.9) ;
+    }
+  }
+  & > div {
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0) inset;
+    transition: 0.4s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.6) inset;
+    }
   }
 }
 
@@ -152,14 +163,14 @@ p {
 }
 
 // Link Style for external links
-a:not(.navbar-brand):not(:empty):not(:has(i[class^="bi-"])):not(:has(svg)):not(
+a:not(.navbar-brand):not(:empty):not(:has(i[class^="bi-"])):not(:has( > svg)):not(
     [href^="#"]
-  ):not([href^="/"])::after {
+  ):not([href^="/"]):not(:has( > img)):not(:has( > picture))::after {
   content: " \2197";
   white-space: nowrap;
 }
 // add support for older browsers
-a[href^="http"]:has(i[class^="bi-"]):has(svg)::after {
+a[href^="http"]:has(i[class^="bi-"]):has(svg):has(img):has(picture)::after {
   content: none !important;
 }
 
@@ -307,15 +318,15 @@ pre[class*="language-"] {
 }
 
 html[data-bs-theme="dark"] {
+  // & .link-darken {
+  //   &:hover {
+  //     filter: brightness(.75) saturate(1.5);
+  //   }
+  // }
 
-  & .link-darken {
-    &:hover {
-      filter: brightness(.75) saturate(1.5);
-    }
-  }
-
-  & section.bg-primary, section.bg-secondary {
-    filter: brightness(.75);
+  & section.bg-primary,
+  section.bg-secondary {
+    filter: brightness(0.75);
   }
 
   & .navbar {
