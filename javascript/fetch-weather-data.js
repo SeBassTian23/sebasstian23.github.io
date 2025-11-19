@@ -74,6 +74,7 @@ async function fetchWeatherData() {
 fetchWeatherData()
   .then(data => {
     console.log(`\nSuccessfully parsed ${data.obj.length} weather records`);
+    console.log(data.obj)
   })
   .catch(error => {
     console.error('Failed to fetch weather data:', error.message);

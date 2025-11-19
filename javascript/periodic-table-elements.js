@@ -298,7 +298,7 @@ class PeriodicTableElements {
     var _this = this;
 
     var elno = Math.ceil(this.elements.Table.Row.length * Math.random());
-    var el = this.element(this.elements.Table.Row[elno].Cell);
+    var el = this.element(this.elements.Table.Row[elno]?.Cell);
 
     document.querySelector("#pt-elements-card").innerHTML = this.elementCard(el);
     document.querySelector("#pt-elements-card .card-element").style.backgroundColor = _this.propertyColor(el) || "none";

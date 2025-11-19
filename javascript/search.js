@@ -52,7 +52,16 @@
     response.json().then((rawIndex) => {
       window.searchIndex = lunr.Index.load(rawIndex);
       window.metaIndex = rawIndex.meta;
+    }).finally(()=>{
+      // Attach Search
       document.getElementById("searchField").addEventListener("input", search);
+      // Keyboard shortcut for search
+      document.querySelector('body').addEventListener( 'keydown', function ( event ) {
+        if ( event.key === "/" && document.activeElement !== document.querySelector("#searchField")) {
+          event.preventDefault()
+          document.querySelector("#searchField").focus();
+        }
+      });
     })
   );
 })(window, document);
