@@ -2326,6 +2326,160 @@
       "Low (°C)": 5.6,
       "Precip. (cm)": 0,
       "Snow (cm)": 0
+    },
+    {
+      "Day": "Sun Nov 16 2025",
+      "High (°C)": 8.9,
+      "Low (°C)": -1.1,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Mon Nov 17 2025",
+      "High (°C)": 6.7,
+      "Low (°C)": -2.8,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Tue Nov 18 2025",
+      "High (°C)": 2.8,
+      "Low (°C)": -3.3,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Wed Nov 19 2025",
+      "High (°C)": 6.7,
+      "Low (°C)": -4.4,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Thu Nov 20 2025",
+      "High (°C)": 6.7,
+      "Low (°C)": -2.8,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Fri Nov 21 2025",
+      "High (°C)": 10,
+      "Low (°C)": 1.7,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sat Nov 22 2025",
+      "High (°C)": 6.7,
+      "Low (°C)": -4.4,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sun Nov 23 2025",
+      "High (°C)": 11.1,
+      "Low (°C)": -1.7,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Mon Nov 24 2025",
+      "High (°C)": 10.6,
+      "Low (°C)": -4.4,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Tue Nov 25 2025",
+      "High (°C)": 8.9,
+      "Low (°C)": 6.1,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Wed Nov 26 2025",
+      "High (°C)": 9.4,
+      "Low (°C)": -1.1,
+      "Precip. (cm)": 0.15,
+      "Snow (cm)": 1.3
+    },
+    {
+      "Day": "Thu Nov 27 2025",
+      "High (°C)": 0,
+      "Low (°C)": -2.8,
+      "Precip. (cm)": 0,
+      "Snow (cm)": null
+    },
+    {
+      "Day": "Fri Nov 28 2025",
+      "High (°C)": -1.1,
+      "Low (°C)": -4.4,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sat Nov 29 2025",
+      "High (°C)": -1.1,
+      "Low (°C)": -3.9,
+      "Precip. (cm)": 1.19,
+      "Snow (cm)": 9.1
+    },
+    {
+      "Day": "Sun Nov 30 2025",
+      "High (°C)": 0.6,
+      "Low (°C)": -7.2,
+      "Precip. (cm)": 0.53,
+      "Snow (cm)": 7.6
+    },
+    {
+      "Day": "Mon Dec 01 2025",
+      "High (°C)": -2.2,
+      "Low (°C)": -11.1,
+      "Precip. (cm)": 0.03,
+      "Snow (cm)": null
+    },
+    {
+      "Day": "Tue Dec 02 2025",
+      "High (°C)": -1.7,
+      "Low (°C)": -8.9,
+      "Precip. (cm)": 0.03,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Wed Dec 03 2025",
+      "High (°C)": -2.2,
+      "Low (°C)": -8.9,
+      "Precip. (cm)": 0.05,
+      "Snow (cm)": 0.3
+    },
+    {
+      "Day": "Thu Dec 04 2025",
+      "High (°C)": -2.8,
+      "Low (°C)": -15,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Fri Dec 05 2025",
+      "High (°C)": -2.8,
+      "Low (°C)": -13.9,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sat Dec 06 2025",
+      "High (°C)": -0.6,
+      "Low (°C)": -3.9,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sun Dec 07 2025",
+      "High (°C)": -2.8,
+      "Low (°C)": -15.6,
+      "Precip. (cm)": 0.41,
+      "Snow (cm)": 5.3
     }
   ]
 }
