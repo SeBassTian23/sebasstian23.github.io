@@ -20,6 +20,31 @@ block append content
         .col-12.my-md-5.my-3
           .row
             .col-12.col-md-8.order-first.order-md-2
+              h4 #[span.fw-lighter MultispeQ]#[br]Python Libraries
+            .col-12.col-md-4.order-2.order-md-first
+              a.link-darken.d-block.position-relative(href="https://openjii.org/" target="_blank" rel="noreferrer") !{filters.image( filters.url("/images/jii/openJII-logo-vertical-yellow.svg"), "Data Viewer" )}
+            .col-12.col-md-8.offset-md-4.order-last
+              p The MultispeQ device uses a serial connection for communication with other devices using a USB cable or via Bluetooth®.
+                | The first Python library allows to use scripts to control the MultispeQ and create complex measurements and experiments.
+                | The second one is a collection of measurement protocols with numerous supporting functions around creating and using protocols.
+              
+              p The development of the libraries also includes the documentation on how to work and develop them. It is implemented using 
+                | #[a(href="https://www.sphinx-doc.org/en/master/" target="_blank" rel="noreferrer") Sphinx] in combination with a GitHub workflow 
+                | to update the documentation automatically when updates are pushed.
+
+              p.small
+                em Currently both libraries are not on yet added to The Python Package Index (PyPI) #[a(href="https://pypi.org/" target="_blank" rel="noreferrer") pypi.org] but can be installed from the Github repo.
+
+              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/Jan-IngenHousz-Institute/JII-MultispeQ/" target="_blank" rel="noreferrer") #[i.bi.bi-github] JII-MultispeQ on Github
+              | 
+              a.btn.btn-sm.btn-outline-secondary(href="https://github.com/Jan-IngenHousz-Institute/JII-MultispeQ-Protocols/", target="_blank" rel="noreferrer") #[i.bi.bi-github] JII-MultispeQ-Protocols on Github
+
+  section
+    .container
+      .row
+        .col-12.my-md-5.my-3
+          .row
+            .col-12.col-md-8.order-first.order-md-2
               h4 #[span.fw-lighter Data Analysis]#[br]React Data Viewer
             .col-12.col-md-4.order-2.order-md-first
               a.link-darken.d-block.position-relative(href="/react-data-viewer/") !{filters.image( filters.url("/images/programming/browser-window-react.svg"), "Data Viewer" )}
