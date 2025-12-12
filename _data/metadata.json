@@ -33,7 +33,7 @@
     "child-src 'self'",
     "img-src 'self' data: https://queue.simpleanalyticscdn.com https://simpleanalyticsbadges.com",
     "font-src 'self'",
-    "connect-src 'self' https://doi.org https://api.crossref.org https://queue.simpleanalyticscdn.com https://average-apron-clam.cyclic.app",
+    "connect-src 'self' https://doi.org https://api.crossref.org https://scripts.simpleanalyticscdn.com https://queue.simpleanalyticscdn.com https://average-apron-clam.cyclic.app",
     "manifest-src 'self'",
     "base-uri 'self'",
     "form-action 'self'",
