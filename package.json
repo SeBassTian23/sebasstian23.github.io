@@ -10,7 +10,8 @@
     "start": "eleventy --serve",
     "debug": "DEBUG=* eleventy",
     "favicon": "sh favicon.sh",
-    "clean": "rm -r _site"
+    "clean": "rm -r _site",
+    "fetch-data": "node _assets/javascript/fetch-weather-data.js && node _assets/javascript/fetch-periodic-table-data.js"
   },
   "type": "module",
   "keywords": [],
@@ -31,6 +32,7 @@
     "@11ty/eleventy-plugin-pug": "^1.0.0",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@xmldom/xmldom": "^0.8.11",
     "autoprefixer": "^10.4.21",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
