@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import {DOMParser} from '@xmldom/xmldom'
 
 async function fetchWeatherData() {
-  const year = 2025;
+  const year = 2026;
   const url = 'https://www.extremeweatherwatch.com/cities/lansing/year-'+year;
   
   try {
@@ -100,6 +100,10 @@ fetchWeatherData()
 
       // Update Title
       wdata.settings.subtitle.titleText = "Lansing, MI - Weather "+data.obj[0].Day.slice(-4)
+      
+      // Update Range
+      wdata.settings['data-input'].monthStart = data.obj[0].Day.slice(-4) + "-01"
+      wdata.settings['data-input'].monthEnd = data.obj[0].Day.slice(-4) + "-12"
 
       fs.writeFile('_data/weatherData.json', JSON.stringify(wdata, null, 2), (err) => {
         if (err) {
