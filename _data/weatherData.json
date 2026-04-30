@@ -810,6 +810,104 @@
       "Low (°C)": 6.1,
       "Precip. (cm)": 0.05,
       "Snow (cm)": 0
+    },
+    {
+      "Day": "Mon Apr 13 2026",
+      "High (°C)": 25,
+      "Low (°C)": 15,
+      "Precip. (cm)": 0.38,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Tue Apr 14 2026",
+      "High (°C)": 25.6,
+      "Low (°C)": 16.1,
+      "Precip. (cm)": 2.97,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Wed Apr 15 2026",
+      "High (°C)": 21.7,
+      "Low (°C)": 15.6,
+      "Precip. (cm)": 1.19,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Thu Apr 16 2026",
+      "High (°C)": 19.4,
+      "Low (°C)": 12.2,
+      "Precip. (cm)": 1.7,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Fri Apr 17 2026",
+      "High (°C)": 23.3,
+      "Low (°C)": 11.7,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sat Apr 18 2026",
+      "High (°C)": 17.8,
+      "Low (°C)": 4.4,
+      "Precip. (cm)": 1.04,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sun Apr 19 2026",
+      "High (°C)": 8.9,
+      "Low (°C)": 0,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Mon Apr 20 2026",
+      "High (°C)": 8.9,
+      "Low (°C)": -2.8,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Tue Apr 21 2026",
+      "High (°C)": 21.7,
+      "Low (°C)": 3.9,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Wed Apr 22 2026",
+      "High (°C)": 23.9,
+      "Low (°C)": 6.1,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Thu Apr 23 2026",
+      "High (°C)": 27.2,
+      "Low (°C)": 10.6,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Fri Apr 24 2026",
+      "High (°C)": 26.7,
+      "Low (°C)": 13.9,
+      "Precip. (cm)": 0.43,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sat Apr 25 2026",
+      "High (°C)": 14.4,
+      "Low (°C)": 5,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
+    },
+    {
+      "Day": "Sun Apr 26 2026",
+      "High (°C)": 18.9,
+      "Low (°C)": 6.1,
+      "Precip. (cm)": 0,
+      "Snow (cm)": 0
     }
   ]
 }

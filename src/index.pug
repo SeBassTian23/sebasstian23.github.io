@@ -15,17 +15,21 @@ block append head
   script.
     const weather = !{ JSON.stringify(weatherData) }
 
+//- Variables
+//- --------------------------------------
+//- Photosynthesis Introduction
+//- spring (March 1 to May 31)
+//- summer (June 1 to August 31)
+//- fall (September 1 to November 30)
+//- winter (December 1 to February 28/29)
+- season = "spring"
+- year = "2026"
+
 block append content
   //- Welcome Header
   +hero-4({h1: "Hi. I'm <strong>Sebastian</strong>.", subheader: "Currently Living in Europe; exploring the Regulation of Photosynthesis."})(id="about")
 
   section#photosynthesis
-    //- Photosynthesis Introduction
-    //- spring (March 1 to May 31)
-    //- summer (June 1 to August 31)
-    //- fall (September 1 to November 30)
-    //- winter (December 1 to February 28/29)
-    - season = "spring"
     +hero-2({h2: "<span class=\"fw-lighter\">Plant</span> Photosynthesis", content: filters.markdown("text-blocks/photosynthesis.md"), video: {src: [`/videos/${forestvideos[season][0]}.mp4`, `/videos/${forestvideos[season][0]}.webm`, `/videos/${forestvideos[season][0]}.vtt`], poster: `/videos/${forestvideos[season][0]}.jpg` }, imageSubtitle: `Video by ${forestvideos[season][1]} from <a class=\"link-light me-2\" href=\"https://www.pexels.com/${forestvideos[season][2]}\" target=\"_blank\">Pexel</a>` })(class="bg-primary")
     
     //- MultispeQ and Photosynthesis Research
@@ -152,7 +156,7 @@ block append content
 
               small.text-muted.fw-lighter
                 | Source: Lansing Weather Data 
-                a(href="https://www.extremeweatherwatch.com/cities/lansing/year-2025") (extremeweatherwatch.com)
+                a(href=`https://www.extremeweatherwatch.com/cities/lansing/year-${year}`) (extremeweatherwatch.com)
 
     //- Feature with image aligned right
     +feature-1({headline: `<span class="fw-lighter">LEGO® bricks</span> My Own Creations`, content: filters.markdown("text-blocks/lego.md"), image: "/images/lego-moc/architecture.png", imageAlt: "MOC: Lego Skylines Rome and Washington D.C.", tag: "lego", tag: collections[ "second tag" ], tagCount: 3 })(id="moc", class="mb-5")
